@@ -1,4 +1,5 @@
-// app/layout.js
+// frontend/src/app/layout.tsx
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -9,8 +10,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 // Define metadata for the application
 export const metadata: Metadata = {
-  title: "Your App Title", // Change this to your desired title
-  description: "Your app description", // Change this to your desired description
+  title: "team", // Change this to your desired title
+  description: "", // Change this to your desired description
 };
 
 // Consolidated RootLayout component
