@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CSPostHogProvider } from './providers';
+import Sidebar from "@/components/core/Sidebar";
+
 
 // Import Inter font
 const inter = Inter({ subsets: ["latin"] });
@@ -24,7 +26,12 @@ export default function RootLayout({
     <html lang="en">
       {/* Use PostHog provider for analytics if needed */}
       <CSPostHogProvider>
-        <body className={inter.className}>{children}</body>
+
+        <body className={inter.className}>
+        <Sidebar />
+        {children}</body>
+       
+
       </CSPostHogProvider>
     </html>
   );
