@@ -23,20 +23,21 @@ export default function TranscriptItem({id, text, timestamp}: Transcript) {
     <div className='flex   p-6 bg-gray-900 rounded-lg shadow-lg mx-auto mb-9'>
         <div className='p-5 text-white'>
            
-            <div className='h-1 bg-yellow-600 w-24 mx-auto mb-4'>
+            <p className='h-1 bg-yellow-600  mx-auto mb-8'>
                 Transcript - {id}
-            </div>
+            </p>
 
-            <p className='text-gray-200 '>
+            <p className='text-gray-200 mb-8'>
               {new Date(timestamp).toLocaleString()}
             </p>
 
             <p className='py-5'>
-            {text.slice(0, 60)}...
+            {text}
             </p>
             <Button
               className="mt-3 text-white bg-yellow-500 hover:bg-yellow-400"
               onClick={() => handleRedirect(id)}
+              
             >
               View Transcript
             </Button>

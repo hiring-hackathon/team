@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Comments from './Comments'
+import Comments from './Comments';
 import { Button } from '../ui/button';
 import {
     Dialog,
@@ -10,10 +10,9 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-  } from "@/components/ui/dialog"
-  import { Textarea } from "@/components/ui/textarea"
-
-  
+} from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
+import Sidebar from '@/components/core/Sidebar';
 
 interface Transcript {
     id: string;
@@ -21,82 +20,115 @@ interface Transcript {
     timestamp: string;
 }
 
-export default function TranscriptDetail({ transcriptId }: { transcriptId: string }) {
+
+interface props {
+    transcriptId: string; // transc
+}
+
+export default function TranscriptPage ({ transcriptId }: props) {
     const [transcript, setTranscript] = useState<Transcript | null>(null);
+    const [comment, setComment] = useState<string>('');
     const [addComment, setAddComment] = useState(false)
-    const [comment, setComment] = useState('')
-    const [comments, setComments] = useState()
-
+    
+    // fetching the transcript with the current id
     useEffect(() => {
-        const fetchTranscript = async () => {
-            const response = await fetch(`/api/transcripts`);
-            const data = await response.json();
-            const selectedTranscript = data.find((t: Transcript) => t.id === transcriptId);
-            setTranscript(selectedTranscript);
-        };
+        // Fetch data from the API Gateway endpoint
+        fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.transcript) {
+                    setTranscript({
+                        id: data.transcript.TranscriptId,
+                        text: data.transcript.TranscriptText,
+                        timestamp: new Date().toISOString() // Update if timestamp is available in the response
+                    });
 
-        fetchTranscript();
+                } else {
+                    console.error('No transcript data found');
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
     }, [transcriptId]);
 
-    if (!transcript) {
-        return <div>Loading...</div>;
-    }
+
+    
 
     const addNewComment = () => {
-        // // Logic to add a new comment
-        // const newComment = 'This is a new comment'; // Replace with actual comment logic
-        // setComments([...comments, newComment]);
-        // console.log('New comment added:', newComment);
-      };
+        // Implement your function to add a new comment
+        console.log('Adding new comment:', comment);
+
+        setAddComment(false)
+    };
 
     return (
-     
-    <div className='flex   p-6 bg-gray-900 rounded-lg shadow-lg mx-auto mb-9'>
-    <div className='p-5 text-white'>
-    
-        <div className='h-1 bg-yellow-600 w-24 mx-auto mb-4'>
-            Transcript Detail
-        </div>
-        <div>
-        <Button variant='outline' className=' bg-gray-900 text-white font-bold hover:text-yellow-400' onClick={() => setAddComment(true)}>Add Comment</Button>
-
-        </div>
-
-
-        <p className='text-gray-200 text-xs'>
-        {new Date(transcript.timestamp).toLocaleString()}
-        </p>
-
-        <p className='text-start'>
-        {transcript.text}
-        </p>
-        <div className='mt-8'>
-            <Comments transcriptId={transcriptId} />
-        </div>
-        
-    </div>
-
-    <div className="">
-        <Dialog>
-        <DialogTrigger className="bg-white  p-2  rounded-lg">Add Comment</DialogTrigger>
-        <DialogContent>
-            <DialogHeader>
-            <DialogTitle className="text-yellow-700">Add a  new Comment</DialogTitle>
-            <DialogDescription>
-                <div>
-                 
-                <Textarea onChange={(e) => {setComment(e.target.value)}}/>
-                <Button className="bg-slate-500 mt-5" onClick={addNewComment}>
-                  Add
-                </Button>
+        <div >
+            <Sidebar />
+            <div className='p-5 text-white mb-10'>
+                <div className='flex justify-between '>
+                    <div>
+                           <p className='text-yellow-400'>Transcript - {transcript?.id} </p>
+                    </div>
+                    <div>
+                    <div>
+                    
+                      
+                    
+                    <Dialog>
+                    <DialogTrigger className="bg-white text-gray-600 p-2 rounded-lg" onClick={() => setAddComment(true)}>Add Comment</DialogTrigger>
+                    {addComment && (
+                        <>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle className="text-yellow-700">Add a New Comment</DialogTitle>
+                            <DialogDescription>
+                                <div>
+                                    <Textarea 
+                                        onChange={(e) => setComment(e.target.value)}
+                                        value={comment}
+                                    />
+                                    
+                        
+                                    <Button className="bg-slate-500 mt-5" onClick={addNewComment} >
+                                        Add
+                                    </Button>
+                                </div>
+                            </DialogDescription>
+                        </DialogHeader>
+                    </DialogContent>
+                    </>)}
+                </Dialog>
+                
                 </div>
-            </DialogDescription>
-            </DialogHeader>
-        </DialogContent>
-        </Dialog>
-    </div>
+                    </div>
+                </div>
+                <div className='text-xl font-semibold mb-2'>
+                {transcript ? (
+                    <>
+                    <p className='text-white mt-10'>
+                        <div className='flex justify-between'>
+                            <div className='pr-9'>
+                            {new Date(transcript.timestamp).toLocaleString()}
+                            </div>
+                            <div>
+                                {transcript.text}
 
-    </div>
-
+                            </div>
+                        </div>
+                   
+                    </p>
+                        
+                        <div className='h-1 bg-yellow-600 w-24 mx-auto mb-4 mt-4'></div>
+                        <p></p>
+                        <div className='mt-8'>
+                            <Comments transcriptId={transcript.id} />
+                        </div>
+                    </>
+                ) : (
+                    'Loading...'
+                )}
+            </div>
+            </div>
+        </div>
     );
-}
+};
+
