@@ -6,7 +6,7 @@ export default function description() {
     
 <div className="p-20">
 {/* First Section */}
-<div className="flex flex-col md:flex-row items-center gap-8 mb-32">
+<div className="flex flex-col md:flex-row items-center gap-8 mb-24">
     <div className="w-full md:w-1/2 p-12">
         <p className="text-lg md:text-xl leading-relaxed text-white">
         In this competitive market, optimizing the performance of outside sales and service teams is crucial for success. Our latest initiative is dedicated to revolutionizing this area by introducing cutting-edge technology that enhances operational efficiency and effectiveness.
@@ -43,7 +43,9 @@ export default function description() {
             operational efficiency and effectiveness.
         </p>
     </div>
+        <div>
 
+        </div>
     </div>
 </div>
   )

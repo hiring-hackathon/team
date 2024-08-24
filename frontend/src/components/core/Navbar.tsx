@@ -1,31 +1,48 @@
-import React from 'react';
-import { Button } from '@/components/ui/button'; // Assuming you have a Button component
+import React, { useState } from 'react';
+import { Button } from '@/components/ui/button'; // Import your Button component
+import { GiHamburgerMenu } from 'react-icons/gi'; // Import hamburger menu icon
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
   return (
     <nav className="bg-black p-4">
-      <div className="container mx-auto flex items-center justify-between">
+      <div className="container mx-auto flex flex-wrap items-center justify-between">
         {/* Logo or Brand Name */}
         <div className="text-white text-3xl font-semibold hover:text-green-400 transition-colors duration-300">
-          Rail AI VOice
+          Rail AI Voice
+        </div>
+
+        {/* Hamburger Menu */}
+        <div className="block lg:hidden">
+          <button
+            onClick={toggleMenu}
+            className="text-white focus:outline-none"
+          >
+            <GiHamburgerMenu size={24} />
+          </button>
         </div>
 
         {/* Navigation Links */}
-        <div className="space-x-6">
+        <div className={`lg:flex lg:space-x-6 ${isOpen ? 'block' : 'hidden'}`}>
+          <a href="/dashboard" className="text-white text-xl hover:text-green-400 transition-colors duration-300">
+            Dashboard
+          </a>
           <a href="/" className="text-white text-xl hover:text-green-400 transition-colors duration-300">
             Home
           </a>
           <a href="/transcripts" className="text-white text-xl hover:text-green-400 transition-colors duration-300">
             Transcripts
           </a>
-         
           <a href="/teams" className="text-white text-xl hover:text-green-400 transition-colors duration-300">
             Teams
           </a>
         </div>
 
         <Button
-          className="bg-black text-white hover:bg-green-400 hover:text-black transition-colors duration-300"
+          className="bg-black text-white hover:bg-green-400 hover:text-black transition-colors duration-300 mt-4 lg:mt-0"
           size="sm"
         >
           Contact Us

@@ -28,7 +28,7 @@ export default function RootLayout({
       <CSPostHogProvider>
 
         <body className={inter.className}>
-        <Sidebar />
+       
         {children}</body>
        
 
