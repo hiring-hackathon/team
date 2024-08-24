@@ -116,3 +116,5 @@ yarn-error.log*
 # Other
 # Uncomment to ignore the entire idea folder if using PyCharm
 #.idea/
+
+.history
