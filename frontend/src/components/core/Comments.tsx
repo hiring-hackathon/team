@@ -1,5 +1,10 @@
-'use clent'
-import React, { useState, useEffect } from 'react'
+'use client';
+
+import React from 'react';
+import { Button } from "@/components/ui/button"
+import { FileUp } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
+import { Pencil } from 'lucide-react';
 
 interface Comment {
     id: string;
@@ -9,59 +14,45 @@ interface Comment {
     timeStamp: string;
 }
 
+interface CommentsProps {
+    comments: Comment[]; // Comments passed as props
+}
 
-export default function Comments({transcriptId}: {transcriptId: string}) {
-    const [comments, setComments] = useState<Comment[]>([]);
-
-
-
-    // gets the comments belonging to a specific transcript
-    // fetch all the comments
-    useEffect(() => {
-        console.log('Fetching comments for transcript ID:', transcriptId);
-
-        fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}`)
-            .then(response => response.json())
-            .then(data => {
-                console.log('fetching comments for ', data)
-                if (Array.isArray(data)) {
-                    const fetchedComments: Comment[] = data.map((item: any) => ({
-                        id: item.CommentId,
-                        transcriptId: item.TranscriptId,
-                        text: item.CommentText,
-                        file: '',  // Replace with actual file data if available
-                        timeStamp: item.CreatedAt // Assuming CreatedAt is the timestamp
-                    }));
-
-                    setComments(fetchedComments);
-                } else {
-                    console.error('No comment data found');
-                }
-            })
-            .catch(error => console.error('Error fetching data:', error));
-    }, [transcriptId]);
-
+export default function Comments({ comments }: CommentsProps) {
     return (
         <div className='mb-5'>
             <h1 className='text-yellow-400'>Comments</h1>
+            <div className=" mb-4">
 
-            <div className=''>
-            {comments.map((comment) => (
-                <div key={comment.id} className='mb-4'>
-                    <p className='white'>
-                        <strong>{new Date(comment.timeStamp).toLocaleString()}</strong> -- {comment.text}
-                    </p>
-                    {comment.file && (
-                        <p>
-                            <a href={comment.file} target="_blank" rel="noopener noreferrer">
-                                (Attached File)
-                            </a>
+                {comments.map((comment) => (
+                    <div key={comment.id} className='mb-4'>
+                        <p className='text-white'>
+                            <div><strong>{new Date(comment.timeStamp).toLocaleString()}</strong> -- {comment.text}</div>
+                            {comment.file && (
+                            <p>
+                                <a href={comment.file} target="_blank" rel="noopener noreferrer">
+                                    (Attached File)
+                                </a>
+                            </p>
+                        )}
+                            <div  className='flex justify-end max-h-4 mb-20'>
+                            <Button className='mr-5'>
+                                    <Pencil />
+                                </Button>
+                                <Button variant={'destructive'} size={'icon'}  className='mr-5' >
+                                        <Trash2 />
+                                    </Button>
+
+                                <Button className="text-gray-500 hover:text-gray-700 mr-5" size={'sm'} variant='secondary' >
+                                ✖️
+                                </Button>
+                            </div>
                         </p>
-                    )}
-                </div>
-            ))}
-</div>
-
+                        
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
+              
