@@ -7,6 +7,7 @@ import Features from "@/components/core/Features";
 import Footer from "@/components/core/Footer";
 
 
+
 export default function Home() {
   const [transcripts, setTranscripts] = useState([])
   const deleteComment = ()=> {
@@ -29,7 +30,8 @@ export default function Home() {
     <main className="bg-black ">
        
 
-       <div className="ml-32 ">
+       <div >
+      
        <Navbar />
              
         <Description />
@@ -37,6 +39,8 @@ export default function Home() {
         <Features />
 
         <Footer />
+
+        
 
        </div>
     

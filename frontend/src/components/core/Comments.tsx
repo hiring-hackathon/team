@@ -13,6 +13,8 @@ interface Comment {
 export default function Comments({transcriptId}: {transcriptId: string}) {
     const [comments, setComments] = useState<Comment[]>([]);
 
+
+    // gets the comments belonging to a specific transcript
     useEffect(() => {
         const getComments = async () => {
             const response = await fetch('/api/get-Comments');
@@ -25,16 +27,17 @@ export default function Comments({transcriptId}: {transcriptId: string}) {
     }, [transcriptId]);
 
     return (
-        <div>
-            <h2>Comments</h2>
-            <ul>
+        <div className='mb-5'>
+            <h1 className='text-yellow-400'>Comments</h1>
+
+            <div className=''>
                 {comments.map((comment) => (
-                    <li key={comment.id}>
+                    <p key={comment.id}>
                         <strong>{new Date(comment.timeStamp).toLocaleString()}</strong>: {comment.text}
                         {comment.file && <a href={comment.file} target="_blank" rel="noopener noreferrer"> (Attached File)</a>}
-                    </li>
+                    </p>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 }

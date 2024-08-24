@@ -15,7 +15,7 @@ export default function TranscriptItem({id, text, timestamp}: Transcript) {
     const router = useRouter();
     
   const handleRedirect = (transcriptId: String) => {
-    // Encode the transcript text for use in the URL
+    // redirects to a specific transcript page
     router.push(`/transcripts/${transcriptId}`);
   };
 
@@ -31,7 +31,7 @@ export default function TranscriptItem({id, text, timestamp}: Transcript) {
               {new Date(timestamp).toLocaleString()}
             </p>
 
-            <p>
+            <p className='py-5'>
             {text.slice(0, 60)}...
             </p>
             <Button
