@@ -21,15 +21,23 @@ export const handler = async (event) => {
     const result = await dynamoDb.send(new UpdateCommand(params));
     return {
       statusCode: 200,
-      body: JSON.stringify(result.Attributes)
+      body: JSON.stringify(result.Attributes),
+      headers: {
+        "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+        "Access-Control-Allow-Methods": "PUT, OPTIONS", // Allow PUT and OPTIONS methods
+        "Access-Control-Allow-Headers": "Content-Type" // Allow specific headers
+      }
     };
   } catch (error) {
-    console.error('Error:', error); // Log the error details
+    console.error('Error:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Could not update transcript', details: error.message })
+      body: JSON.stringify({ error: 'Could not update transcript', details: error.message }),
+      headers: {
+        "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+        "Access-Control-Allow-Methods": "PUT, OPTIONS", // Allow PUT and OPTIONS methods
+        "Access-Control-Allow-Headers": "Content-Type" // Allow specific headers
+      }
     };
   }
 };
-
-

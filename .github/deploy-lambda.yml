@@ -1,3 +1,9 @@
+# .github/deploy-lambda.yml
+
+# This workflow will deploy a Lambda function to AWS Lambda
+
+# Perrequisites: https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/
+
 name: Deploy Lambda Functions
 
 on:
