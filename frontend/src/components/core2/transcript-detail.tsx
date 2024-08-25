@@ -31,7 +31,8 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [summary, setSummary] = useState<string>('');
-    const [newComment, setNewComment] = useState('');
+    const [commentText, setNewComment] = useState('');
+    const [location, setLocation] = useState({ startIndex: 0, endIndex: 10 })
     // const [startIndex, setStartIndex] = useState<number>(0);
     // const [endIndex, setEndIndex] = useState<number>(0);
 
@@ -43,6 +44,27 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
     //         setAttachedFile(e.target.files[0]);
     //     }
     // };
+ 
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+    
+        await fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            commentText,
+            location
+          })
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Comment created:', data);
+          })
+          .catch(error => console.error('Error creating comment:', error));
+      };
 
 
     const fetchTranscript = useCallback(async () => {
@@ -105,35 +127,35 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
     }
 
 
-    const handleCreateComment = async () => {
-        try {
-            const formData = new FormData();
-            formData.append('CommentText', newComment);
-            // formData.append('StartIndex', startIndex.toString());
-            // formData.append('EndIndex', endIndex.toString());
-            // if (attachedFile) {
-            //     formData.append('file', attachedFile);
-            // }
+    // const handleCreateComment = async () => {
+    //     try {
+    //         const formData = new FormData();
+    //         formData.append('CommentText', newComment);
+    //         // formData.append('StartIndex', startIndex.toString());
+    //         // formData.append('EndIndex', endIndex.toString());
+    //         // if (attachedFile) {
+    //         //     formData.append('file', attachedFile);
+    //         // }
 
-            const response = await fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
-                method: 'POST',
-                body: formData,
-            });
-            if (!response.ok) {
-                throw new Error('Failed to create comment');
-            }
-            const data = await response.json();
-            console.log('Comment created:', data);
-            setNewComment('');
-            // setStartIndex(0);
-            // setEndIndex(0);
-            // setAttachedFile(null);
-            setIsDialogOpen(false);
-            fetchComments();  // Refresh comments after creating a new one
-        } catch (err) {
-            console.error('Error creating comment:', err);
-        }
-    }
+    //         const response = await fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
+    //             method: 'POST',
+    //             body: formData,
+    //         });
+    //         if (!response.ok) {
+    //             throw new Error('Failed to create comment');
+    //         }
+    //         const data = await response.json();
+    //         console.log('Comment created:', data);
+    //         setNewComment('');
+    //         // setStartIndex(0);
+    //         // setEndIndex(0);
+    //         // setAttachedFile(null);
+    //         setIsDialogOpen(false);
+    //         fetchComments();  // Refresh comments after creating a new one
+    //     } catch (err) {
+    //         console.error('Error creating comment:', err);
+    //     }
+    // }
 
     // const handleCreateComment = async () => {
     //     try {
@@ -229,7 +251,7 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
                                         </Label>
                                         <Textarea
                                             id="comment"
-                                            value={newComment}
+                                            value={commentText}
                                             onChange={(e) => setNewComment(e.target.value)}
                                             placeholder="Enter your comment"
                                             className="col-span-3"
@@ -248,7 +270,7 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
                                         />
                                     </div> */}
                                 </div>
-                                <Button onClick={handleCreateComment}>Add Comment</Button>
+                                <Button onClick={handleSubmit}>Add Comment</Button>
                             </DialogContent>
                         </Dialog>
                     </div>

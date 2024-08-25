@@ -13,6 +13,7 @@ interface Comment {
 export default function CommentSection({ transcriptId }: { transcriptId: string }) {
     const [comments, setComments] = useState<Comment[]>([]);
 
+    console.log(transcriptId)
     useEffect(() => {
         const fetchComments = async () => {
             try {
