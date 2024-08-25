@@ -12,7 +12,7 @@ export default function Navbar() {
     const navigation = [
         { title: "Team", path: "/team" },
         { title: "Transcripts", path: "/transcripts" },
-        { title: "Home", path: "/" },
+        { title: "Chat", path: "/chat" },
     ];
 
     return (

@@ -20,7 +20,9 @@ export default function Home() {
       </div>
 
 
-      {/* <Footer /> */}
+      <footer className="w-full text-center py-4 border-t mt-8">
+                © 2024 Rilla All Rights Reserved
+            </footer>
     </main>
   );
 }
