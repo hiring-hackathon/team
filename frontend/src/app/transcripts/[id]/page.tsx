@@ -17,10 +17,13 @@ export default function UniqueTranscript() {
     const transcriptId = Array.isArray(params.id) ? params.id[0] : params.id;
     
     return (
-        <div className='flex p-6 bg-gray-900 rounded-lg mx-auto  ml-60 h-screen'>
-            <Sidebar />
+       
+        <div className="min-h-screen flex">
+        <Sidebar />
+        <div className='flex-grow p-6 bg-gray-900 rounded-lg mx-auto ml-60'>
             <TranscriptPage transcriptId={transcriptId} />
         </div>
+    </div>
     );
 };
 

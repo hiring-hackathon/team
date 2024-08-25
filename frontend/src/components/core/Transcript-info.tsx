@@ -11,7 +11,6 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
 import Sidebar from '@/components/core/Sidebar';
 
 interface Transcript {
@@ -35,9 +34,9 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
     const [location, setLocation] = useState({ startIndex: 0, endIndex: 10 });
     const [dialogOpen, setDialogOpen] = useState(false);
 
-    const handleCommentTextChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => setComment(event.target.value);
-    const handleStartIndexChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => setLocation(prev => ({ ...prev, startIndex: parseInt(event.target.value, 10) }));
-    const handleEndIndexChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => setLocation(prev => ({ ...prev, endIndex: parseInt(event.target.value, 10) }));
+    const handleCommentTextChange = (event: React.ChangeEvent<HTMLInputElement>) => setComment(event.target.value);
+    const handleStartIndexChange = (event: React.ChangeEvent<HTMLInputElement>) => setLocation(prev => ({ ...prev, startIndex: parseInt(event.target.value, 10) }));
+    const handleEndIndexChange = (event: React.ChangeEvent<HTMLInputElement>) => setLocation(prev => ({ ...prev, endIndex: parseInt(event.target.value, 10) }));
 
     const fetchTranscript = () => {
         fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}`)
@@ -57,7 +56,7 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
     };
 
     const fetchComments = () => {
-        console.log('fteching comments')
+        console.log('fetching comments')
         fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/getAllComments`)
             .then(response => response.json())
             .then(data => {
@@ -80,6 +79,15 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
 
     const addNewComment = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
+
+        console.log('Comment:', comment);
+        console.log('Location:', location);
+
+        const payload = {
+            text: comment,
+            transcriptId: transcriptId,
+            location: location
+        };
     
         fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
             method: 'POST',
@@ -87,15 +95,12 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                text: comment,
-                transcriptId: transcriptId,
-                
-                location
+                payload
             })
         })
         .then(response => response.json())
         .then(() => {
-            console.log('Comment created');
+            console.log(comment);
             fetchComments(); // Refetch comments after adding a new one
         })
         .catch(error => {
@@ -139,28 +144,50 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
                                 <DialogHeader>
                                     <DialogTitle className="text-yellow-700">Add a New Comment</DialogTitle>
                                     <DialogDescription>
-                                        <div>
-                                            <p>Comment Text</p>
-                                            <Textarea 
-                                                onChange={handleCommentTextChange}
-                                                value={comment}
-                                                required
-                                            />
-                                            <p>Start Index</p>
-                                            <Textarea 
-                                                onChange={handleStartIndexChange}
-                                                value={location.startIndex}
-                                                required
-                                            />
-                                            <p>End Index</p>
-                                            <Textarea 
-                                                onChange={handleEndIndexChange}
-                                                value={location.endIndex}
-                                            />
+                                        <form>
+                                            <div className='mb-4'>
+                                                <label htmlFor="commentText" className="block text-sm font-medium text-gray-900">
+                                                    Comment Text
+                                                </label>
+                                                <input
+                                                    id="commentText"
+                                                    type="text"
+                                                    onChange={handleCommentTextChange}
+                                                    value={comment}
+                                                    required
+                                                    className="mt-1 block w-full p-2 rounded-md bg-gray-700 text-white"
+                                                />
+                                            </div>
+                                            <div className='mb-4'>
+                                                <label htmlFor="startIndex" className="block text-sm font-medium text-gray-900">
+                                                    Start Index
+                                                </label>
+                                                <input
+                                                    id="startIndex"
+                                                    type="number"
+                                                    onChange={handleStartIndexChange}
+                                                    value={location.startIndex}
+                                                    required
+                                                    className="mt-1 block w-full p-2 rounded-md bg-gray-700 text-white"
+                                                />
+                                            </div>
+                                            <div className='mb-4'>
+                                                <label htmlFor="endIndex" className="block text-sm font-medium text-gray-900">
+                                                    End Index
+                                                </label>
+                                                <input
+                                                    id="endIndex"
+                                                    type="number"
+                                                    onChange={handleEndIndexChange}
+                                                    value={location.endIndex}
+                                                    required
+                                                    className="mt-1 block w-full p-2 rounded-md bg-gray-700 text-white"
+                                                />
+                                            </div>
                                             <Button className="bg-slate-500 mt-5" onClick={addNewComment}>
                                                 Add
                                             </Button>
-                                        </div>
+                                        </form>
                                     </DialogDescription>
                                 </DialogHeader>
                             </DialogContent>
