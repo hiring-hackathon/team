@@ -32,17 +32,10 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
     const [error, setError] = useState<string | null>(null);
     const [summary, setSummary] = useState<string>('');
     const [newComment, setNewComment] = useState('');
-    // const [startIndex, setStartIndex] = useState<number>(0);
-    // const [endIndex, setEndIndex] = useState<number>(0);
+
 
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    // const [attachedFile, setAttachedFile] = useState<File | null>(null);
 
-    // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     if (e.target.files && e.target.files[0]) {
-    //         setAttachedFile(e.target.files[0]);
-    //     }
-    // };
 
 
     const fetchTranscript = useCallback(async () => {
@@ -135,44 +128,6 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
         }
     }
 
-    // const handleCreateComment = async () => {
-    //     try {
-    //         const response = await fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({
-    //                 CommentText: newComment,
-    //                 Location: {
-    //                     startIndex,
-    //                     endIndex
-    //                 }
-    //             }),
-    //         });
-    //         if (!response.ok) {
-    //             throw new Error('Failed to create comment');
-    //         }
-    //         const data = await response.json();
-    //         console.log('Comment created:', data);
-    //         setNewComment('');
-    //         setStartIndex(0);
-    //         setEndIndex(0);
-    //         fetchComments();  // Refresh comments after creating a new one
-    //     } catch (err) {
-    //         console.error('Error creating comment:', err);
-    //     }
-    // }
-
-    // const handleStartIndexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     const value = e.target.value;
-    //     setStartIndex(value === '' ? 0 : parseInt(value, 10));
-    // };
-
-    // const handleEndIndexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     const value = e.target.value;
-    //     setEndIndex(value === '' ? 0 : parseInt(value, 10));
-    // };
 
     if (loading) {
         return <div>Loading transcript...</div>;
@@ -236,17 +191,6 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
                                         />
                                     </div>
 
-                                    {/* <div className="grid grid-cols-4 items-center gap-4">
-                                        <Label htmlFor="file" className="text-right">
-                                            Attach File
-                                        </Label>
-                                        <Input
-                                            id="file"
-                                            type="file"
-                                            onChange={handleFileChange}
-                                            className="col-span-3"
-                                        />
-                                    </div> */}
                                 </div>
                                 <Button onClick={handleCreateComment}>Add Comment</Button>
                             </DialogContent>
