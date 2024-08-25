@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Trash, Edit } from 'lucide-react'
+import Navbar from '../layout/nav';
 
 interface Transcript {
     TranscriptText: string;
@@ -212,6 +213,9 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
 
     return (
         <div className="max-w-4xl mx-auto p-4">
+            <div style={{ marginBottom: '60px', width: "60vw", alignSelf: "center" }}>
+                <Navbar />
+            </div>
             <h1 className="text-2xl font-bold mb-4">Transcript Detail</h1>
             <Tabs defaultValue="details">
                 <TabsList>

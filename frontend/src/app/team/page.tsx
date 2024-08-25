@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
+import Navbar from '@/components/layout/nav';
 
 // Define the team members' data
 const teamMembers = [
@@ -70,6 +71,9 @@ const MeetTheTeam: React.FC = () => {
 
     return (
         <div className="p-10 min-h-screen">
+             <div style={{ marginBottom: '60px',  alignSelf: "center" }}>
+                <Navbar />
+            </div>
             <p className="text-yellow-400 font-bold text-center text-3xl mb-8 mt-20">Meet the Team</p>
 
             <div className="max-w-7xl mx-auto">

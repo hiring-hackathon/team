@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Card } from "@/components/ui/card";
 
+
 // Transcript interface
 interface Transcript {
     TranscriptText: string;
