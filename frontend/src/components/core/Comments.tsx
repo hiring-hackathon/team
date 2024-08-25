@@ -16,9 +16,40 @@ interface Comment {
 
 interface CommentsProps {
     comments: Comment[]; // Comments passed as props
+    fetchComments: () => void; // Add fetchComments prop
+    
 }
 
-export default function Comments({ comments }: CommentsProps) {
+export default function Comments({ comments, fetchComments  }: CommentsProps) {
+
+    const deleteComment = (id: string, commentId: string) => {
+        return fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${id}/getAllComments/${commentId}/delete`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('comment deleted')
+            console.log('Delete response data:', data); // Log the response to the console
+            fetchComments();
+        })
+        .catch(error => console.error('Error deleting comment:', error)); // Log errors to the console
+    };
+    
+      const addComment=() =>{
+    
+      }
+    
+      const updateComment = () =>{
+    
+      }
+    
+      const addFileToComment = () =>{
+    
+      }
+
     return (
         <div className='mb-5'>
             <h1 className='text-yellow-400'>Comments</h1>
@@ -39,13 +70,11 @@ export default function Comments({ comments }: CommentsProps) {
                             <Button className='mr-5'>
                                     <Pencil />
                                 </Button>
-                                <Button variant={'destructive'} size={'icon'}  className='mr-5' >
+                                <Button variant={'destructive'} size={'icon'}  className='mr-5' onClick={() => deleteComment(comment.transcriptId, comment.id)}>
                                         <Trash2 />
                                     </Button>
 
-                                <Button className="text-gray-500 hover:text-gray-700 mr-5" size={'sm'} variant='secondary' >
-                                ✖️
-                                </Button>
+                              
                             </div>
                         </p>
                         

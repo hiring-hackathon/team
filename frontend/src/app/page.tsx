@@ -10,22 +10,7 @@ import Footer from "@/components/core/Footer";
 
 export default function Home() {
   const [transcripts, setTranscripts] = useState([])
-  const deleteComment = ()=> {
-    console.log("Hello world")
-
-  }
-
-  const addComment=() =>{
-
-  }
-
-  const updateComment = () =>{
-
-  }
-
-  const addFileToComment = () =>{
-
-  }
+  
   return (
     <main className="bg-black ">
        
