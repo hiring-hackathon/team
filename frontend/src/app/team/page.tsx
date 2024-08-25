@@ -1,9 +1,10 @@
-'use client'
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 
+// Define the team members' data
 const teamMembers = [
     {
         name: 'David Muturi',
@@ -42,9 +43,12 @@ const teamMembers = [
     }
 ];
 
-function MeetTheTeam() {
-    const [toast, setToast] = useState({ show: false, message: '' });
+// Define the MeetTheTeam component
+const MeetTheTeam: React.FC = () => {
+    // State for managing toast notifications
+    const [toast, setToast] = useState<{ show: boolean; message: string }>({ show: false, message: '' });
 
+    // Effect to handle toast notification auto-dismiss
     useEffect(() => {
         if (toast.show) {
             const timer = setTimeout(() => {
@@ -54,7 +58,8 @@ function MeetTheTeam() {
         }
     }, [toast.show]);
 
-    const handleContactClick = (email) => {
+    // Function to handle contact click and copy email to clipboard
+    const handleContactClick = (email: string) => {
         navigator.clipboard.writeText(email).then(() => {
             setToast({ show: true, message: `Email address copied: ${email}` });
         }).catch(err => {
@@ -99,6 +104,7 @@ function MeetTheTeam() {
                 </div>
             </div>
 
+            {/* Toast notification for feedback */}
             {toast.show && (
                 <div className="fixed bottom-4 right-4 bg-gray-800 text-white p-4 rounded shadow-lg transition-opacity duration-300">
                     {toast.message}
@@ -106,8 +112,9 @@ function MeetTheTeam() {
             )}
         </div>
     );
-}
+};
 
+// Export the TeamPage component as the default export
 export default function TeamPage() {
     return <MeetTheTeam />;
 }
