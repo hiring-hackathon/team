@@ -1,0 +1,75 @@
+# .github/deploy-lambda.yml
+
+# This workflow will deploy a Lambda function to AWS Lambda
+
+# Perrequisites: https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/
+
+name: Deploy Lambda Functions
+
+on:
+  push:
+    branches:
+      - main  # or any other branch you want to trigger the deployment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up AWS CLI
+      uses: aws-actions/setup-cli@v2
+      with:
+        region: us-east-1 # Change to your desired AWS region
+        profile: default
+
+    - name: Configure AWS credentials
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: |
+        aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID --profile default
+        aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY --profile default
+        aws configure set region us-east-1 --profile default
+
+    - name: Install zip and jq
+      run: sudo apt-get install -y zip jq
+
+    - name: Deploy Lambda functions
+      run: |
+        cd lambda
+
+        for dir in */ ; do
+            function_name="${dir%/}"
+            
+            echo "Processing Lambda function: $function_name"
+
+            if [ ! -d "$function_name" ]; then
+                echo "Directory $function_name not found. Skipping..."
+                continue
+            fi
+
+            echo "Packaging $function_name..."
+            zip -r "${function_name}.zip" "$function_name"
+
+            if [ $? -ne 0 ]; then
+                echo "Failed to package $function_name. Skipping..."
+                continue
+            fi
+
+            echo "Deploying function $function_name..."
+            aws lambda update-function-code --function-name "$function_name" --zip-file "fileb://${function_name}.zip"
+
+            if [ $? -ne 0 ]; then
+                echo "Failed to deploy function: $function_name. Please check your AWS CLI configuration, profile, and permissions."
+                rm -f "${function_name}.zip"
+                continue
+            fi
+
+            echo "Successfully deployed function $function_name."
+
+            rm -f "${function_name}.zip"
+
+        done
