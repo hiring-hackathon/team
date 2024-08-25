@@ -190,7 +190,10 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ CommentText: updatedText })
+                body: JSON.stringify({
+                    updatedText,
+                    location
+                })
             });
             if (!response.ok) {
                 throw new Error('Failed to update comment');
