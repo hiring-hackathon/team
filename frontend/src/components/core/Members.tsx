@@ -7,27 +7,27 @@ import Navbar from './Navbar';
 const teamMembers = [
   {
     name: 'Shaun Jhingoor',
-    role: 'Backend - AWS',
+    role: 'Backend, AI Engineer',
     photo: '/path/to/Shaun.jpg',
   },
   {
     name: 'Derek Gomez',
-    role: 'AI Integration',
+    role: 'Backend, AI Engineer',
     photo: '/path/to/Derek.jpg',
   },
   {
     name: 'Lloyd Chang',
-    role: 'Frontend - UI/UX and Backend - AWS',
+    role: 'Frontend, Backend, AI Engineer',
     photo: '/path/to/Lloyd.jpg',
   },
   {
     name: 'David Muturi',
-    role: 'Frontend and LLM AI Integration',
+    role: 'Frontend, AI Engineer',
     photo: '/path/to/Muturi.jpg',
   },
   {
     name: 'Faith Nchang',
-    role: 'Frontend, UI/UX Designer',
+    role: 'Frontend, UI/UX Designer, AI Engineer',
     photo: '/path/to/Faith.jpg',
   },
 ];
