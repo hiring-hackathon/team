@@ -1,33 +1,55 @@
 import { DynamoDB } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, QueryCommand } from "@aws-sdk/lib-dynamodb";
 
-// Initialize DynamoDB Document Client
 const dynamoDb = DynamoDBDocumentClient.from(new DynamoDB());
 
 export const handler = async (event) => {
-  const { transcriptId } = event.pathParameters;
+  console.log('Received event:', JSON.stringify(event, null, 2)); // Log the entire event
 
-  // Define the parameters for the query operation
+  // Ensure you're using the correct path parameter name
+  const id = event.pathParameters?.id; // Use optional chaining to handle undefined cases
+
+  if (!id) {
+    return {
+      statusCode: 400,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
+      body: JSON.stringify({ error: 'Id is required' }),
+    };
+  }
+
   const params = {
     TableName: 'Comments',
     KeyConditionExpression: 'TranscriptId = :id',
     ExpressionAttributeValues: {
-      ':id': transcriptId
+      ':id': id // Ensure this matches the schema type in DynamoDB
     }
   };
 
+  console.log('DynamoDB query params:', JSON.stringify(params, null, 2)); // Log query params
+
   try {
-    // Perform the query operation
+    // Query the database to get all comments for the specific transcript
     const result = await dynamoDb.send(new QueryCommand(params));
     return {
       statusCode: 200,
-      body: JSON.stringify(result.Items)
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
+      body: JSON.stringify(result.Items),  // Return all comments
     };
   } catch (error) {
-    console.error('Error:', error); // Log the error details
+    console.error('Error:', error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Could not retrieve comments', details: error.message })
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
+      body: JSON.stringify({ error: 'Could not retrieve comments', details: error.message }),
     };
   }
 };

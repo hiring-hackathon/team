@@ -19,6 +19,11 @@ export async function POST(req: NextRequest, res: NextRequest) {
     const { transcripts } = body;
 
     console.log('Received transcripts:', transcripts);
+    const transcriptTexts = transcripts.map((t: { text: string; timestamp: string }) =>
+      `${new Date(t.timestamp).toLocaleString()}: ${t.text}`
+    ).join('\n\n');
+
+    console.log('Received transcripts:', transcriptTexts);
 
     console.log('Sending request to OpenAI');
     const completion = await openai.chat.completions.create({
@@ -29,6 +34,8 @@ export async function POST(req: NextRequest, res: NextRequest) {
       ],
       // max_tokens: 100,
       // temperature: 0.7,
+        { role: 'user', content: `Please summarize the following conversation:\n\n${transcriptTexts}` }
+      ],
     });
 
     console.log('Received response from OpenAI:', completion);
