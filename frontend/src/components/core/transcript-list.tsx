@@ -1,85 +1,127 @@
-
-
-'use client';
-
+'use client'
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import TranscriptItem from './Transcript';
+import { Button } from '@/components/ui/button';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog"
+  
 
-// Transcript interface
 interface Transcript {
-    id: string;
-    text: string;
-    timestamp: string;
+  id: string;
+  text: string;
+  timestamp: string;
 }
 
-export default function TranscriptList() {
-    const [transcripts, setTranscripts] = useState<Transcript[]>([]);
-    const [summary, setSummary] = useState<string>('');
+export default function Transcripts() {
+  const [transcripts, setTranscripts] = useState<Transcript[]>([]);
+  const [summary, setSummary] = useState<string>('');
 
-    useEffect(() => {
-        fetchTranscripts();
-    }, []);
-
-    // fetch transcripts from API
-    const fetchTranscripts = async () => {
-        const response = await fetch('/api/transcripts');
-        const data = await response.json();
-        setTranscripts(data);
-    };
-
-    // generate summary from transcripts
-    const handleGenerateSummary = async () => {
-        try {
-            // First, ensure we have the latest transcripts
-            await fetchTranscripts();
-
-            // Prepare the transcript data in a readable format
-            const transcriptTexts = transcripts.map(t => `${new Date(t.timestamp).toLocaleString()}: ${t.text}`).join('\n\n');
-
-            // Send the formatted transcripts to the summarize API
-            const response = await fetch('/api/summarize', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ transcripts: transcriptTexts }),
-            });
-            const data = await response.json();
-            if (data.summary) {
-                setSummary(data.summary);
-            } else {
-                console.error('No summary received from API');
-                setSummary('Failed to generate summary. Please try again.');
-            }
-        } catch (error) {
-            console.error('Error generating summary:', error);
-            setSummary('An error occurred while generating the summary.');
-        }
+  const handleGenerateSummary = async () => {
+    setSummary('');
+    try {
+      const response = await fetch('/api/summarize', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ transcripts }), // Send as array of objects
+      });
+  
+      const data = await response.json();
+      if (data.summary) {
+        setSummary(data.summary);
+      } else {
+        console.error('No summary received from API');
+        setSummary('Failed to generate summary. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error generating summary:', error);
+      setSummary('An error occurred while generating the summary. ' + error);
     }
+  };
+  
+  
 
-    return (
-        <div>
-            <ul>
-                {transcripts.map((transcript) => (
-                    <li key={transcript.id}>
-                        <Link href={`/transcripts/${transcript.id}`}>
-                            <p>
-                                <strong>{new Date(transcript.timestamp).toLocaleString()}</strong> - {transcript.text.slice(0, 50)}...
-                            </p>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-            <Button onClick={handleGenerateSummary} className="mt-4">Generate Summary</Button>
-            {summary && (
-                <Card className="p-4 mt-4">
-                    <h2>Summary</h2>
-                    <p>{summary}</p>
-                </Card>
-            )}
-        </div>
-    );
+  useEffect(() => {
+    // Set transcripts to an empty array initially
+    setTranscripts([]);
+
+    // Fetch data from the API Gateway endpoint
+    fetch('https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions')
+      .then(response => {
+        if (!response.ok) {
+          // Log response status if not ok
+          console.error('Network response was not ok:', response.statusText);
+          return;
+        }
+        return response.json(); // Parse the JSON
+      })
+      .then(data => {
+        console.log('Fetched data:', data);
+        // Extract and parse the 'body' field from the response
+        const { body } = data;
+        const parsedBody = JSON.parse(body);
+
+        // Map the parsed body to the desired format
+        const formattedTranscripts = parsedBody.map((item: any) => ({
+          id: item.TranscriptId,
+          text: item.TranscriptText,
+          timestamp: new Date().toISOString() // If you have a timestamp, replace with the actual value
+        }));
+
+        console.log('Formatted transcripts:', formattedTranscripts);
+        setTranscripts(formattedTranscripts); 
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
+  return (
+    <div className="bg-black ml-60 p-5">
+      <div className="flex justify-between items-center top-0  ml-28  bg-black left-28 right-0 p-5 fixed shadow-md z-50 ">
+    <div>
+        <p className="text-yellow-500 font-bold text-xl">Transcripts</p>
+    </div>
+    <div>
+        <Dialog>
+            <DialogTrigger className="text-white hover:text-yellow-300 transition-colors duration-300">
+                Generate Summary
+            </DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>
+                        <Button onClick={handleGenerateSummary} className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded mt-4">
+                            Generate Summary
+                        </Button>
+                    </DialogTitle>
+                    <DialogDescription className="mt-4">
+                        {summary}
+                    </DialogDescription>
+                </DialogHeader>
+            </DialogContent>
+        </Dialog>
+    </div>
+</div>
+       
+
+        {/* Example Button */}
+        {/* <Button className="bg-blue-500 text-white" onClick={() => setAddTranscript(!addTranscript)}>
+          {addTranscript ? 'Cancel' : 'Add Transcript'}
+        </Button> */}
+      {transcripts.length > 0 ? (
+        transcripts.map((transcript) => (
+          <div key={transcript.id} className="mb-5 mt-14">
+            <TranscriptItem text={transcript.text} id={transcript.id} timestamp={transcript.timestamp} />
+          </div>
+        ))
+      ) : (
+        <p className="text-white">No transcripts available.</p>
+      )}
+    </div>
+  );
 }
-
