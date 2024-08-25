@@ -14,6 +14,7 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.435.0",
     "next": "14.2.6",
+    "openai": "^4.56.0",
     "posthog-js": "^1.157.2",
     "react": "^18",
     "react-dom": "^18",
