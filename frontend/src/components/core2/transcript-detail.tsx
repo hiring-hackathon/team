@@ -217,7 +217,7 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
                 <TabsList>
                     <TabsTrigger value="details">Details</TabsTrigger>
                     <TabsTrigger value="comments">Comments</TabsTrigger>
-                    <TabsTrigger value="ai-summary">AI Summary</TabsTrigger>
+                    {/* <TabsTrigger value="ai-summary">AI Summary</TabsTrigger> */}
                 </TabsList>
                 <TabsContent value="details">
                     <Card className="p-6 mb-6">
