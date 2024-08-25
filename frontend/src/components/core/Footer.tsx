@@ -6,8 +6,8 @@ const Footer: React.FC = () => {
     <footer className=" text-white py-6">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
         <div className="text-center md:text-left mb-4 md:mb-0">
-          <p className="text-lg font-semibold mb-2">Rail AI Voice</p>
-          <p className="text-sm">© {new Date().getFullYear()} Rail AI Voice. All rights reserved.</p>
+          <p className="text-lg font-semibold mb-2">Rilla</p>
+          <p className="text-sm">© {new Date().getFullYear()} Rilla. All rights reserved.</p>
         </div>
 
         {/* Navigation Links */}
