@@ -11,7 +11,6 @@ export default function Navbar() {
     // Updated paths for the navigation
     const navigation = [
         { title: "Team", path: "/team" },
-        { title: "Chat", path: "/chat"},
         { title: "Transcripts", path: "/transcripts" },
         { title: "Chat", path: "/chat" },
     ];
