@@ -1,6 +1,6 @@
+"use client"; 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-"use client"; 
 import Image from "next/image";
 import { useState } from "react";
 import Navbar from "@/components/core/Navbar";
@@ -16,11 +16,6 @@ export default function Home() {
   return (
     <main className="page-container min-h-screen items-center justify-center">
       Rilla Voice
-      <Link href="/transcripts">
-        <Button>
-          List
-        </Button>
-      </Link>
     <main className="bg-black ">
        
 
@@ -38,6 +33,7 @@ export default function Home() {
 
        </div>
     
+    </main>
     </main>
   );
 }
