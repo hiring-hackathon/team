@@ -101,24 +101,26 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
 
     const handleSubmit = async () => {
         await fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            commentText,
-            location
-          })
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                commentText,
+                location
+            })
         })
-          .then(response => response.json())
-          .then(data => {
-            console.log('Comment created:', data);
-            setNewComment('');
-            setIsDialogOpen(false);
-            fetchComments();
-          })
-          .catch(error => console.error('Error creating comment:', error));
-      };
+            .then(response => response.json())
+            .then(data => {
+                console.log('Comment created:', data);
+                setNewComment('');
+                setIsDialogOpen(false);
+                fetchComments();
+            })
+            .catch(error => console.error('Error creating comment:', error));
+    };
+
+    // Commented out code block remains as is
     // const handleCreateComment = async () => {
     //     try {
     //         const response = await fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
@@ -148,24 +150,6 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
     //         console.error('Error creating comment:', err);
     //     }
     // }
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                commentText,
-                location
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Comment created:', data);
-                setNewComment('');
-                setIsDialogOpen(false);
-                fetchComments();
-            })
-            .catch(error => console.error('Error creating comment:', error));
-    };
 
     if (loading) {
         return <div>Loading transcript...</div>;
@@ -322,4 +306,3 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
         </div>
     );
 }
-
