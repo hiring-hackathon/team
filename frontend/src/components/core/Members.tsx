@@ -17,7 +17,7 @@ const teamMembers = [
   },
   {
     name: 'Lloyd Chang',
-    role: 'Backend - S3 and DynamoDB',
+    role: 'Frontend - UI/UX and Backend - AWS',
     photo: '/path/to/Lloyd.jpg',
   },
   {
