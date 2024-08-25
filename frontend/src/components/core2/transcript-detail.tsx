@@ -32,17 +32,17 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
     const [error, setError] = useState<string | null>(null);
     const [summary, setSummary] = useState<string>('');
     const [newComment, setNewComment] = useState('');
-    const [startIndex, setStartIndex] = useState<number>(0);
-    const [endIndex, setEndIndex] = useState<number>(0);
+    // const [startIndex, setStartIndex] = useState<number>(0);
+    // const [endIndex, setEndIndex] = useState<number>(0);
 
     const [isDialogOpen, setIsDialogOpen] = useState(false);
-    const [attachedFile, setAttachedFile] = useState<File | null>(null);
+    // const [attachedFile, setAttachedFile] = useState<File | null>(null);
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            setAttachedFile(e.target.files[0]);
-        }
-    };
+    // const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     if (e.target.files && e.target.files[0]) {
+    //         setAttachedFile(e.target.files[0]);
+    //     }
+    // };
 
 
     const fetchTranscript = useCallback(async () => {
@@ -109,11 +109,11 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
         try {
             const formData = new FormData();
             formData.append('CommentText', newComment);
-            formData.append('StartIndex', startIndex.toString());
-            formData.append('EndIndex', endIndex.toString());
-            if (attachedFile) {
-                formData.append('file', attachedFile);
-            }
+            // formData.append('StartIndex', startIndex.toString());
+            // formData.append('EndIndex', endIndex.toString());
+            // if (attachedFile) {
+            //     formData.append('file', attachedFile);
+            // }
 
             const response = await fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
                 method: 'POST',
@@ -125,9 +125,9 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
             const data = await response.json();
             console.log('Comment created:', data);
             setNewComment('');
-            setStartIndex(0);
-            setEndIndex(0);
-            setAttachedFile(null);
+            // setStartIndex(0);
+            // setEndIndex(0);
+            // setAttachedFile(null);
             setIsDialogOpen(false);
             fetchComments();  // Refresh comments after creating a new one
         } catch (err) {
@@ -164,15 +164,15 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
     //     }
     // }
 
-    const handleStartIndexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setStartIndex(value === '' ? 0 : parseInt(value, 10));
-    };
+    // const handleStartIndexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const value = e.target.value;
+    //     setStartIndex(value === '' ? 0 : parseInt(value, 10));
+    // };
 
-    const handleEndIndexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value;
-        setEndIndex(value === '' ? 0 : parseInt(value, 10));
-    };
+    // const handleEndIndexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const value = e.target.value;
+    //     setEndIndex(value === '' ? 0 : parseInt(value, 10));
+    // };
 
     if (loading) {
         return <div>Loading transcript...</div>;
@@ -235,31 +235,8 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
                                             className="col-span-3"
                                         />
                                     </div>
+
                                     {/* <div className="grid grid-cols-4 items-center gap-4">
-                                        <Label htmlFor="startIndex" className="text-right">
-                                            Start Index
-                                        </Label>
-                                        <Input
-                                            id="startIndex"
-                                            type="number"
-                                            value={startIndex === 0 ? '' : startIndex.toString()}
-                                            onChange={handleStartIndexChange}
-                                            className="col-span-3"
-                                        />
-                                    </div>
-                                    <div className="grid grid-cols-4 items-center gap-4">
-                                        <Label htmlFor="endIndex" className="text-right">
-                                            End Index
-                                        </Label>
-                                        <Input
-                                            id="endIndex"
-                                            type="number"
-                                            value={endIndex === 0 ? '' : endIndex.toString()}
-                                            onChange={handleEndIndexChange}
-                                            className="col-span-3"
-                                        />
-                                    </div> */}
-                                    <div className="grid grid-cols-4 items-center gap-4">
                                         <Label htmlFor="file" className="text-right">
                                             Attach File
                                         </Label>
@@ -269,7 +246,7 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
                                             onChange={handleFileChange}
                                             className="col-span-3"
                                         />
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <Button onClick={handleCreateComment}>Add Comment</Button>
                             </DialogContent>
