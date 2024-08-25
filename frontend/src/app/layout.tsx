@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { CSPostHogProvider } from './providers';
+import Sidebar from "@/components/core/Sidebar";
+
 
 
 
@@ -27,7 +29,14 @@ export default function RootLayout({
       {/* Use PostHog provider for analytics if needed */}
       <CSPostHogProvider>
 
+
         <body className={inter.className}>{children}</body>
+
+        <body className={inter.className}>
+       
+        {children}</body>
+       
+
 
       </CSPostHogProvider>
     </html>
