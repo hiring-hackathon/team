@@ -77,8 +77,8 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
         if (!transcript) return;
 
         try {
-            // const response = await fetch('/api/summarize', {
-            const response = await fetch('https://tjq0k92mt4.execute-api.us-east-2.amazonaws.com/summarize-transcript', {
+            // const response = await fetch('https://tjq0k92mt4.execute-api.us-east-2.amazonaws.com/summarize-transcript', {
+            const response = await fetch('/api/summarize', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
