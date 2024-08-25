@@ -1,7 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import TranscriptDetail from '@/components/core/transcript-detail';
+import TranscriptDetail from '@/components/core2/transcript-detail';
 
 export default function TranscriptPage() {
     const params = useParams();

@@ -9,11 +9,11 @@ import Features from "@/components/core/Features";
 import Footer from "@/components/core/Footer";
 
 
-
 export default function Home() {
   const [transcripts, setTranscripts] = useState([])
   
   return (
+
     <main className="page-container min-h-screen items-center justify-center">
       Rilla Voice
     <main className="bg-black ">
