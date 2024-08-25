@@ -37,7 +37,7 @@ export default function Navbar() {
             Transcripts
           </a>
           <a href="/team" className="text-white text-xl hover:text-yellow-400 transition-colors duration-300">
-            Teams
+            Team
           </a>
         </div>
 
