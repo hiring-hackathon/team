@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function ChatPage() {
     return (
-        <div>page</div>
+        <div className='page-container flex flex-col text-center justify-center'>
+            page
+        </div>
     )
 }
