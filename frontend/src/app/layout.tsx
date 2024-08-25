@@ -6,6 +6,7 @@ import "./globals.css";
 import { CSPostHogProvider } from './providers';
 
 
+
 // Import Inter font
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
     <html lang="en">
       {/* Use PostHog provider for analytics if needed */}
       <CSPostHogProvider>
+
         <body className={inter.className}>{children}</body>
 
       </CSPostHogProvider>

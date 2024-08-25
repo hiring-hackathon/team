@@ -18,7 +18,7 @@ export default function Navbar() {
     return (
         <nav className="w-full border-b md:border-0 md:static">
             <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
-                <div className="flex items-center justify-between md:block">
+                <div className="flex items-center justify-between  md:block">
                     <h1 className='font-bold text-xl'>
                         Rilla
                     </h1>
