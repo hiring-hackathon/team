@@ -6,6 +6,10 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+
+
 
 interface Transcript {
     TranscriptText: string;
@@ -30,6 +34,16 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
     const [newComment, setNewComment] = useState('');
     const [startIndex, setStartIndex] = useState<number>(0);
     const [endIndex, setEndIndex] = useState<number>(0);
+
+    const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [attachedFile, setAttachedFile] = useState<File | null>(null);
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            setAttachedFile(e.target.files[0]);
+        }
+    };
+
 
     const fetchTranscript = useCallback(async () => {
         try {
@@ -90,20 +104,20 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
         }
     }
 
+
     const handleCreateComment = async () => {
         try {
+            const formData = new FormData();
+            formData.append('CommentText', newComment);
+            formData.append('StartIndex', startIndex.toString());
+            formData.append('EndIndex', endIndex.toString());
+            if (attachedFile) {
+                formData.append('file', attachedFile);
+            }
+
             const response = await fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    CommentText: newComment,
-                    Location: {
-                        startIndex,
-                        endIndex
-                    }
-                }),
+                body: formData,
             });
             if (!response.ok) {
                 throw new Error('Failed to create comment');
@@ -113,11 +127,42 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
             setNewComment('');
             setStartIndex(0);
             setEndIndex(0);
+            setAttachedFile(null);
+            setIsDialogOpen(false);
             fetchComments();  // Refresh comments after creating a new one
         } catch (err) {
             console.error('Error creating comment:', err);
         }
     }
+
+    // const handleCreateComment = async () => {
+    //     try {
+    //         const response = await fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({
+    //                 CommentText: newComment,
+    //                 Location: {
+    //                     startIndex,
+    //                     endIndex
+    //                 }
+    //             }),
+    //         });
+    //         if (!response.ok) {
+    //             throw new Error('Failed to create comment');
+    //         }
+    //         const data = await response.json();
+    //         console.log('Comment created:', data);
+    //         setNewComment('');
+    //         setStartIndex(0);
+    //         setEndIndex(0);
+    //         fetchComments();  // Refresh comments after creating a new one
+    //     } catch (err) {
+    //         console.error('Error creating comment:', err);
+    //     }
+    // }
 
     const handleStartIndexChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -168,30 +213,67 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
                 </TabsContent>
                 <TabsContent value="comments">
                     <div>
-                        <Card className="p-6 mb-6">
-                            <h2 className="text-xl font-semibold mb-4">Add Comment</h2>
-                            <Textarea
-                                value={newComment}
-                                onChange={(e) => setNewComment(e.target.value)}
-                                placeholder="Enter your comment"
-                                className="mb-2"
-                            />
-                            <Input
-                                type="number"
-                                value={startIndex === 0 ? '' : startIndex.toString()}
-                                onChange={handleStartIndexChange}
-                                placeholder="Start Index"
-                                className="mb-2"
-                            />
-                            <Input
-                                type="number"
-                                value={endIndex === 0 ? '' : endIndex.toString()}
-                                onChange={handleEndIndexChange}
-                                placeholder="End Index"
-                                className="mb-2"
-                            />
-                            <Button onClick={handleCreateComment}>Add Comment</Button>
-                        </Card>
+                        {/* <h1 className="text-2xl font-bold mb-4">Comments</h1> */}
+                        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                            <DialogTrigger asChild>
+                                <Button>Add Comment</Button>
+                            </DialogTrigger>
+                            <DialogContent>
+                                <DialogHeader>
+                                    <DialogTitle>Add New Comment</DialogTitle>
+                                </DialogHeader>
+                                <div className="grid gap-4 py-4">
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="comment" className="text-right">
+                                            Comment
+                                        </Label>
+                                        <Textarea
+                                            id="comment"
+                                            value={newComment}
+                                            onChange={(e) => setNewComment(e.target.value)}
+                                            placeholder="Enter your comment"
+                                            className="col-span-3"
+                                        />
+                                    </div>
+                                    {/* <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="startIndex" className="text-right">
+                                            Start Index
+                                        </Label>
+                                        <Input
+                                            id="startIndex"
+                                            type="number"
+                                            value={startIndex === 0 ? '' : startIndex.toString()}
+                                            onChange={handleStartIndexChange}
+                                            className="col-span-3"
+                                        />
+                                    </div>
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="endIndex" className="text-right">
+                                            End Index
+                                        </Label>
+                                        <Input
+                                            id="endIndex"
+                                            type="number"
+                                            value={endIndex === 0 ? '' : endIndex.toString()}
+                                            onChange={handleEndIndexChange}
+                                            className="col-span-3"
+                                        />
+                                    </div> */}
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="file" className="text-right">
+                                            Attach File
+                                        </Label>
+                                        <Input
+                                            id="file"
+                                            type="file"
+                                            onChange={handleFileChange}
+                                            className="col-span-3"
+                                        />
+                                    </div>
+                                </div>
+                                <Button onClick={handleCreateComment}>Add Comment</Button>
+                            </DialogContent>
+                        </Dialog>
                     </div>
                     <h2 className="text-xl font-semibold mb-4">Comments</h2>
                     {comments.map((comment) => (
