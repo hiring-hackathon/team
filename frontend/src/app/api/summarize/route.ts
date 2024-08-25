@@ -18,6 +18,7 @@ export async function POST(req: NextRequest, res: NextRequest) {
     const body = await req.json();
     const { transcripts } = body;
 
+    console.log('Received transcripts:', transcripts);
     const transcriptTexts = transcripts.map((t: { text: string; timestamp: string }) =>
       `${new Date(t.timestamp).toLocaleString()}: ${t.text}`
     ).join('\n\n');
@@ -29,6 +30,10 @@ export async function POST(req: NextRequest, res: NextRequest) {
       model: 'meta-llama/llama-3.1-8b-instruct:free',
       messages: [
         { role: 'system', content: systemMessage },
+        { role: 'user', content: `Please summarize the following conversation:\n\n${transcripts}` }
+      ],
+      // max_tokens: 100,
+      // temperature: 0.7,
         { role: 'user', content: `Please summarize the following conversation:\n\n${transcriptTexts}` }
       ],
     });
