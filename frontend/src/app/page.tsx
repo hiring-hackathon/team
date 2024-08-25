@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 "use client"; 
 import Image from "next/image";
 import { useState } from "react";
@@ -12,6 +14,13 @@ export default function Home() {
   const [transcripts, setTranscripts] = useState([])
   
   return (
+    <main className="page-container min-h-screen items-center justify-center">
+      Rilla Voice
+      <Link href="/transcripts">
+        <Button>
+          List
+        </Button>
+      </Link>
     <main className="bg-black ">
        
 
