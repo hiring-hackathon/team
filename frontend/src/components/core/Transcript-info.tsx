@@ -86,19 +86,19 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
             .catch(error => console.error('Error fetching comments:', error));
     }, [transcriptId]);
 
-    const addNewComment = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const addNewComment = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
 
         console.log('Comment:', comment);
         console.log('Location:', location);
 
         const payload = {
-            text: comment,
+            commentText: comment,
             transcriptId: transcriptId,
             location: location
         };
 
-        fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
+        await fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
