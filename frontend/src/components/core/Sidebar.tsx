@@ -6,7 +6,7 @@ export default function Sidebar() {
     <aside className="bg-gray-900 h-screen p-4 w-30 fixed top-0 left-0 flex flex-col ">
       {/* Logo or Brand Name */}
       <div className="text-yellow-500 text-3xl font-semibold hover:text-green-100 transition-colors duration-300 mb-10">
-        Rail AI Voice
+        Rilla 
       </div>
 
       {/* Navigation Links */}

@@ -12,7 +12,7 @@ export default function Navbar() {
       <div className="container mx-auto flex flex-wrap items-center justify-between">
         {/* Logo or Brand Name */}
         <div className="text-white text-3xl font-semibold hover:text-green-400 transition-colors duration-300">
-          Rail AI Voice
+          Rilla 
         </div>
 
         {/* Hamburger Menu */}
