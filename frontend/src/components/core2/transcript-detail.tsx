@@ -30,9 +30,8 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
     const [error, setError] = useState<string | null>(null);
     const [summary, setSummary] = useState<string>('');
     const [commentText, setNewComment] = useState('');
+    const [commentText1, setNewComment1] = useState("");
     const [location, setLocation] = useState({ startIndex: 0, endIndex: 10 })
-
-
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingComment, setEditingComment] = useState<Comment | null>(null);
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
@@ -190,13 +189,18 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ CommentText: updatedText })
+                body: JSON.stringify({
+                    commentText: commentText1,
+                    location
+                })
             });
             if (!response.ok) {
                 throw new Error('Failed to update comment');
             }
             alert('Comment updated');
             setIsEditDialogOpen(false);
+            setNewComment("")
+            setNewComment1("")
             fetchComments();
         } catch (error) {
             console.error('Error updating comment:', error);
@@ -289,14 +293,14 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
                                     </Label>
                                     <Textarea
                                         id="edit-comment"
-                                        value={commentText}
-                                        onChange={(e) => setNewComment(e.target.value)}
-                                        placeholder="Edit your comment"
+                                        value={commentText1}
+                                        onChange={(e) => setNewComment1(e.target.value)}
+                                        placeholder={commentText}
                                         className="col-span-3"
                                     />
                                 </div>
                             </div>
-                            <Button onClick={() => editingComment && updateComment(transcriptId, editingComment.CommentId, commentText)}>
+                            <Button onClick={() => editingComment && updateComment(transcriptId, editingComment.CommentId, commentText)} >
                                 Update Comment
                             </Button>
                         </DialogContent>
