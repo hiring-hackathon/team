@@ -21,21 +21,21 @@ const teamMembers = [
   },
   {
     name: 'Faith Nchang',
-    role: 'AI Engineer, Frontend, UI/UX Designer',
+    role: 'AI Engineer, Frontend Lead, UI/UX Designer',
     photo: '/images/Faith_Nchang.jpeg',
     email: 'nchangfru24@gmail.com',
     location: 'Washington DC-Baltimore Area, United States'
   },
   {
     name: 'Lloyd Chang',
-    role: 'AI Engineer, Frontend, Backend, Infrastructure',
+    role: 'AI Engineer, Full-stack, Infrastructure Lead',
     photo: '/images/Lloyd_Chang.jpeg',
     email: 'lloydchang@gmail.com',
     location: 'San Francisco, California, United States'
   },
   {
     name: 'Shaun Jhingoor',
-    role: 'AI Engineer, Backend',
+    role: 'AI Engineer, Backend Lead',
     photo: '/images/Shaun_Jhingoor.jpeg',
     email: 'jhingoor1945@gmail.com',
     location: 'New York, New York, United States'
