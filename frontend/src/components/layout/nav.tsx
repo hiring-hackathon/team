@@ -19,9 +19,11 @@ export default function Navbar() {
         <nav className="w-full border-b md:border-0 md:static">
             <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
                 <div className="flex items-center justify-between  md:block">
-                    <h1 className='font-bold text-xl'>
-                        Rilla
-                    </h1>
+                    <Link href="/" passHref>
+                            <h1 className='font-bold text-xl cursor-pointer'>
+                                Rilla
+                            </h1>
+                    </Link>
                     <div className="md:hidden">
                         <button
                             className=" outline-none p-2 rounded-md focus:border"
