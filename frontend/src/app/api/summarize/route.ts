@@ -1,4 +1,3 @@
-
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
@@ -8,21 +7,21 @@ const openai = new OpenAI({
   apiKey: process.env.OPENROUTER_API_KEY,
 });
 
-// Define sysytemPrompt
-const systemMessage = 'You are a smart summary generator. Create a concise summary of the conversation based on the given transcript data.'
-
+// Define systemPrompt
+const systemMessage = 'You are a smart summary generator. Create a concise summary of the conversation based on the given transcript data.';
 
 // POST route
-export async function POST(req: NextRequest, res: NextRequest) {
+export async function POST(req: NextRequest, res: NextResponse) {
   try {
     const body = await req.json();
     const { transcripts } = body;
 
+    console.log('Received transcripts:', transcripts);
     const transcriptTexts = transcripts.map((t: { text: string; timestamp: string }) =>
       `${new Date(t.timestamp).toLocaleString()}: ${t.text}`
     ).join('\n\n');
 
-    console.log('Received transcripts:', transcriptTexts);
+    console.log('Processed transcripts:', transcriptTexts);
 
     console.log('Sending request to OpenAI');
     const completion = await openai.chat.completions.create({
@@ -31,6 +30,8 @@ export async function POST(req: NextRequest, res: NextRequest) {
         { role: 'system', content: systemMessage },
         { role: 'user', content: `Please summarize the following conversation:\n\n${transcriptTexts}` }
       ],
+      // max_tokens: 100,
+      // temperature: 0.7,
     });
 
     console.log('Received response from OpenAI:', completion);

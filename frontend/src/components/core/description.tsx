@@ -9,9 +9,7 @@ export default function description() {
 <div className="flex flex-col md:flex-row items-center gap-8 mb-24">
     <div className="w-full md:w-1/2 p-12">
         <p className="text-lg md:text-xl leading-relaxed text-white">
-        In this competitive market, optimizing the performance of outside sales and service teams is crucial for success. Our latest initiative is dedicated to revolutionizing this area by introducing cutting-edge technology that enhances operational efficiency and effectiveness.
-
-        We are in the process of developing a comprehensive platform aimed at transforming how sa
+        Get visibility into 100% of your sales conversations and improve your close rates.
         </p>
     </div>
     <div className="w-full md:w-1/2">
@@ -38,9 +36,7 @@ export default function description() {
     </div>
     <div className="w-full md:w-1/2">
     <p className="text-lg md:text-xl leading-relaxed  text-white">
-        In this competitive market, optimizing the performance of outside sales and service teams is crucial for success. Our latest initiative is dedicated to 
-            revolutionizing this area by introducing cutting-edge technology that enhances 
-            operational efficiency and effectiveness.
+    40% Avg increase in close rates. | 8X Avg time savings for Sales Managers. | 17% Avg increase in ticket price.
         </p>
     </div>
         <div>

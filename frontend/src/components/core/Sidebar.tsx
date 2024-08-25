@@ -21,12 +21,12 @@ export default function Sidebar() {
 
         <a
         className="text-white text-xl hover:text-yellow-500 transition-colors duration-300 pb-10 "
-        href="/teams"
+        href="/chat"
         >
         Chat
       </a>
       <a href="/team" className="text-white text-xl hover:text-yellow-500 transition-colors duration-300 pb-10">
-          Teams
+          Team
         </a>
 
 

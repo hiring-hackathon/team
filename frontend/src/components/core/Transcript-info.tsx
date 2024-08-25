@@ -1,6 +1,8 @@
+// src/components/core/Transcript-info.tsx
+
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Comments from './Comments';
 import { Button } from '../ui/button';
 import {
@@ -12,7 +14,6 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { FileUp } from 'lucide-react';
-
 import Sidebar from '@/components/core/Sidebar';
 
 interface Transcript {
@@ -36,10 +37,7 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
     const [location, setLocation] = useState({ startIndex: 0, endIndex: 10 });
     const [dialogOpen, setDialogOpen] = useState(false);
     const [file, setFile] = useState<File | null>(null);
-    const [uploading, setUploading] = useState(false);
-    const [success, setSuccess] = useState('');
     const [rightClickPosition, setRightClickPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
-
 
     const handleCommentTextChange = (event: React.ChangeEvent<HTMLInputElement>) => setComment(event.target.value);
     const handleStartIndexChange = (event: React.ChangeEvent<HTMLInputElement>) => setLocation(prev => ({ ...prev, startIndex: parseInt(event.target.value, 10) }));
@@ -50,7 +48,7 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
         }
     };
 
-    const fetchTranscript = () => {
+    const fetchTranscript = useCallback(() => {
         fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}`)
             .then(response => response.json())
             .then(data => {
@@ -65,9 +63,9 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
                 }
             })
             .catch(error => console.error('Error fetching data:', error));
-    };
+    }, [transcriptId]);
 
-    const fetchComments = () => {
+    const fetchComments = useCallback(() => {
         console.log('fetching comments');
         fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/getAllComments`)
             .then(response => response.json())
@@ -86,21 +84,21 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
                 }
             })
             .catch(error => console.error('Error fetching comments:', error));
-    };
+    }, [transcriptId]);
 
-    const addNewComment = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const addNewComment = async (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
 
         console.log('Comment:', comment);
         console.log('Location:', location);
 
         const payload = {
-            text: comment,
+            commentText: comment,
             transcriptId: transcriptId,
             location: location
         };
 
-        fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
+        await fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -126,19 +124,14 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
     useEffect(() => {
         fetchTranscript();
         fetchComments();
-    }, [transcriptId]);
+    }, [fetchTranscript, fetchComments]);
 
-    /// Open dialog on right-click and set position
-const handleContextMenu = (event: React.MouseEvent) => {
-    event.preventDefault();
-    setDialogOpen(true);
-    if (event.clientX != null && event.clientY !=null){
+    // Open dialog on right-click and set position
+    const handleContextMenu = (event: React.MouseEvent) => {
+        event.preventDefault();
+        setDialogOpen(true);
         setRightClickPosition({ x: event.clientX, y: event.clientY });
-
-    }
-};
-
-
+    };
 
     return (
         <>
@@ -201,7 +194,7 @@ const handleContextMenu = (event: React.MouseEvent) => {
                                             </div>
                                             <div className='flex items-center space-x-4 mb-4'>
                                                 <label htmlFor="fileUpload" className="text-sm font-medium text-gray-900 flex items-center">
-                                                    <FileUp /> {/* Icon component */}
+                                                    <FileUp />
                                                     <span className="ml-2">Upload File</span>
                                                 </label>
                                                 <input
