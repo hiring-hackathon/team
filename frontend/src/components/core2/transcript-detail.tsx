@@ -35,6 +35,7 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [editingComment, setEditingComment] = useState<Comment | null>(null);
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+    const [aiSummary, setAiSummary] = useState<string>('');
 
     const fetchTranscript = useCallback(async () => {
         try {
@@ -98,6 +99,32 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
         }
     }
 
+    const handleGenerateAISummary = async () => {
+        if (!transcript) return;
+
+        try {
+            const response = await fetch('/api/summarize', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    prompt: "In less than 250 words, summarize this conversation between your salesman/woman and a potential customer. Start with: \"[employee name] pitched [product/service] to [customer name], [additional customer information]\". Then provide 1-3 examples of what the employee did well during the sales interaction. Then provide 1-2 critiques of what could have been done better. One sentence for each example. Lastly, offer advice on how the employee can improve their sales strategy. 3 sentences max.",       textToSummarize: transcript.TranscriptText
+                }),
+            });
+            const data = await response.json();
+            if (data.summary) {
+                setAiSummary(data.summary);
+            } else {
+                console.error('No AI summary received from API');
+                setAiSummary('Failed to generate AI summary. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error generating AI summary:', error);
+            setAiSummary('An error occurred while generating the AI summary.');
+        }
+    }
+
     const handleSubmit = async () => {
         await fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
             method: 'POST',
@@ -118,37 +145,6 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
             })
             .catch(error => console.error('Error creating comment:', error));
     };
-
-    // Commented out code block remains as is
-    // const handleCreateComment = async () => {
-    //     try {
-    //         const response = await fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify({
-    //                 CommentText: newComment,
-    //                 Location: {
-    //                     startIndex,
-    //                     endIndex,
-    //                 },
-    //             }),
-    //         });
-
-    //         if (!response.ok) {
-    //             throw new Error('Failed to create comment');
-    //         }
-
-    //         const data = await response.json();
-    //         console.log('Comment created:', data);
-    //         setNewComment('');
-    //         setIsDialogOpen(false);
-    //         fetchComments();  // Refresh comments after creating a new one
-    //     } catch (err) {
-    //         console.error('Error creating comment:', err);
-    //     }
-    // }
 
     if (loading) {
         return <div>Loading transcript...</div>;
@@ -221,6 +217,7 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
                 <TabsList>
                     <TabsTrigger value="details">Details</TabsTrigger>
                     <TabsTrigger value="comments">Comments</TabsTrigger>
+                    <TabsTrigger value="ai-summary">AI Summary</TabsTrigger>
                 </TabsList>
                 <TabsContent value="details">
                     <Card className="p-6 mb-6">
@@ -305,6 +302,15 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
                             </Button>
                         </DialogContent>
                     </Dialog>
+                </TabsContent>
+                <TabsContent value="ai-summary">
+                    <Button onClick={handleGenerateAISummary} className="mt-4">Generate AI Summary</Button>
+                    {aiSummary && (
+                        <Card className="p-4 mt-4">
+                            <h2 className="text-xl font-semibold mb-2">AI-Generated Summary</h2>
+                            <p className="whitespace-pre-wrap">{aiSummary}</p>
+                        </Card>
+                    )}
                 </TabsContent>
             </Tabs>
         </div>
