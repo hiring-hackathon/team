@@ -14,6 +14,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
+import Comment from './Comment';
 
 interface Comment {
     id: string;
@@ -26,15 +27,53 @@ interface Comment {
 interface CommentsProps {
     comments: Comment[];
     fetchComments: () => void; // update the comments when a comment is deleted/edited
+    rightClickPosition: { x: number; y: number } ;
+
 }
 
-export default function Comments({ comments, fetchComments }: CommentsProps) {
+export default function Comments({ comments, fetchComments, rightClickPosition }: CommentsProps) {
     const [commentText, setCommentText] = useState('');
     const [location, setLocation] = useState({ startIndex: 0, endIndex: 15 });
-    const [file, setFile] = useState<File | null>(null);
+    const [file, setFile] = useState(null);
     const [uploading, setUploading] = useState(false);
-    
-    {console.log(comments)}
+    const [success, setSuccess] = useState('');
+
+
+
+
+    const handleFileChange = (event:any) => {
+        setFile(event.target.files[0]);
+    };
+
+
+    const handleUpload = async (event:any) => {
+        event.preventDefault();
+        if (!file) return;
+
+        setUploading(true);
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+            const response = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                setSuccess('File uploaded successfully!');
+                setFile(null);
+            } else {
+                setSuccess('File upload failed.');
+            }
+        } catch (error) {
+            console.error('Error uploading file:', error);
+            setSuccess('Error uploading file.');
+        } finally {
+            setUploading(false);
+        }
+    };
+
 
     const sampleComments = [
         {
@@ -110,10 +149,10 @@ export default function Comments({ comments, fetchComments }: CommentsProps) {
                     <div key={comment.id} className='mb-4'>
                         <p className='text-white'>
                             <div>
+                            <Comment comment={comment} x={rightClickPosition.x} y ={rightClickPosition.y} /> 
+                                {/* // deleteComment={deleteComment} editComment={updateComment} attachFile={handleUpload} /> */}
                                 <strong>{comment.timeStamp}</strong> --    {comment.text ? comment.text : 'No text available'} 
-                                <Button variant={'ghost'} onClick={attachFile}>
-                                <FileUp />
-                                </Button>
+                              
                             
                             </div>
                             {comment.file && (
@@ -173,6 +212,17 @@ export default function Comments({ comments, fetchComments }: CommentsProps) {
                                                                 className="mt-1 block w-full p-2 rounded-md bg-gray-700 text-white"
                                                             />
                                                         </div>
+                                                        <div className="flex items-center space-x-4 ">
+                                                            <label htmlFor="fileUpload" className="text-sm font-medium text-gray-900 flex-grow-0">
+                                                                <FileUp /> Upload file
+                                                            </label>
+                                                            <input
+                                                                id="fileUpload"
+                                                                type="file"
+                                                                onChange={handleFileChange}
+                                                                className="block p-2 rounded-md bg-gray-700 text-white flex-grow-1"
+                                                            />
+                                                        </div>
                                                         <Button className="bg-slate-500 mt-5" onClick={() => updateComment(comment.transcriptId, comment.id)}>
                                                             Update
                                                         </Button>
@@ -182,7 +232,8 @@ export default function Comments({ comments, fetchComments }: CommentsProps) {
                                         </DialogContent>
                                     </Dialog>
                                 </Button>
-                                <Button variant={'destructive'} size={'icon'} className='mr-5' onClick={() => deleteComment(comment.transcriptId, comment.id)}>
+                                
+                                <Button  variant={'destructive'} size={'icon'} className='mr-5' onClick={() => deleteComment(comment.transcriptId, comment.id)}>
                                     <Trash2 />
                                 </Button>
                             </div>

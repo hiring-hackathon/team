@@ -32,7 +32,7 @@ export default function TranscriptItem({id, text, timestamp}: Transcript) {
             </p>
 
             <p className='py-5'>
-            {text}
+            {text.slice(0, 500)} ...
             </p>
             <Button
               className="mt-3 text-white bg-yellow-500 hover:bg-yellow-400"

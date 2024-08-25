@@ -11,6 +11,8 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import { FileUp } from 'lucide-react';
+
 import Sidebar from '@/components/core/Sidebar';
 
 interface Transcript {
@@ -33,10 +35,20 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
     const [comment, setComment] = useState<string>('');
     const [location, setLocation] = useState({ startIndex: 0, endIndex: 10 });
     const [dialogOpen, setDialogOpen] = useState(false);
+    const [file, setFile] = useState<File | null>(null);
+    const [uploading, setUploading] = useState(false);
+    const [success, setSuccess] = useState('');
+    const [rightClickPosition, setRightClickPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+
 
     const handleCommentTextChange = (event: React.ChangeEvent<HTMLInputElement>) => setComment(event.target.value);
     const handleStartIndexChange = (event: React.ChangeEvent<HTMLInputElement>) => setLocation(prev => ({ ...prev, startIndex: parseInt(event.target.value, 10) }));
     const handleEndIndexChange = (event: React.ChangeEvent<HTMLInputElement>) => setLocation(prev => ({ ...prev, endIndex: parseInt(event.target.value, 10) }));
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            setFile(event.target.files[0]);
+        }
+    };
 
     const fetchTranscript = () => {
         fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}`)
@@ -56,7 +68,7 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
     };
 
     const fetchComments = () => {
-        console.log('fetching comments')
+        console.log('fetching comments');
         fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/getAllComments`)
             .then(response => response.json())
             .then(data => {
@@ -69,7 +81,6 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
                         timeStamp: item.CreatedAt
                     }));
                     setComments(fetchedComments);
-                    console.log()
                 } else {
                     console.error('No comment data found');
                 }
@@ -88,15 +99,13 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
             transcriptId: transcriptId,
             location: location
         };
-    
+
         fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${transcriptId}/createComment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                payload
-            })
+            body: JSON.stringify(payload)
         })
         .then(response => response.json())
         .then(() => {
@@ -113,17 +122,23 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
             setDialogOpen(false); // Close the dialog
         });
     };
-    
+
     useEffect(() => {
         fetchTranscript();
         fetchComments();
     }, [transcriptId]);
 
-    // Open dialog on right-click
-    const handleContextMenu = (event: React.MouseEvent) => {
-        event.preventDefault();
-        setDialogOpen(true);
-    };
+    /// Open dialog on right-click and set position
+const handleContextMenu = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setDialogOpen(true);
+    if (event.clientX != null && event.clientY !=null){
+        setRightClickPosition({ x: event.clientX, y: event.clientY });
+
+    }
+};
+
+
 
     return (
         <>
@@ -184,6 +199,18 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
                                                     className="mt-1 block w-full p-2 rounded-md bg-gray-700 text-white"
                                                 />
                                             </div>
+                                            <div className='flex items-center space-x-4 mb-4'>
+                                                <label htmlFor="fileUpload" className="text-sm font-medium text-gray-900 flex items-center">
+                                                    <FileUp /> {/* Icon component */}
+                                                    <span className="ml-2">Upload File</span>
+                                                </label>
+                                                <input
+                                                    id="fileUpload"
+                                                    type="file"
+                                                    onChange={handleFileChange}
+                                                    className="block p-2 rounded-md bg-gray-700 text-white"
+                                                />
+                                            </div>
                                             <Button className="bg-slate-500 mt-5" onClick={addNewComment}>
                                                 Add
                                             </Button>
@@ -210,7 +237,7 @@ export default function TranscriptPage({ transcriptId }: { transcriptId: string 
                             <div className='h-1 bg-yellow-600 w-24 mx-auto mb-4 mt-4'></div>
                             <p></p>
                             <div className='mt-8'>
-                                <Comments comments={comments} fetchComments={fetchComments} />
+                                <Comments comments={comments} fetchComments={fetchComments} rightClickPosition={rightClickPosition}/>
                             </div>
                         </>
                     ) : (

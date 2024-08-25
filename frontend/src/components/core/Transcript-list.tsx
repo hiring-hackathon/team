@@ -12,6 +12,7 @@ interface Transcript {
 export default function Transcripts() {
   const [transcripts, setTranscripts] = useState<Transcript[]>([]);
   const [addTranscript, setAddTranscript] = useState(false);
+  
 
   useEffect(() => {
     // Set transcripts to an empty array initially
