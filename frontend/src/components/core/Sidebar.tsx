@@ -17,16 +17,19 @@ export default function Sidebar() {
         <a href="/transcripts" className="text-white text-xl hover:text-yellow-500 transition-colors duration-300 pb-10">
           Transcripts
         </a>
-        <a href="/teams" className="text-white text-xl hover:text-yellow-500 transition-colors duration-300 pb-10">
-          Teams
-        </a>
+        
 
         <a
         className="text-white text-xl hover:text-yellow-500 transition-colors duration-300 pb-10 "
         href="/teams"
         >
-        Contact Us
+        Chat
       </a>
+      <a href="/team" className="text-white text-xl hover:text-yellow-500 transition-colors duration-300 pb-10">
+          Teams
+        </a>
+
+
 
       </div>
       

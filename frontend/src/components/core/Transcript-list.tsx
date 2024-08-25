@@ -2,6 +2,15 @@
 import React, { useEffect, useState } from 'react';
 import TranscriptItem from './Transcript';
 import { Button } from '@/components/ui/button';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog"
+  
 
 interface Transcript {
   id: string;
@@ -11,7 +20,32 @@ interface Transcript {
 
 export default function Transcripts() {
   const [transcripts, setTranscripts] = useState<Transcript[]>([]);
-  const [addTranscript, setAddTranscript] = useState(false);
+  const [summary, setSummary] = useState<string>('');
+
+  const handleGenerateSummary = async () => {
+    setSummary('');
+    try {
+      const response = await fetch('/api/summarize', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ transcripts }), // Send as array of objects
+      });
+  
+      const data = await response.json();
+      if (data.summary) {
+        setSummary(data.summary);
+      } else {
+        console.error('No summary received from API');
+        setSummary('Failed to generate summary. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error generating summary:', error);
+      setSummary('An error occurred while generating the summary. ' + error);
+    }
+  };
+  
   
 
   useEffect(() => {
@@ -49,16 +83,39 @@ export default function Transcripts() {
 
   return (
     <div className="bg-black ml-60 p-5">
-      <div className='flex justify-between'>
-        <p className="text-yellow-500 font-bold mb-5">Transcripts</p>
+      <div className="flex justify-between items-center top-0  ml-28  bg-black left-28 right-0 p-5 fixed shadow-md z-50 ">
+    <div>
+        <p className="text-yellow-500 font-bold text-xl">Transcripts</p>
+    </div>
+    <div>
+        <Dialog>
+            <DialogTrigger className="text-white hover:text-yellow-300 transition-colors duration-300">
+                Generate Summary
+            </DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>
+                        <Button onClick={handleGenerateSummary} className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded mt-4">
+                            Generate Summary
+                        </Button>
+                    </DialogTitle>
+                    <DialogDescription className="mt-4">
+                        {summary}
+                    </DialogDescription>
+                </DialogHeader>
+            </DialogContent>
+        </Dialog>
+    </div>
+</div>
+       
+
         {/* Example Button */}
         {/* <Button className="bg-blue-500 text-white" onClick={() => setAddTranscript(!addTranscript)}>
           {addTranscript ? 'Cancel' : 'Add Transcript'}
         </Button> */}
-      </div>
       {transcripts.length > 0 ? (
         transcripts.map((transcript) => (
-          <div key={transcript.id} className="mb-5">
+          <div key={transcript.id} className="mb-5 mt-14">
             <TranscriptItem text={transcript.text} id={transcript.id} timestamp={transcript.timestamp} />
           </div>
         ))

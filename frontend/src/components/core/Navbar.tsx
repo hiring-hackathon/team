@@ -36,7 +36,7 @@ export default function Navbar() {
           <a href="/transcripts" className="text-white text-xl hover:text-yellow-400 transition-colors duration-300">
             Transcripts
           </a>
-          <a href="/teams" className="text-white text-xl hover:text-yellow-400 transition-colors duration-300">
+          <a href="/team" className="text-white text-xl hover:text-yellow-400 transition-colors duration-300">
             Teams
           </a>
         </div>
