@@ -151,7 +151,7 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
                 </TabsList>
                 <TabsContent value="details">
                     <Card className="p-6 mb-6">
-                        <p className="text-sm text-gray-600 mb-2">
+                        <p className="text-sm text-muted-foreground mb-2">
                             <strong>Transcript ID:</strong> {transcript.TranscriptId}
                         </p>
                         <div className="whitespace-pre-wrap">
@@ -167,30 +167,32 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
                     )}
                 </TabsContent>
                 <TabsContent value="comments">
-                    <Card className="p-6 mb-6">
-                        <h2 className="text-xl font-semibold mb-4">Add Comment</h2>
-                        <Textarea
-                            value={newComment}
-                            onChange={(e) => setNewComment(e.target.value)}
-                            placeholder="Enter your comment"
-                            className="mb-2"
-                        />
-                        <Input
-                            type="number"
-                            value={startIndex === 0 ? '' : startIndex.toString()}
-                            onChange={handleStartIndexChange}
-                            placeholder="Start Index"
-                            className="mb-2"
-                        />
-                        <Input
-                            type="number"
-                            value={endIndex === 0 ? '' : endIndex.toString()}
-                            onChange={handleEndIndexChange}
-                            placeholder="End Index"
-                            className="mb-2"
-                        />
-                        <Button onClick={handleCreateComment}>Add Comment</Button>
-                    </Card>
+                    <div>
+                        <Card className="p-6 mb-6">
+                            <h2 className="text-xl font-semibold mb-4">Add Comment</h2>
+                            <Textarea
+                                value={newComment}
+                                onChange={(e) => setNewComment(e.target.value)}
+                                placeholder="Enter your comment"
+                                className="mb-2"
+                            />
+                            <Input
+                                type="number"
+                                value={startIndex === 0 ? '' : startIndex.toString()}
+                                onChange={handleStartIndexChange}
+                                placeholder="Start Index"
+                                className="mb-2"
+                            />
+                            <Input
+                                type="number"
+                                value={endIndex === 0 ? '' : endIndex.toString()}
+                                onChange={handleEndIndexChange}
+                                placeholder="End Index"
+                                className="mb-2"
+                            />
+                            <Button onClick={handleCreateComment}>Add Comment</Button>
+                        </Card>
+                    </div>
                     <h2 className="text-xl font-semibold mb-4">Comments</h2>
                     {comments.map((comment) => (
                         <Card key={comment.CommentId} className="p-4 mb-4">
