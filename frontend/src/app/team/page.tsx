@@ -103,8 +103,8 @@ const MeetTheTeam: React.FC = () => {
                                 <p className="text-yellow-100 text-xs mb-2">{member.email}</p>
                                 <p className="text-yellow-100 text-xs mb-4">{member.location}</p>
                                 <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 mb-4 inline-flex items-center">
-                                    <Linkedin size={20} className="mr-1" />
-                                    <span className="text-xs">Connect on LinkedIn</span>
+                                    <Linkedin size={48} className="mr-2" />
+                                    <span className="text-sm font-medium">Connect on LinkedIn</span>
                                 </a>
                             </div>
                             <Button
@@ -122,7 +122,7 @@ const MeetTheTeam: React.FC = () => {
             <div className="text-center my-8">
                 <p className="text-yellow-400 font-bold text-2xl mb-4">Check out our team in action!</p>
                 <p className="text-black mb-4">
-                    Watch our video: <a href="https://www.youtube.com/watch?v=OIlAv2BzpxQ" className="underline hover:text-yellow-300" target="_blank" rel="noopener noreferrer">Rilla++ Team Showcase</a>
+                    Watch our video: <a href="https://www.youtube.com/watch?v=OIlAv2BzpxQ" className="underline hover:text-yellow-300" target="_blank" rel="noopener noreferrer">Team Showcase</a>
                 </p>
                 
                 {/* YouTube video embed */}
