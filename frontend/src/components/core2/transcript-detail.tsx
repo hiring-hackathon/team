@@ -110,7 +110,8 @@ export default function TranscriptDetail({ transcriptId }: { transcriptId: strin
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    prompt: "In less than 250 words, summarize this conversation between your salesman/woman and a potential customer. Start with: \"[employee name] pitched [product/service] to [customer name], [additional customer information]\". Then provide 1-3 examples of what the employee did well during the sales interaction. Then provide 1-2 critiques of what could have been done better. One sentence for each example. Lastly, offer advice on how the employee can improve their sales strategy. 3 sentences max.",       textToSummarize: transcript.TranscriptText
+                    prompt: "In less than 250 words, summarize this conversation between your salesman/woman and a potential customer. Start with: \"[employee name] pitched [product/service] to [customer name], [additional customer information]\". Then provide 1-3 examples of what the employee did well during the sales interaction. Then provide 1-2 critiques of what could have been done better. One sentence for each example. Lastly, offer advice on how the employee can improve their sales strategy. 3 sentences max.",
+                    textToSummarize: transcript.TranscriptText
                 }),
             });
             const data = await response.json();
