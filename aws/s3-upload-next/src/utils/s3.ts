@@ -1,3 +1,5 @@
+// aws/s3-upload-next/src/utils/s3.ts
+
 import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { createPresignedPost } from "@aws-sdk/s3-presigned-post";
 
@@ -26,7 +28,13 @@ export const listFiles = async (): Promise<Array<{ Key: string; LastModified?: D
     const command = new ListObjectsV2Command(params);
     const data = await s3Client.send(command);
     console.log('Files listed successfully:', data.Contents);
-    return data.Contents || [];
+
+    // Ensure that all returned objects have a defined Key and filter out any that don't
+    const validFiles = (data.Contents || []).filter(
+      (item): item is { Key: string; LastModified?: Date; Size?: number } => !!item.Key
+    );
+
+    return validFiles;
   } catch (error) {
     console.error('Error listing files:', error);
     if (error instanceof Error) {

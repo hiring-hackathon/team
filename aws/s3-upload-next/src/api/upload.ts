@@ -1,8 +1,10 @@
+// aws/s3-upload-next/src/api/upload.ts
+
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getUploadUrl } from '../../utils/s3';
+import { getUploadUrl } from '../utils/s3'; // Correct path to utils
 
 // Import formidable for handling file uploads
-import formidable from 'formidable'; 
+import formidable from 'formidable';
 
 // Configure Next.js API route to disable the default body parser 
 export const config = {
@@ -26,10 +28,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       try {
         console.log('Parsed Form Data:', fields, files); // Log the parsed data
 
-        // Access the uploaded file (assuming the field name is "file")
-        const file = files.file as formidable.File;
+        // Ensure the file is a single file object and not an array or undefined
+        const file = Array.isArray(files.file) ? files.file[0] : files.file;
 
-        // --- Server-Side File Type Validation (Previously Implemented) ---
+        if (!file) {
+          console.warn('No file uploaded.');
+          return res.status(400).json({ message: 'No file uploaded.' });
+        }
+
+        // Now file is guaranteed to be of type formidable.File
+        const typedFile = file as formidable.File;
+
+        // --- Server-Side File Type Validation (Important!) ---
         /*
         const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
         if (!allowedTypes.includes(file.mimetype)) {
@@ -38,7 +48,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
         */
 
-        const fileName = fields.filename as string; // Access filename from form data
+        // Handle filename safely
+        const fileNameField = fields.filename;
+        const fileName = Array.isArray(fileNameField) ? fileNameField[0] : fileNameField;
+
+        if (!fileName) {
+          console.warn('Filename is not provided.');
+          return res.status(400).json({ message: 'Filename is required.' });
+        }
+
         const uploadData = await getUploadUrl(fileName); // Pass filename to getUploadUrl
         console.log('Upload URL fetched successfully:', uploadData);
 
