@@ -71,7 +71,7 @@ const MeetTheTeam: React.FC = () => {
 
     return (
         <div className="p-10 min-h-screen">
-             <div style={{ marginBottom: '60px',  alignSelf: "center" }}>
+            <div style={{ marginBottom: '60px', alignSelf: "center" }}>
                 <Navbar />
             </div>
             <p className="text-yellow-400 font-bold text-center text-3xl mb-8 mt-20">Meet the Team</p>
@@ -105,6 +105,25 @@ const MeetTheTeam: React.FC = () => {
                             </Button>
                         </div>
                     ))}
+                </div>
+            </div>
+
+            {/* New section for YouTube video reference and embed */}
+            <div className="text-center my-8">
+                <p className="text-yellow-400 font-bold text-2xl mb-4">Check out our team in action!</p>
+                <p className="text-black mb-4">
+                    Watch our video: <a href="https://www.youtube.com/watch?v=OIlAv2BzpxQ" className="underline hover:text-yellow-300" target="_blank" rel="noopener noreferrer">Team Showcase</a>
+                </p>
+                
+                {/* YouTube video embed */}
+                <div className="relative max-w-screen-lg mx-auto aspect-[9/16] w-full">
+                    <iframe
+                        src="https://www.youtube.com/embed/OIlAv2BzpxQ?autoplay=1"
+                        title="YouTube video player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        className="absolute top-0 left-0 w-full h-full"
+                    ></iframe>
                 </div>
             </div>
 
