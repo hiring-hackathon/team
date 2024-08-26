@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import Navbar from '@/components/layout/nav';
+import { Linkedin } from 'lucide-react';
 
 // Define the team members' data
 const teamMembers = [
@@ -12,6 +13,7 @@ const teamMembers = [
         role: 'AI Engineer, Full-Stack Lead',
         photo: '/images/David_Mutari.jpeg',
         email: 'muturidavid854@gmail.com',
+        linkedin: 'https://www.linkedin.com/in/tushdev/',
         location: 'Nairobi, Nairobi County, Kenya'
     },
     {
@@ -19,6 +21,7 @@ const teamMembers = [
         role: 'AI Engineer Lead, Full-Stack',
         photo: '/images/Derek_Gomez.jpeg',
         email: 'dmatt.gomez@gmail.com',
+        linkedin: 'https://www.linkedin.com/in/derekgomez/',
         location: 'San Jose, California, United States'
     },
     {
@@ -26,6 +29,7 @@ const teamMembers = [
         role: 'AI Engineer, Frontend Lead, UI/UX Designer',
         photo: '/images/Faith_Nchang.jpeg',
         email: 'nchangfru24@gmail.com',
+        linkedin: 'https://www.linkedin.com/in/faith-nchang-11112b2a9/',
         location: 'Washington DC-Baltimore Area, United States'
     },
     {
@@ -33,6 +37,7 @@ const teamMembers = [
         role: 'AI Engineer, Full-Stack, Infrastructure Lead',
         photo: '/images/Lloyd_Chang.jpeg',
         email: 'lloydchang@gmail.com',
+        linkedin: 'https://www.linkedin.com/in/lloydchang/',
         location: 'San Francisco, California, United States'
     },
     {
@@ -40,6 +45,7 @@ const teamMembers = [
         role: 'AI Engineer, Backend Lead',
         photo: '/images/Shaun_Jhingoor.jpeg',
         email: 'jhingoor1945@gmail.com',
+        linkedin: 'https://www.linkedin.com/in/shaun-jhingoor-10a50328a/',
         location: 'New York, New York, United States'
     }
 ];
@@ -96,6 +102,10 @@ const MeetTheTeam: React.FC = () => {
                                 <p className="text-yellow-300 text-sm mb-2">{member.role}</p>
                                 <p className="text-yellow-100 text-xs mb-2">{member.email}</p>
                                 <p className="text-yellow-100 text-xs mb-4">{member.location}</p>
+                                <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 mb-4 inline-flex items-center">
+                                    <Linkedin size={20} className="mr-1" />
+                                    <span className="text-xs">Connect on LinkedIn</span>
+                                </a>
                             </div>
                             <Button
                                 className="bg-yellow-500 text-gray-900 hover:bg-yellow-600 text-sm py-2 px-4 w-full"
@@ -112,7 +122,7 @@ const MeetTheTeam: React.FC = () => {
             <div className="text-center my-8">
                 <p className="text-yellow-400 font-bold text-2xl mb-4">Check out our team in action!</p>
                 <p className="text-black mb-4">
-                    Watch our video: <a href="https://www.youtube.com/watch?v=OIlAv2BzpxQ" className="underline hover:text-yellow-300" target="_blank" rel="noopener noreferrer">Team Showcase</a>
+                    Watch our video: <a href="https://www.youtube.com/watch?v=OIlAv2BzpxQ" className="underline hover:text-yellow-300" target="_blank" rel="noopener noreferrer">Rilla++ Team Showcase</a>
                 </p>
                 
                 {/* YouTube video embed */}
