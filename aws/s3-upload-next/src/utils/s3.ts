@@ -10,8 +10,10 @@ const s3Client = new S3Client({
 });
 
 export const listFiles = async (): Promise<Array<{ Key: string; LastModified?: Date; Size?: number }>> => {
+  console.log('listFiles() called');
   const bucketName = process.env.NEXT_PUBLIC_S3_BUCKET;
   if (!bucketName) {
+    console.error('S3 bucket name is not defined');
     throw new Error('S3 bucket name is not defined');
   }
 
@@ -20,8 +22,10 @@ export const listFiles = async (): Promise<Array<{ Key: string; LastModified?: D
   };
 
   try {
+    console.log('Executing ListObjectsV2Command with params:', params);
     const command = new ListObjectsV2Command(params);
     const data = await s3Client.send(command);
+    console.log('Files listed successfully:', data.Contents);
     return data.Contents || [];
   } catch (error) {
     console.error('Error listing files:', error);
@@ -34,12 +38,15 @@ export const listFiles = async (): Promise<Array<{ Key: string; LastModified?: D
 };
 
 export const getUploadUrl = async (fileName: string): Promise<{ url: string; fields: Record<string, string> }> => {
+  console.log('getUploadUrl() called with fileName:', fileName);
   const bucketName = process.env.NEXT_PUBLIC_S3_BUCKET;
   if (!bucketName) {
+    console.error('S3 bucket name is not defined');
     throw new Error('S3 bucket name is not defined');
   }
 
   try {
+    console.log('Creating presigned post with fileName:', fileName);
     const { url, fields } = await createPresignedPost(s3Client, {
       Bucket: bucketName,
       Key: fileName,
@@ -49,6 +56,7 @@ export const getUploadUrl = async (fileName: string): Promise<{ url: string; fie
       Expires: 600, // 10 minutes
     });
 
+    console.log('Presigned post created successfully:', { url, fields });
     return { url, fields };
   } catch (error) {
     console.error('Error getting upload URL:', error);

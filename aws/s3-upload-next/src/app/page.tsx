@@ -17,43 +17,52 @@ const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
+    console.log('Component mounted. Fetching files...');
     fetchFiles();
   }, []);
 
   const fetchFiles = async () => {
+    console.log('fetchFiles() called');
     setIsLoading(true);
     setError(null);
     try {
+      console.log('Calling listFiles() to get files from S3...');
       const files = await listFiles();
+      console.log('Files fetched successfully:', files);
       setFileList(files);
     } catch (error) {
-      setError(`Failed to fetch files: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      const errorMessage = `Failed to fetch files: ${error instanceof Error ? error.message : 'Unknown error'}`;
+      setError(errorMessage);
       console.error('Error fetching file list:', error);
     }
     setIsLoading(false);
+    console.log('fetchFiles() completed');
   };
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('File input changed');
     const file = e.target.files ? e.target.files[0] : null;
     setSelectedFile(file);
     setError(null);
+    console.log('Selected file:', file);
   };
 
   const handleUpload = async () => {
+    console.log('handleUpload() called');
     if (!selectedFile) {
       setError('Please select a file to upload.');
+      console.warn('Upload attempted without selecting a file.');
       return;
     }
 
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf'];
-    if (!allowedTypes.includes(selectedFile.type)) {
-      setError('Invalid file type. Please upload an image (JPEG, PNG, GIF) or a PDF.');
-      return;
-    }
+    console.log('Selected file:', selectedFile);
+
+    // Removed MIME type detection and validation
 
     const maxSize = 10 * 1024 * 1024; // 10MB in bytes
     if (selectedFile.size > maxSize) {
       setError('File is too large. Maximum size is 10MB.');
+      console.warn('Selected file is too large:', selectedFile.size);
       return;
     }
 
@@ -62,39 +71,51 @@ const Home: React.FC = () => {
     setIsLoading(true);
 
     try {
+      console.log('Getting upload URL from server...');
       const { url, fields } = await getUploadUrl(selectedFile.name);
+      console.log('Upload URL and fields received:', { url, fields });
       
       const formData = new FormData();
       Object.entries({ ...fields, file: selectedFile }).forEach(([key, value]) => {
         formData.append(key, value);
       });
 
+      console.log('Form data prepared for upload:', formData);
+
       const xhr = new XMLHttpRequest();
       xhr.upload.onprogress = (event) => {
         if (event.lengthComputable) {
           const percentComplete = (event.loaded / event.total) * 100;
           setProgress(percentComplete);
+          console.log(`Upload progress: ${percentComplete}%`);
         }
       };
 
       xhr.onload = async function() {
+        console.log('XHR onload triggered. Status:', xhr.status);  // Log response status
+        console.log('XHR response body:', xhr.responseText);       // Log response body
         if (xhr.status === 204) {
           setProgress(100);
+          console.log('Upload completed successfully. Refreshing file list...');
           await fetchFiles(); // Refresh the file list after successful upload
           setSelectedFile(null);
-          // Clear the file input
           const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
           if (fileInput) fileInput.value = '';
         } else {
-          throw new Error(`Upload failed with status ${xhr.status}`);
+          const error = new Error(`Upload failed with status ${xhr.status}`);
+          console.error(error);
+          throw error;
         }
       };
 
       xhr.onerror = function() {
+        console.error('XHR request failed', xhr.statusText);  // Log additional error info
         throw new Error('XHR request failed');
       };
 
       xhr.open('POST', url);
+      console.log('Starting file upload...');
+      console.log('XHR request headers:', xhr.getAllResponseHeaders());  // Log request headers
       xhr.send(formData);
 
     } catch (error) {
@@ -109,6 +130,7 @@ const Home: React.FC = () => {
     }
 
     setIsLoading(false);
+    console.log('handleUpload() completed');
   };
 
   const formatFileSize = (bytes?: number): string => {
