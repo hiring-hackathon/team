@@ -14,10 +14,10 @@ const systemMessage = 'You are a smart summary generator. Create a concise summa
 export async function POST(req: NextRequest, res: NextRequest) {
   try {
     const body = await req.json();
-    const { transcripts, prompt } = body;
+    const { prompt, transcripts } = body;
 
-    console.log('Received transcripts:', transcripts);
     console.log('Received prompt:', prompt);
+    console.log('Received transcripts:', transcripts);
 
     console.log('Sending request to OpenAI');
     const completion = await openai.chat.completions.create({
