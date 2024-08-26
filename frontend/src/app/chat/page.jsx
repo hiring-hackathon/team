@@ -12,6 +12,7 @@ import MicIcon from "@mui/icons-material/Mic";
 import MicOffIcon from "@mui/icons-material/MicOff";
 import ReactMarkdown from "react-markdown"
 import Navbar from "@/components/layout/nav";
+import Footer from "@/components/layout/footer";
 
 export default function Chatbot() {
   const [messages, setMessages] = useState([
@@ -118,150 +119,149 @@ export default function Chatbot() {
   };
   
   return(
-    <div>
+    <div className="flex flex-col min-h-screen">
         <Navbar/>
-    <Box
-    sx={{
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
-      minHeight: "100vh",
-      background: "#f5f5f5",
-      padding: 3,
-    }}
-  >
-  <Typography
-    variant="h3"
-    sx={{
-      textAlign: "center",
-      mb: 3,
-      fontWeight: "bold",
-      color: "#f5f5f5", 
-      textShadow: "3px 3px 8px rgba(0, 0, 0, 1)", 
-      letterSpacing: "1.5px", 
-      lineHeight: "1.4", 
-      fontFamily: "'Montserrat', sans-serif", 
-      padding: "2px 5px", 
-    }}
-  >
-    AI Assistant 
-  </Typography>
-
-
-
-
-    
-    <Paper
-      elevation={2} // Reduced elevation for a softer shadow
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        padding: 3,
-        backgroundColor: "#1f2a38", // Darker background for contrast
-        borderRadius: "20px",
-        width: "80%",
-        maxWidth: "600px",
-        height: "75dvh",
-        boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.4)", // Softer, more cohesive shadow
-      }}
-    >
-      <Box
-        sx={{
-          flex: 1,
-          overflowY: "auto",
-          padding: 2,
-          mb: 2,
-          "&::-webkit-scrollbar": {
-            width: "2px",
-          },
-          "&::-webkit-scrollbar-thumb": {
-            backgroundColor: "#007bff",
-            borderRadius: "10px",
-          },
-        }}
-      >
-        {messages.map((message, index) => (
+        <main className="flex-grow">
           <Box
-            key={index}
             sx={{
               display: "flex",
-              justifyContent: message.role === "user" ? "flex-end" : "flex-start",
-              mb: 1,
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              minHeight: "100vh",
+              background: "#f5f5f5",
+              padding: 3,
             }}
           >
-            <Paper
-              elevation={2}
+            <Typography
+              variant="h3"
               sx={{
-                padding: "10px 15px",
-                borderRadius: "15px",
-                backgroundColor: message.role === "user" ? "#007aff" : "#2c3e50", 
-                color: message.role === "user" ? "#ffffff" : "#ffffff", 
-                maxWidth: "70%",
-                wordWrap: "break-word",
+                textAlign: "center",
+                mb: 3,
+                fontWeight: "bold",
+                color: "#f5f5f5", 
+                textShadow: "3px 3px 8px rgba(0, 0, 0, 1)", 
+                letterSpacing: "1.5px", 
+                lineHeight: "1.4", 
+                fontFamily: "'Montserrat', sans-serif", 
+                padding: "2px 5px", 
               }}
             >
-              <ReactMarkdown>{message.content}</ReactMarkdown>
+              AI Assistant 
+            </Typography>
+    
+            <Paper
+              elevation={2} // Reduced elevation for a softer shadow
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                padding: 3,
+                backgroundColor: "#1f2a38", // Darker background for contrast
+                borderRadius: "20px",
+                width: "80%",
+                maxWidth: "600px",
+                height: "75dvh",
+                boxShadow: "0px 6px 12px rgba(0, 0, 0, 0.4)", // Softer, more cohesive shadow
+              }}
+            >
+              <Box
+                sx={{
+                  flex: 1,
+                  overflowY: "auto",
+                  padding: 2,
+                  mb: 2,
+                  "&::-webkit-scrollbar": {
+                    width: "2px",
+                  },
+                  "&::-webkit-scrollbar-thumb": {
+                    backgroundColor: "#007bff",
+                    borderRadius: "10px",
+                  },
+                }}
+              >
+                {messages.map((message, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      display: "flex",
+                      justifyContent: message.role === "user" ? "flex-end" : "flex-start",
+                      mb: 1,
+                    }}
+                  >
+                    <Paper
+                      elevation={2}
+                      sx={{
+                        padding: "10px 15px",
+                        borderRadius: "15px",
+                        backgroundColor: message.role === "user" ? "#007aff" : "#2c3e50", 
+                        color: message.role === "user" ? "#ffffff" : "#ffffff", 
+                        maxWidth: "70%",
+                        wordWrap: "break-word",
+                      }}
+                    >
+                      <ReactMarkdown>{message.content}</ReactMarkdown>
+                    </Paper>
+                  </Box>
+                ))}
+                <div ref={messagesEndRef} />
+              </Box>
+              
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  borderRadius: "20px",
+                  padding: "10px",
+                  mt: "auto",
+                  border: "1px solid #34495e" 
+                }}
+              >
+                <TextField
+                  fullWidth
+                  placeholder="Type your message..."
+                  variant="outlined"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  sx={{
+                    backgroundColor: "#1e2a38", 
+                    borderRadius: "20px",
+                    mr: 1,
+                    "& fieldset": { border: "none" },
+                    color: "#ffffff",
+                    "& input": { color: "#ffffff" },
+                  }}
+                />
+                <IconButton
+                onClick={handleVoiceInput}
+                sx={{
+                  backgroundColor: "#007bff",
+                  color: "#ffffff",
+                  borderRadius: "50%",
+                  padding: "10px",
+                  ml: 1,
+                }}
+              >
+                {isListening ? <MicIcon /> : <MicOffIcon />}
+              </IconButton>
+                <IconButton
+                  onClick={sendMessage}
+                  sx={{
+                    backgroundColor: "#007bff",
+                    color: "#ffffff",
+                    borderRadius: "50%",
+                    padding: "10px",
+                    ml: 1,
+                  }}
+                >
+                  <SendIcon />
+                </IconButton>
+              </Box>
             </Paper>
           </Box>
-        ))}
-        <div ref={messagesEndRef} />
-      </Box>
-      
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          borderRadius: "20px",
-          padding: "10px",
-          mt: "auto",
-          border: "1px solid #34495e" 
-        }}
-      >
-        <TextField
-          fullWidth
-          placeholder="Type your message..."
-          variant="outlined"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyDown={handleKeyDown}
-          sx={{
-            backgroundColor: "#1e2a38", 
-            borderRadius: "20px",
-            mr: 1,
-            "& fieldset": { border: "none" },
-            color: "#ffffff",
-            "& input": { color: "#ffffff" },
-          }}
-        />
-        <IconButton
-        onClick={handleVoiceInput}
-        sx={{
-          backgroundColor: "#007bff",
-          color: "#ffffff",
-          borderRadius: "50%",
-          padding: "10px",
-          ml: 1,
-        }}
-      >
-        {isListening ? <MicIcon /> : <MicOffIcon />}
-      </IconButton>
-        <IconButton
-          onClick={sendMessage}
-          sx={{
-            backgroundColor: "#007bff",
-            color: "#ffffff",
-            borderRadius: "50%",
-            padding: "10px",
-            ml: 1,
-          }}
-        >
-          <SendIcon />
-        </IconButton>
-      </Box>
-    </Paper>
-  </Box>
-  </div>
-)
+        </main>
+        <Footer />
+    </div>
+  )
 }

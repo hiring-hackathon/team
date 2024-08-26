@@ -4,25 +4,23 @@ import Navbar from "@/components/layout/nav";
 import Footer from "@/components/layout/footer";
 import Features from "@/components/landing/features";
 
-
 export default function Home() {
   return (
-    <main className="page-container items-center">
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <div className="min-h-screen items-center justify-center">
-        {/* <Link href="/transcripts">
-          <Button>
-            List
-          </Button>
-        </Link> */}
-        <Features />
-
-      </div>
-
-
-      <footer className="w-full text-center py-4 border-t mt-8">
-                © 2024 Rilla All Rights Reserved
-            </footer>
-    </main>
+      <main className="flex-grow">
+        <div className="container mx-auto px-4 py-8">
+          {/* Uncomment this section if you want to include the List button
+          <Link href="/transcripts">
+            <Button>
+              List
+            </Button>
+          </Link>
+          */}
+          <Features />
+        </div>
+      </main>
+      <Footer />
+    </div>
   );
 }

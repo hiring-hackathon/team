@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 import Navbar from '@/components/layout/nav';
+import Footer from '@/components/layout/footer';
 import { Linkedin } from 'lucide-react';
 
 // Define the team members' data
@@ -76,73 +77,76 @@ const MeetTheTeam: React.FC = () => {
     };
 
     return (
-        <div className="p-10 min-h-screen">
-            <div style={{ marginBottom: '60px', alignSelf: "center" }}>
-                <Navbar />
-            </div>
-            <p className="text-yellow-400 font-bold text-center text-3xl mb-8 mt-20">Meet the Team</p>
+        <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-grow">
+                <div className="container mx-auto px-4 py-8">
+                    <p className="text-yellow-400 font-bold text-center text-3xl mb-8 mt-20">Meet the Team</p>
 
-            <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                    {teamMembers.map((member, index) => (
-                        <div
-                            key={index}
-                            className="bg-gray-900 p-4 rounded-lg shadow-md text-center flex flex-col items-center justify-between h-full"
-                        >
-                            <div className="w-full">
-                                <Image
-                                    src={member.photo}
-                                    alt={`${member.name}'s photo`}
-                                    width={80}
-                                    height={80}
-                                    className="rounded-full object-cover mx-auto mb-4"
-                                    loading="lazy"
-                                />
-                                <h2 className="text-lg font-semibold mb-2 text-yellow-200">{member.name}</h2>
-                                <p className="text-yellow-300 text-sm mb-2">{member.role}</p>
-                                <p className="text-yellow-100 text-xs mb-2">{member.email}</p>
-                                <p className="text-yellow-100 text-xs mb-4">{member.location}</p>
-                                <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 mb-4 inline-flex items-center">
-                                    <Linkedin size={48} className="mr-2" />
-                                    <span className="text-sm font-medium">Connect on LinkedIn</span>
-                                </a>
-                            </div>
-                            <Button
-                                className="bg-yellow-500 text-gray-900 hover:bg-yellow-600 text-sm py-2 px-4 w-full"
-                                onClick={() => handleContactClick(member.email)}
-                            >
-                                Copy Email
-                            </Button>
+                    <div className="max-w-7xl mx-auto">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                            {teamMembers.map((member, index) => (
+                                <div
+                                    key={index}
+                                    className="bg-gray-900 p-4 rounded-lg shadow-md text-center flex flex-col items-center justify-between h-full"
+                                >
+                                    <div className="w-full">
+                                        <Image
+                                            src={member.photo}
+                                            alt={`${member.name}'s photo`}
+                                            width={80}
+                                            height={80}
+                                            className="rounded-full object-cover mx-auto mb-4"
+                                            loading="lazy"
+                                        />
+                                        <h2 className="text-lg font-semibold mb-2 text-yellow-200">{member.name}</h2>
+                                        <p className="text-yellow-300 text-sm mb-2">{member.role}</p>
+                                        <p className="text-yellow-100 text-xs mb-2">{member.email}</p>
+                                        <p className="text-yellow-100 text-xs mb-4">{member.location}</p>
+                                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 mb-4 inline-flex items-center">
+                                            <Linkedin size={48} className="mr-2" />
+                                            <span className="text-sm font-medium">Connect on LinkedIn</span>
+                                        </a>
+                                    </div>
+                                    <Button
+                                        className="bg-yellow-500 text-gray-900 hover:bg-yellow-600 text-sm py-2 px-4 w-full"
+                                        onClick={() => handleContactClick(member.email)}
+                                    >
+                                        Copy Email
+                                    </Button>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            </div>
+                    </div>
 
-            {/* New section for YouTube video reference and embed */}
-            <div className="text-center my-8">
-                <p className="text-yellow-400 font-bold text-2xl mb-4">Check out our team in action!</p>
-                <p className="text-black mb-4">
-                    Watch our video: <a href="https://www.youtube.com/watch?v=OIlAv2BzpxQ" className="underline hover:text-yellow-300" target="_blank" rel="noopener noreferrer">Team Showcase</a>
-                </p>
-                
-                {/* YouTube video embed */}
-                <div className="relative max-w-screen-lg mx-auto aspect-[9/16] w-full">
-                    <iframe
-                        src="https://www.youtube.com/embed/OIlAv2BzpxQ?autoplay=1"
-                        title="YouTube video player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        className="absolute top-0 left-0 w-full h-full"
-                    ></iframe>
-                </div>
-            </div>
+                    {/* New section for YouTube video reference and embed */}
+                    <div className="text-center my-8">
+                        <p className="text-yellow-400 font-bold text-2xl mb-4">Check out our team in action!</p>
+                        <p className="text-black mb-4">
+                            Watch our video: <a href="https://www.youtube.com/watch?v=OIlAv2BzpxQ" className="underline hover:text-yellow-300" target="_blank" rel="noopener noreferrer">Team Showcase</a>
+                        </p>
+                        
+                        {/* YouTube video embed */}
+                        <div className="relative max-w-screen-lg mx-auto aspect-[9/16] w-full">
+                            <iframe
+                                src="https://www.youtube.com/embed/OIlAv2BzpxQ?autoplay=1"
+                                title="YouTube video player"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                                className="absolute top-0 left-0 w-full h-full"
+                            ></iframe>
+                        </div>
+                    </div>
 
-            {/* Toast notification for feedback */}
-            {toast.show && (
-                <div className="fixed bottom-4 right-4 bg-gray-800 text-white p-4 rounded shadow-lg transition-opacity duration-300">
-                    {toast.message}
+                    {/* Toast notification for feedback */}
+                    {toast.show && (
+                        <div className="fixed bottom-4 right-4 bg-gray-800 text-white p-4 rounded shadow-lg transition-opacity duration-300">
+                            {toast.message}
+                        </div>
+                    )}
                 </div>
-            )}
+            </main>
+            <Footer />
         </div>
     );
 };

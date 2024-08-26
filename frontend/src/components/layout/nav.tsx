@@ -21,7 +21,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-between  md:block">
                     <Link href="/" passHref>
                             <h1 className='font-bold text-xl cursor-pointer'>
-                                Rilla
+                                Rilla++
                             </h1>
                     </Link>
                     <div className="md:hidden">
@@ -43,17 +43,6 @@ export default function Navbar() {
                             </li>
                         ))}
                     </ul>
-                </div>
-                <div className="hidden md:inline-block">
-                    <Link href="/transcripts">
-                        <Button
-
-                            className="py-3 px-4 text-white bg-yellow-400 hover:bg-yellow-400 rounded-md shadow"
-                        >
-                            Transcripts
-                        </Button>
-                    </Link>
-
                 </div>
             </div>
         </nav>
