@@ -1,0 +1,124 @@
+{
+    "reviews": [
+      {
+        "professor": "Dr. Emily Chen",
+        "stars": 4,
+        "subject": "Biology",
+        "review": "Dr. Chen's lectures are engaging and well-structured. She's always willing to help during office hours."
+      },
+      {
+        "professor": "Prof. Michael Johnson",
+        "stars": 3,
+        "subject": "History",
+        "review": "Prof. Johnson knows his subject well, but his lectures can be dry at times. Assignments are fair."
+      },
+      {
+        "professor": "Dr. Sarah Williams",
+        "stars": 5,
+        "subject": "Computer Science",
+        "review": "Brilliant professor! Dr. Williams explains complex concepts clearly and provides great real-world examples."
+      },
+      {
+        "professor": "Prof. David Lee",
+        "stars": 2,
+        "subject": "Mathematics",
+        "review": "Prof. Lee's teaching style is confusing. Often seems unprepared for class and struggles to answer questions."
+      },
+      {
+        "professor": "Dr. Amanda Rodriguez",
+        "stars": 4,
+        "subject": "Psychology",
+        "review": "Dr. Rodriguez is passionate about her field and it shows. Her classes are thought-provoking and interactive."
+      },
+      {
+        "professor": "Prof. Robert Taylor",
+        "stars": 3,
+        "subject": "English Literature",
+        "review": "Prof. Taylor has extensive knowledge but can be intimidating. Grading is strict but fair."
+      },
+      {
+        "professor": "Dr. Lisa Brown",
+        "stars": 5,
+        "subject": "Chemistry",
+        "review": "Dr. Brown is an exceptional teacher. Her labs are well-organized and she explains concepts clearly."
+      },
+      {
+        "professor": "Prof. James Wilson",
+        "stars": 1,
+        "subject": "Philosophy",
+        "review": "Prof. Wilson often cancels classes and seems disinterested. Lectures are hard to follow and assignments are unclear."
+      },
+      {
+        "professor": "Dr. Jennifer Martinez",
+        "stars": 4,
+        "subject": "Economics",
+        "review": "Dr. Martinez brings real-world experience to her classes. Her exams are challenging but fair."
+      },
+      {
+        "professor": "Prof. Thomas Anderson",
+        "stars": 3,
+        "subject": "Physics",
+        "review": "Prof. Anderson is knowledgeable but can be impatient with questions. His problem sets are very difficult."
+      },
+      {
+        "professor": "Dr. Karen White",
+        "stars": 5,
+        "subject": "Sociology",
+        "review": "Dr. White is inspiring and approachable. Her classes encourage critical thinking and open discussion."
+      },
+      {
+        "professor": "Prof. Christopher Davis",
+        "stars": 2,
+        "subject": "Art History",
+        "review": "Prof. Davis seems knowledgeable but his lectures are disorganized and hard to follow."
+      },
+      {
+        "professor": "Dr. Michelle Garcia",
+        "stars": 4,
+        "subject": "Environmental Science",
+        "review": "Dr. Garcia is passionate about her subject and organizes interesting field trips. Assignments can be time-consuming."
+      },
+      {
+        "professor": "Prof. Daniel Kim",
+        "stars": 3,
+        "subject": "Political Science",
+        "review": "Prof. Kim's lectures are informative but can be monotonous. He's helpful during office hours."
+      },
+      {
+        "professor": "Dr. Rachel Green",
+        "stars": 5,
+        "subject": "Neuroscience",
+        "review": "Dr. Green is an outstanding educator. Her classes are challenging but incredibly rewarding."
+      },
+      {
+        "professor": "Prof. Steven Miller",
+        "stars": 2,
+        "subject": "Statistics",
+        "review": "Prof. Miller often seems rushed and irritable. His explanations can be confusing and he's not very approachable."
+      },
+      {
+        "professor": "Dr. Laura Thompson",
+        "stars": 4,
+        "subject": "Anthropology",
+        "review": "Dr. Thompson brings her field experience into the classroom, making lectures fascinating. Grading can be inconsistent."
+      },
+      {
+        "professor": "Prof. Richard Clark",
+        "stars": 3,
+        "subject": "Business Administration",
+        "review": "Prof. Clark has good industry connections but his teaching style is average. Group projects are well-structured."
+      },
+      {
+        "professor": "Dr. Elizabeth Turner",
+        "stars": 5,
+        "subject": "Linguistics",
+        "review": "Dr. Turner is exceptional. Her classes are engaging, challenging, and she provides excellent feedback on assignments."
+      },
+      {
+        "professor": "Prof. William Baker",
+        "stars": 1,
+        "subject": "Mechanical Engineering",
+        "review": "Prof. Baker seems uninterested in teaching. Lectures are poorly prepared and he's rarely available for help."
+      }
+    ]
+  }
