@@ -1,4 +1,3 @@
-
 import { NextRequest, NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
@@ -8,24 +7,24 @@ const openai = new OpenAI({
   apiKey: process.env.OPENROUTER_API_KEY,
 });
 
-// Define sysytemPrompt
-const systemMessage = 'You are a smart summary generator. Create a concise summary of the conversation based on the given transcript data.'
-
+// Define systemPrompt
+const systemMessage = 'You are a smart summary generator. Create a concise summary of the conversation based on the given transcript data and custom prompt.';
 
 // POST route
 export async function POST(req: NextRequest, res: NextRequest) {
   try {
     const body = await req.json();
-    const { transcripts } = body;
+    const { transcripts, prompt } = body;
 
     console.log('Received transcripts:', transcripts);
+    console.log('Received prompt:', prompt);
 
     console.log('Sending request to OpenAI');
     const completion = await openai.chat.completions.create({
       model: 'meta-llama/llama-3.1-8b-instruct:free',
       messages: [
         { role: 'system', content: systemMessage },
-        { role: 'user', content: `Please summarize the following conversation:\n\n${transcripts}` }
+        { role: 'user', content: prompt ? `${prompt}\n\n${transcripts}` : `Please summarize the following conversation:\n\n${transcripts}` }
       ],
       // max_tokens: 100,
       // temperature: 0.7,
