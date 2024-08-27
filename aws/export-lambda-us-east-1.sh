@@ -1,9 +1,11 @@
 #!/bin/sh
 
+export AWS_DEFAULT_REGION=us-east-1
+
 # You need to have aws-cli installed and configured
 
-# Ensure the 'lambda' directory exists
-mkdir -p lambda
+# Ensure the 'lambda-us-east-1' directory exists
+mkdir -p lambda-us-east-1
 
 # Ensure AWS CLI outputs JSON
 export AWS_DEFAULT_OUTPUT=json
@@ -47,7 +49,7 @@ echo "$function_list" | jq -r '.Functions[].FunctionName' | while read -r name; 
 
     # Attempt to download the Lambda function code
     echo "Downloading $name from $url..."
-    wget -q -O "./lambda/$name.zip" "$url"
+    wget -q -O "./lambda-us-east-1/$name.zip" "$url"
 
     # Check if wget was successful
     if [ $? -ne 0 ]; then
@@ -56,9 +58,9 @@ echo "$function_list" | jq -r '.Functions[].FunctionName' | while read -r name; 
         echo "Successfully downloaded $name."
     fi
 
-    mkdir -p "./lambda/$name"
+    mkdir -p "./lambda-us-east-1/$name"
 
-    cd "./lambda/$name"
+    cd "./lambda-us-east-1/$name"
 
     unzip -o "../$name.zip"
 
