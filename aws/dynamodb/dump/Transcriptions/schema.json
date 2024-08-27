@@ -1,0 +1,48 @@
+{
+  "Table": {
+    "AttributeDefinitions": [
+      {
+        "AttributeName": "TranscriptId",
+        "AttributeType": "S"
+      }
+    ],
+    "TableName": "Transcriptions",
+    "KeySchema": [
+      {
+        "AttributeName": "TranscriptId",
+        "KeyType": "HASH"
+      }
+    ],
+    "TableStatus": "ACTIVE",
+    "CreationDateTime": "2024-08-23T20:43:16.614000-07:00",
+    "ProvisionedThroughput": {
+      "LastIncreaseDateTime": "2024-08-25T08:09:12.628000-07:00",
+      "LastDecreaseDateTime": "2024-08-25T08:24:52.294000-07:00",
+      "NumberOfDecreasesToday": 0,
+      "ReadCapacityUnits": 1,
+      "WriteCapacityUnits": 1
+    },
+    "TableSizeBytes": 46104,
+    "ItemCount": 14,
+    "TableArn": "arn:aws:dynamodb:us-east-1:381492032762:table/Transcriptions",
+    "TableId": "f73c9598-7acf-4f05-963b-e5014f8a6824",
+    "TableClassSummary": {
+      "TableClass": "STANDARD"
+    },
+    "DeletionProtectionEnabled": false
+  },
+  "ResponseMetadata": {
+    "RequestId": "B9R80QJSG0489BGF9I0RGQ8C5VVV4KQNSO5AEMVJF66Q9ASUAAJG",
+    "HTTPStatusCode": 200,
+    "HTTPHeaders": {
+      "server": "Server",
+      "date": "Tue, 27 Aug 2024 06:30:48 GMT",
+      "content-type": "application/x-amz-json-1.0",
+      "content-length": "660",
+      "connection": "keep-alive",
+      "x-amzn-requestid": "B9R80QJSG0489BGF9I0RGQ8C5VVV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "x-amz-crc32": "2476684062"
+    },
+    "RetryAttempts": 0
+  }
+}
