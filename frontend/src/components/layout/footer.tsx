@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
     return (
         <footer className="bg-black text-white py-6">
             <div className="container mx-auto flex justify-between items-center px-4">
-                <p className="text-sm">© {currentYear} Rilla++</p>
+                <p className="text-sm">© {currentYear} Rilla++ Voice AI Sales++</p>
                 <div className="flex space-x-4">
                     <a href="https://www.reddit.com/r/myHeadstarter/comments/1f1k10f/hiring_hackathon_823_rilla/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400" aria-label="Reddit">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
