@@ -1,3 +1,5 @@
+// aws/s3-upload-next/src/app/page.tsx
+
 // aws/s3-upload-next/src/api/upload.ts
 
 "use client";
@@ -59,8 +61,6 @@ const Home: React.FC = () => {
 
     console.log('Selected file:', selectedFile);
 
-    // Removed MIME type detection and validation
-
     const maxSize = 10 * 1024 * 1024; // 10MB in bytes
     if (selectedFile.size > maxSize) {
       setError('File is too large. Maximum size is 10MB.');
@@ -94,12 +94,12 @@ const Home: React.FC = () => {
       };
 
       xhr.onload = async function() {
-        console.log('XHR onload triggered. Status:', xhr.status);  // Log response status
-        console.log('XHR response body:', xhr.responseText);       // Log response body
+        console.log('XHR onload triggered. Status:', xhr.status);
+        console.log('XHR response body:', xhr.responseText);
         if (xhr.status === 204) {
           setProgress(100);
           console.log('Upload completed successfully. Refreshing file list...');
-          await fetchFiles(); // Refresh the file list after successful upload
+          await fetchFiles();
           setSelectedFile(null);
           const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
           if (fileInput) fileInput.value = '';
@@ -111,13 +111,13 @@ const Home: React.FC = () => {
       };
 
       xhr.onerror = function() {
-        console.error('XHR request failed', xhr.statusText);  // Log additional error info
+        console.error('XHR request failed', xhr.statusText);
         throw new Error('XHR request failed');
       };
 
       xhr.open('POST', url);
       console.log('Starting file upload...');
-      console.log('XHR request headers:', xhr.getAllResponseHeaders());  // Log request headers
+      console.log('XHR request headers:', xhr.getAllResponseHeaders());
       xhr.send(formData);
 
     } catch (error) {
@@ -159,8 +159,8 @@ const Home: React.FC = () => {
           style={{ 
             marginLeft: '10px', 
             padding: '10px 20px', 
-            backgroundColor: '#007bff', 
-            color: 'white', 
+            backgroundColor: '#FFFF00',  // Yellow background
+            color: 'black',  // Black text
             border: 'none', 
             borderRadius: '5px',
             cursor: isLoading ? 'not-allowed' : 'pointer',
