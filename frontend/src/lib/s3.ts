@@ -1,4 +1,6 @@
-// aws/s3-upload-next/src/utils/s3.ts
+// frontend/src/lib/s3.ts
+
+// S3 utility functions for managing file uploads and listings
 
 import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
 import { createPresignedPost } from "@aws-sdk/s3-presigned-post";
@@ -55,13 +57,14 @@ export const getUploadUrl = async (fileName: string): Promise<{ url: string; fie
 
   try {
     console.log('Creating presigned post with fileName:', fileName);
+    
     const { url, fields } = await createPresignedPost(s3Client, {
       Bucket: bucketName,
       Key: fileName,
       Conditions: [
-        ["content-length-range", 0, 10485760], // up to 10 MB
+        ["content-length-range", 0, 5 * 1024 * 1024 * 1024 * 1024], // up to 5TB
       ],
-      Expires: 600, // 10 minutes
+      Expires: 604800, // 7 days in seconds (604800 seconds)
     });
 
     console.log('Presigned post created successfully:', { url, fields });

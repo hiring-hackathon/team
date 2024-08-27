@@ -1,9 +1,11 @@
-// aws/s3-upload-next/src/app/page.tsx
+// frontend/src/app/files/page.tsx
 
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
-import { listFiles, getUploadUrl } from '../utils/s3';
+import { listFiles, getUploadUrl } from '../../lib/s3';
+import Navbar from "@/components/layout/nav";
+import Footer from "@/components/layout/footer";
 
 interface S3File {
   Key: string;
@@ -241,85 +243,94 @@ const Home: React.FC = () => {
   };  
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', maxWidth: '800px', margin: '0 auto' }}>
-      <div style={{ marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
-        <button
-          onClick={() => fileInputRef.current?.click()}
-          style={{ 
-            padding: '10px 20px', 
-            backgroundColor: '#FFFF00',  // Yellow background
-            color: 'black',  // Black text
-            border: 'none', 
-            borderRadius: '5px',
-            cursor: isLoading ? 'not-allowed' : 'pointer',
-            transition: 'background-color 0.3s'
-          }}
-          disabled={isLoading}
-        >
-          Upload
-        </button>
-        <input 
-          type="file" 
-          ref={fileInputRef}
-          onChange={handleFileInput} 
-          disabled={isLoading}
-          style={{ display: 'none' }} // Hide the input field
-        />
-      </div>
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <main className="flex-grow">
+        <div className="container mx-auto px-4 py-8">
+          <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', maxWidth: '800px', margin: '0 auto' }}>
+            <div style={{ marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                style={{ 
+                  padding: '10px 20px', 
+                  backgroundColor: '#FFFF00',  // Yellow background
+                  color: 'black',  // Black text
+                  border: 'none', 
+                  borderRadius: '5px',
+                  cursor: isLoading ? 'not-allowed' : 'pointer',
+                  transition: 'background-color 0.3s'
+                }}
+                disabled={isLoading}
+              >
+                Upload
+              </button>
+              <input 
+                type="file" 
+                ref={fileInputRef}
+                onChange={handleFileInput} 
+                disabled={isLoading}
+                style={{ display: 'none' }} // Hide the input field
+              />
+            </div>
 
-      {progress > 0 && progress < 100 && (
-        <div style={{ marginBottom: '20px' }}>
-          <progress value={progress} max="100" style={{ width: '100%', height: '20px' }} />
-          <p>{progress.toFixed(2)}% Uploaded</p>
-          {uploadSpeed && <p>Upload Speed: {formatSpeed(uploadSpeed)}</p>}
-          {eta && <p>ETA: {formatTime(eta)}</p>}
-        </div>
-      )}
+            {selectedFile && progress > 0 && progress < 100 && (
+              <div style={{ marginBottom: '20px' }}>
+                <p>Uploading: {selectedFile.name}</p> {/* Display the name of the file being uploaded */}
+                <progress value={progress} max="100" style={{ width: '100%', height: '20px' }} />
+                <p>{progress.toFixed(2)}% Uploaded</p>
+                {uploadSpeed && <p>Upload Speed: {formatSpeed(uploadSpeed)}</p>}
+                {eta && <p>ETA: {formatTime(eta)}</p>}
+              </div>
+            )}
 
-      {successMessage && (
-        <div style={{ color: 'green', marginBottom: '10px', padding: '10px', backgroundColor: '#e6ffe6', border: '1px solid #ccffcc', borderRadius: '5px' }}>
-          {successMessage}
-        </div>
-      )}
+            {successMessage && (
+              <div style={{ color: 'green', marginBottom: '10px', padding: '10px', backgroundColor: '#e6ffe6', border: '1px solid #ccffcc', borderRadius: '5px' }}>
+                {successMessage}
+              </div>
+            )}
 
-      {error && (
-        <div style={{ color: 'red', marginBottom: '10px', padding: '10px', backgroundColor: '#ffeeee', border: '1px solid #ffcccc', borderRadius: '5px' }}>
-          {error}
-        </div>
-      )}
+            {error && (
+              <div style={{ color: 'red', marginBottom: '10px', padding: '10px', backgroundColor: '#ffeeee', border: '1px solid #ffcccc', borderRadius: '5px' }}>
+                {error}
+              </div>
+            )}
 
-      {isLoading ? (
-        <p>Loading files...</p>
-      ) : (
-        <div>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead>
-              <tr style={{ backgroundColor: 'yellow', color: 'black' }}>
-                <th style={{ padding: '10px', textAlign: 'left', cursor: 'pointer' }} onClick={() => handleSort('Key')}>
-                  File Name {renderSortArrow('Key')}
-                </th>
-                <th style={{ padding: '10px', textAlign: 'left', cursor: 'pointer' }} onClick={() => handleSort('Size')}>
-                  Size {renderSortArrow('Size')}
-                </th>
-                <th style={{ padding: '10px', textAlign: 'left', cursor: 'pointer' }} onClick={() => handleSort('LastModified')}>
-                  Last Modified {renderSortArrow('LastModified')}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {fileList.map((file, index) => (
-                <tr key={file.Key} style={{ backgroundColor: index % 2 === 0 ? '#f8f9fa' : 'white' }}>
-                  <td style={{ padding: '10px', cursor: 'pointer', textDecoration: 'underline' }} onClick={() => handleDownload(file.Key)}>
-                    {file.Key}
-                  </td>
-                  <td style={{ padding: '10px' }}>{formatFileSize(file.Size)}</td>
-                  <td style={{ padding: '10px' }}>{file.LastModified ? new Date(file.LastModified).toLocaleString() : 'Unknown'}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            {isLoading ? (
+              <p>Loading files...</p>
+            ) : (
+              <div>
+                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                  <thead>
+                    <tr style={{ backgroundColor: 'yellow', color: 'black' }}>
+                      <th style={{ padding: '10px', textAlign: 'left', cursor: 'pointer' }} onClick={() => handleSort('Key')}>
+                        File Name {renderSortArrow('Key')}
+                      </th>
+                      <th style={{ padding: '10px', textAlign: 'left', cursor: 'pointer' }} onClick={() => handleSort('Size')}>
+                        Size {renderSortArrow('Size')}
+                      </th>
+                      <th style={{ padding: '10px', textAlign: 'left', cursor: 'pointer' }} onClick={() => handleSort('LastModified')}>
+                        Last Modified {renderSortArrow('LastModified')}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {fileList.map((file, index) => (
+                      <tr key={file.Key} style={{ backgroundColor: index % 2 === 0 ? '#f8f9fa' : 'white' }}>
+                        <td style={{ padding: '10px', cursor: 'pointer', textDecoration: 'underline' }} onClick={() => handleDownload(file.Key)}>
+                          {file.Key}
+                        </td>
+                        <td style={{ padding: '10px' }}>{formatFileSize(file.Size)}</td>
+                        <td style={{ padding: '10px' }}>{file.LastModified ? new Date(file.LastModified).toLocaleString() : 'Unknown'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
         </div>
-      )}
+      </main>
+      <Footer />
     </div>
   );
 };
