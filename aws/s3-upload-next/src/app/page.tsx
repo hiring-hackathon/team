@@ -1,3 +1,5 @@
+// aws/s3-upload-next/src/app/page.tsx
+
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
@@ -214,9 +216,9 @@ const Home: React.FC = () => {
   };
 
   const handleDownload = (fileKey: string) => {
-    const s3BucketUrl = 'https://your-s3-bucket-url'; // Replace with your actual S3 bucket URL
+    const s3BucketUrl = 'https://' + process.env.NEXT_PUBLIC_S3_BUCKET + '.s3.amazonaws.com'; // Use environment variable for the S3 bucket URL
     const fileUrl = `${s3BucketUrl}/${encodeURIComponent(fileKey)}`;
-
+  
     fetch(fileUrl)
       .then(response => {
         if (!response.ok) throw new Error('Failed to download file.');
@@ -236,7 +238,7 @@ const Home: React.FC = () => {
         setError('Failed to download file. ' + error.message);
         console.error('Error during file download:', error);
       });
-  };
+  };  
 
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', maxWidth: '800px', margin: '0 auto' }}>
