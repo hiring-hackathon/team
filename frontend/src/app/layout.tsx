@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"] });
 // Define metadata for the application
 export const metadata: Metadata = {
   title: "Rilla++",
-  description: "",
+  description: "Voice AI Sales++",
 };
 
 // Consolidated RootLayout component
