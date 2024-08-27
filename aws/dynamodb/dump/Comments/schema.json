@@ -1,0 +1,55 @@
+{
+  "Table": {
+    "AttributeDefinitions": [
+      {
+        "AttributeName": "CommentId",
+        "AttributeType": "S"
+      },
+      {
+        "AttributeName": "TranscriptId",
+        "AttributeType": "S"
+      }
+    ],
+    "TableName": "Comments",
+    "KeySchema": [
+      {
+        "AttributeName": "TranscriptId",
+        "KeyType": "HASH"
+      },
+      {
+        "AttributeName": "CommentId",
+        "KeyType": "RANGE"
+      }
+    ],
+    "TableStatus": "ACTIVE",
+    "CreationDateTime": "2024-08-23T20:32:22.455000-07:00",
+    "ProvisionedThroughput": {
+      "LastDecreaseDateTime": "2024-08-23T20:43:26.190000-07:00",
+      "NumberOfDecreasesToday": 0,
+      "ReadCapacityUnits": 1,
+      "WriteCapacityUnits": 1
+    },
+    "TableSizeBytes": 7706,
+    "ItemCount": 55,
+    "TableArn": "arn:aws:dynamodb:us-east-1:381492032762:table/Comments",
+    "TableId": "9640b4aa-73a1-4e08-8fd3-6a6878bc4ee0",
+    "TableClassSummary": {
+      "TableClass": "STANDARD"
+    },
+    "DeletionProtectionEnabled": false
+  },
+  "ResponseMetadata": {
+    "RequestId": "MFH7VLL2SJAUJHGCDH1DSLHO6FVV4KQNSO5AEMVJF66Q9ASUAAJG",
+    "HTTPStatusCode": 200,
+    "HTTPHeaders": {
+      "server": "Server",
+      "date": "Tue, 27 Aug 2024 06:31:14 GMT",
+      "content-type": "application/x-amz-json-1.0",
+      "content-length": "704",
+      "connection": "keep-alive",
+      "x-amzn-requestid": "MFH7VLL2SJAUJHGCDH1DSLHO6FVV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "x-amz-crc32": "2249184838"
+    },
+    "RetryAttempts": 0
+  }
+}
