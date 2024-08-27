@@ -22,7 +22,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-between  md:block">
                     <Link href="/" passHref>
                             <h1 className='font-bold text-xl cursor-pointer'>
-                                Rilla++
+                                Rilla++ Voice AI Sales++
                             </h1>
                     </Link>
                     <div className="md:hidden">
