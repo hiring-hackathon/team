@@ -147,10 +147,17 @@ const Home: React.FC = () => {
     setSortOrder(newSortOrder);
     setFileList((prevList) =>
       [...prevList].sort((a, b) => {
+        const aValue = a[column as keyof S3File];
+        const bValue = b[column as keyof S3File];
+
+        if (aValue === undefined && bValue === undefined) return 0;
+        if (aValue === undefined) return newSortOrder === 'asc' ? -1 : 1;
+        if (bValue === undefined) return newSortOrder === 'asc' ? 1 : -1;
+
         if (newSortOrder === 'asc') {
-          return a[column as keyof S3File] > b[column as keyof S3File] ? 1 : -1;
+          return aValue > bValue ? 1 : -1;
         } else {
-          return a[column as keyof S3File] < b[column as keyof S3File] ? 1 : -1;
+          return aValue < bValue ? 1 : -1;
         }
       })
     );
