@@ -17,6 +17,8 @@ const Home: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [sortColumn, setSortColumn] = useState<string>('Key');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [eta, setEta] = useState<number | null>(null); // State for ETA
+  const [uploadSpeed, setUploadSpeed] = useState<number | null>(null); // State for upload speed
 
   useEffect(() => {
     console.log('Component mounted. Fetching files...');
@@ -69,6 +71,10 @@ const Home: React.FC = () => {
     setProgress(0);
     setError(null);
     setIsLoading(true);
+    setEta(null);
+    setUploadSpeed(null);
+
+    const startTime = new Date().getTime(); // Track the start time
 
     try {
       console.log('Getting upload URL from server...');
@@ -88,6 +94,15 @@ const Home: React.FC = () => {
           const percentComplete = (event.loaded / event.total) * 100;
           setProgress(percentComplete);
           console.log(`Upload progress: ${percentComplete}%`);
+
+          // Calculate upload speed (bytes per second)
+          const elapsedTime = (new Date().getTime() - startTime) / 1000; // in seconds
+          const speed = event.loaded / elapsedTime; // bytes per second
+          setUploadSpeed(speed);
+
+          // Calculate ETA (seconds remaining)
+          const remainingTime = (event.total - event.loaded) / speed; // in seconds
+          setEta(remainingTime);
         }
       };
 
@@ -139,6 +154,19 @@ const Home: React.FC = () => {
     else if (bytes < 1048576) return (bytes / 1024).toFixed(2) + ' KB';
     else if (bytes < 1073741824) return (bytes / 1048576).toFixed(2) + ' MB';
     else return (bytes / 1073741824).toFixed(2) + ' GB';
+  };
+
+  const formatSpeed = (bytesPerSecond: number): string => {
+    if (bytesPerSecond < 1024) return bytesPerSecond.toFixed(2) + ' B/s';
+    else if (bytesPerSecond < 1048576) return (bytesPerSecond / 1024).toFixed(2) + ' KB/s';
+    else if (bytesPerSecond < 1073741824) return (bytesPerSecond / 1048576).toFixed(2) + ' MB/s';
+    else return (bytesPerSecond / 1073741824).toFixed(2) + ' GB/s';
+  };
+
+  const formatTime = (seconds: number): string => {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}m ${secs}s`;
   };
 
   const handleSort = (column: string) => {
@@ -202,6 +230,8 @@ const Home: React.FC = () => {
         <div style={{ marginBottom: '20px' }}>
           <progress value={progress} max="100" style={{ width: '100%', height: '20px' }} />
           <p>{progress.toFixed(2)}% Uploaded</p>
+          {uploadSpeed && <p>Upload Speed: {formatSpeed(uploadSpeed)}</p>}
+          {eta && <p>ETA: {formatTime(eta)}</p>}
         </div>
       )}
 
