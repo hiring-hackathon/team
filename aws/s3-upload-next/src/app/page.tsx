@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { listFiles, getUploadUrl } from '../utils/s3';
 
 interface S3File {
@@ -14,11 +14,14 @@ const Home: React.FC = () => {
   const [fileList, setFileList] = useState<S3File[]>([]);
   const [progress, setProgress] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null); // State for success messages
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [sortColumn, setSortColumn] = useState<string>('Key');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
-  const [eta, setEta] = useState<number | null>(null); // State for ETA
-  const [uploadSpeed, setUploadSpeed] = useState<number | null>(null); // State for upload speed
+  const [eta, setEta] = useState<number | null>(null);
+  const [uploadSpeed, setUploadSpeed] = useState<number | null>(null);
+
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     console.log('Component mounted. Fetching files...');
@@ -43,33 +46,39 @@ const Home: React.FC = () => {
     console.log('fetchFiles() completed');
   };
 
-  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileInput = async (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log('File input changed');
     const file = e.target.files ? e.target.files[0] : null;
     setSelectedFile(file);
     setError(null);
+    setSuccessMessage(null); // Clear success message on new action
     console.log('Selected file:', file);
+
+    if (file) {
+      await handleUpload(file);
+    }
   };
 
-  const handleUpload = async () => {
+  const handleUpload = async (file: File) => {
     console.log('handleUpload() called');
-    if (!selectedFile) {
+    if (!file) {
       setError('Please select a file to upload.');
       console.warn('Upload attempted without selecting a file.');
       return;
     }
 
-    console.log('Selected file:', selectedFile);
+    console.log('Selected file:', file);
 
     const maxSize = 5 * 1024 * 1024 * 1024 * 1024; // 5TB in bytes
-    if (selectedFile.size > maxSize) {
+    if (file.size > maxSize) {
       setError('File is too large. Maximum size is 5TB.');
-      console.warn('Selected file is too large:', selectedFile.size);
+      console.warn('Selected file is too large:', file.size);
       return;
-    }    
+    }
 
     setProgress(0);
     setError(null);
+    setSuccessMessage(null);
     setIsLoading(true);
     setEta(null);
     setUploadSpeed(null);
@@ -78,11 +87,11 @@ const Home: React.FC = () => {
 
     try {
       console.log('Getting upload URL from server...');
-      const { url, fields } = await getUploadUrl(selectedFile.name);
+      const { url, fields } = await getUploadUrl(file.name);
       console.log('Upload URL and fields received:', { url, fields });
-      
+
       const formData = new FormData();
-      Object.entries({ ...fields, file: selectedFile }).forEach(([key, value]) => {
+      Object.entries({ ...fields, file: file }).forEach(([key, value]) => {
         formData.append(key, value);
       });
 
@@ -109,19 +118,25 @@ const Home: React.FC = () => {
       xhr.onload = async function() {
         console.log('XHR onload triggered. Status:', xhr.status);
         console.log('XHR response body:', xhr.responseText);
+        
+        if (!file || !file.name) {
+          console.warn('No file or filename is available. Aborting further actions.');
+          return; // Exit early if there's no file or filename
+        }
+      
         if (xhr.status === 204) {
           setProgress(100);
+          setSuccessMessage(`Upload successful: ${file.name}`); // Show success message with filename
           console.log('Upload completed successfully. Refreshing file list...');
           await fetchFiles(); // Refresh file list after upload
           setSelectedFile(null);
-          const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
-          if (fileInput) fileInput.value = '';
+          if (fileInputRef.current) fileInputRef.current.value = ''; // Clear file input
         } else {
           const error = new Error(`Upload failed with status ${xhr.status}`);
           console.error(error);
           throw error;
         }
-      };
+      };     
 
       xhr.onerror = function() {
         console.error('XHR request failed', xhr.statusText);
@@ -198,20 +213,37 @@ const Home: React.FC = () => {
     return ' ↕'; // Neutral arrow when not sorted
   };
 
+  const handleDownload = (fileKey: string) => {
+    const s3BucketUrl = 'https://your-s3-bucket-url'; // Replace with your actual S3 bucket URL
+    const fileUrl = `${s3BucketUrl}/${encodeURIComponent(fileKey)}`;
+
+    fetch(fileUrl)
+      .then(response => {
+        if (!response.ok) throw new Error('Failed to download file.');
+        return response.blob();
+      })
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = fileKey.split('/').pop() || 'download'; // Extract file name or use 'download' as default
+        a.click();
+        window.URL.revokeObjectURL(url);
+        setSuccessMessage('Download successful!'); // Show success message
+        console.log('File downloaded successfully.');
+      })
+      .catch(error => {
+        setError('Failed to download file. ' + error.message);
+        console.error('Error during file download:', error);
+      });
+  };
+
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', maxWidth: '800px', margin: '0 auto' }}>
-
       <div style={{ marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
-        <input 
-          type="file" 
-          onChange={handleFileInput} 
-          disabled={isLoading}
-          style={{ flex: 1 }}
-        />
-        <button 
-          onClick={handleUpload} 
+        <button
+          onClick={() => fileInputRef.current?.click()}
           style={{ 
-            marginLeft: '10px', 
             padding: '10px 20px', 
             backgroundColor: '#FFFF00',  // Yellow background
             color: 'black',  // Black text
@@ -222,8 +254,15 @@ const Home: React.FC = () => {
           }}
           disabled={isLoading}
         >
-          {isLoading ? 'Uploading...' : 'Upload'}
+          Upload
         </button>
+        <input 
+          type="file" 
+          ref={fileInputRef}
+          onChange={handleFileInput} 
+          disabled={isLoading}
+          style={{ display: 'none' }} // Hide the input field
+        />
       </div>
 
       {progress > 0 && progress < 100 && (
@@ -235,7 +274,17 @@ const Home: React.FC = () => {
         </div>
       )}
 
-      {error && <div style={{ color: 'red', marginBottom: '10px', padding: '10px', backgroundColor: '#ffeeee', border: '1px solid #ffcccc', borderRadius: '5px' }}>{error}</div>}
+      {successMessage && (
+        <div style={{ color: 'green', marginBottom: '10px', padding: '10px', backgroundColor: '#e6ffe6', border: '1px solid #ccffcc', borderRadius: '5px' }}>
+          {successMessage}
+        </div>
+      )}
+
+      {error && (
+        <div style={{ color: 'red', marginBottom: '10px', padding: '10px', backgroundColor: '#ffeeee', border: '1px solid #ffcccc', borderRadius: '5px' }}>
+          {error}
+        </div>
+      )}
 
       {isLoading ? (
         <p>Loading files...</p>
@@ -258,16 +307,15 @@ const Home: React.FC = () => {
             <tbody>
               {fileList.map((file, index) => (
                 <tr key={file.Key} style={{ backgroundColor: index % 2 === 0 ? '#f8f9fa' : 'white' }}>
-                  <td style={{ padding: '10px' }}>{file.Key}</td>
+                  <td style={{ padding: '10px', cursor: 'pointer', textDecoration: 'underline' }} onClick={() => handleDownload(file.Key)}>
+                    {file.Key}
+                  </td>
                   <td style={{ padding: '10px' }}>{formatFileSize(file.Size)}</td>
                   <td style={{ padding: '10px' }}>{file.LastModified ? new Date(file.LastModified).toLocaleString() : 'Unknown'}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <button onClick={fetchFiles} style={{ marginTop: '20px', padding: '10px 20px', backgroundColor: '#FFFF00', color: 'black', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
-            Refresh File List
-          </button>
         </div>
       )}
     </div>
