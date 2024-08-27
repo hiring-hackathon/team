@@ -1,7 +1,3 @@
-// aws/s3-upload-next/src/app/page.tsx
-
-// aws/s3-upload-next/src/api/upload.ts
-
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -19,6 +15,8 @@ const Home: React.FC = () => {
   const [progress, setProgress] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [sortColumn, setSortColumn] = useState<string>('Key');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
   useEffect(() => {
     console.log('Component mounted. Fetching files...');
@@ -61,12 +59,12 @@ const Home: React.FC = () => {
 
     console.log('Selected file:', selectedFile);
 
-    const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+    const maxSize = 5 * 1024 * 1024 * 1024 * 1024; // 5TB in bytes
     if (selectedFile.size > maxSize) {
-      setError('File is too large. Maximum size is 10MB.');
+      setError('File is too large. Maximum size is 5TB.');
       console.warn('Selected file is too large:', selectedFile.size);
       return;
-    }
+    }    
 
     setProgress(0);
     setError(null);
@@ -99,7 +97,7 @@ const Home: React.FC = () => {
         if (xhr.status === 204) {
           setProgress(100);
           console.log('Upload completed successfully. Refreshing file list...');
-          await fetchFiles();
+          await fetchFiles(); // Refresh file list after upload
           setSelectedFile(null);
           const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
           if (fileInput) fileInput.value = '';
@@ -143,9 +141,30 @@ const Home: React.FC = () => {
     else return (bytes / 1073741824).toFixed(2) + ' GB';
   };
 
+  const handleSort = (column: string) => {
+    const newSortOrder = sortColumn === column && sortOrder === 'asc' ? 'desc' : 'asc';
+    setSortColumn(column);
+    setSortOrder(newSortOrder);
+    setFileList((prevList) =>
+      [...prevList].sort((a, b) => {
+        if (newSortOrder === 'asc') {
+          return a[column as keyof S3File] > b[column as keyof S3File] ? 1 : -1;
+        } else {
+          return a[column as keyof S3File] < b[column as keyof S3File] ? 1 : -1;
+        }
+      })
+    );
+  };
+
+  const renderSortArrow = (column: string) => {
+    if (sortColumn === column) {
+      return sortOrder === 'asc' ? ' ↑' : ' ↓';
+    }
+    return ' ↕'; // Neutral arrow when not sorted
+  };
+
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif', maxWidth: '800px', margin: '0 auto' }}>
-      <h1 style={{ color: '#333', borderBottom: '2px solid #333', paddingBottom: '10px' }}>S3 File Manager</h1>
 
       <div style={{ marginBottom: '20px', display: 'flex', alignItems: 'center' }}>
         <input 
@@ -168,7 +187,7 @@ const Home: React.FC = () => {
           }}
           disabled={isLoading}
         >
-          {isLoading ? 'Uploading...' : 'Upload to S3'}
+          {isLoading ? 'Uploading...' : 'Upload'}
         </button>
       </div>
 
@@ -181,28 +200,38 @@ const Home: React.FC = () => {
 
       {error && <div style={{ color: 'red', marginBottom: '10px', padding: '10px', backgroundColor: '#ffeeee', border: '1px solid #ffcccc', borderRadius: '5px' }}>{error}</div>}
 
-      <h2>Files in S3:</h2>
       {isLoading ? (
         <p>Loading files...</p>
       ) : (
-        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr style={{ backgroundColor: '#007bff', color: 'white' }}>
-              <th style={{ padding: '10px', textAlign: 'left' }}>File Name</th>
-              <th style={{ padding: '10px', textAlign: 'left' }}>Size</th>
-              <th style={{ padding: '10px', textAlign: 'left' }}>Last Modified</th>
-            </tr>
-          </thead>
-          <tbody>
-            {fileList.map((file, index) => (
-              <tr key={file.Key} style={{ backgroundColor: index % 2 === 0 ? '#f8f9fa' : 'white' }}>
-                <td style={{ padding: '10px' }}>{file.Key}</td>
-                <td style={{ padding: '10px' }}>{formatFileSize(file.Size)}</td>
-                <td style={{ padding: '10px' }}>{file.LastModified ? new Date(file.LastModified).toLocaleString() : 'Unknown'}</td>
+        <div>
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr style={{ backgroundColor: 'yellow', color: 'black' }}>
+                <th style={{ padding: '10px', textAlign: 'left', cursor: 'pointer' }} onClick={() => handleSort('Key')}>
+                  File Name {renderSortArrow('Key')}
+                </th>
+                <th style={{ padding: '10px', textAlign: 'left', cursor: 'pointer' }} onClick={() => handleSort('Size')}>
+                  Size {renderSortArrow('Size')}
+                </th>
+                <th style={{ padding: '10px', textAlign: 'left', cursor: 'pointer' }} onClick={() => handleSort('LastModified')}>
+                  Last Modified {renderSortArrow('LastModified')}
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {fileList.map((file, index) => (
+                <tr key={file.Key} style={{ backgroundColor: index % 2 === 0 ? '#f8f9fa' : 'white' }}>
+                  <td style={{ padding: '10px' }}>{file.Key}</td>
+                  <td style={{ padding: '10px' }}>{formatFileSize(file.Size)}</td>
+                  <td style={{ padding: '10px' }}>{file.LastModified ? new Date(file.LastModified).toLocaleString() : 'Unknown'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <button onClick={fetchFiles} style={{ marginTop: '20px', padding: '10px 20px', backgroundColor: '#FFFF00', color: 'black', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+            Refresh File List
+          </button>
+        </div>
       )}
     </div>
   );
