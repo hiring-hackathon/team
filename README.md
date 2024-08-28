@@ -20,7 +20,7 @@ https://github.com/hiring-hackathon/team
 
 `pinecone` to setup RAG, export from Pinecone DB.
 
-`tools` to generate documentation via OpenAI API
+`tools` to generate documentation via OpenAI API.
 
 There are many components in this repository, such as:
 1. Version 1 of frontend ui and core
