@@ -110,14 +110,14 @@
       "CommentId": {
         "S": "1724625436217-4394"
       },
-      "TranscriptId": {
-        "S": "1724606781233-6920"
-      },
       "CommentText": {
-        "S": "finalist?"
+        "S": "We were top 3 \n\n"
       },
       "CreatedAt": {
         "S": "2024-08-25T22:37:16.217Z"
+      },
+      "TranscriptId": {
+        "S": "1724606781233-6920"
       }
     },
     {
@@ -286,30 +286,6 @@
       },
       "CreatedAt": {
         "S": "2024-08-25T11:49:33.799Z"
-      }
-    },
-    {
-      "Location": {
-        "M": {
-          "startIndex": {
-            "N": "0"
-          },
-          "endIndex": {
-            "N": "10"
-          }
-        }
-      },
-      "CommentId": {
-        "S": "1724596473237-7569"
-      },
-      "TranscriptId": {
-        "S": "1724548638927-8775"
-      },
-      "CommentText": {
-        "S": "a"
-      },
-      "CreatedAt": {
-        "S": "2024-08-25T14:34:33.237Z"
       }
     },
     {
@@ -1177,6 +1153,30 @@
       },
       "CommentText": {
         "S": "Hi."
+      }
+    },
+    {
+      "Location": {
+        "M": {
+          "startIndex": {
+            "N": "0"
+          },
+          "endIndex": {
+            "N": "10"
+          }
+        }
+      },
+      "CommentId": {
+        "S": "1724789829039-5708"
+      },
+      "TranscriptId": {
+        "S": "1724544737611-8833"
+      },
+      "CommentText": {
+        "S": "Greate meeting"
+      },
+      "CreatedAt": {
+        "S": "2024-08-27T20:17:09.039Z"
       }
     }
   ],

@@ -29,7 +29,7 @@
       "ReadCapacityUnits": 1,
       "WriteCapacityUnits": 1
     },
-    "TableSizeBytes": 7706,
+    "TableSizeBytes": 7709,
     "ItemCount": 55,
     "TableArn": "arn:aws:dynamodb:us-east-1:381492032762:table/Comments",
     "TableId": "9640b4aa-73a1-4e08-8fd3-6a6878bc4ee0",
@@ -39,16 +39,16 @@
     "DeletionProtectionEnabled": false
   },
   "ResponseMetadata": {
-    "RequestId": "MFH7VLL2SJAUJHGCDH1DSLHO6FVV4KQNSO5AEMVJF66Q9ASUAAJG",
+    "RequestId": "EHAR2O6B64DD1K6BMRNFQ125UBVV4KQNSO5AEMVJF66Q9ASUAAJG",
     "HTTPStatusCode": 200,
     "HTTPHeaders": {
       "server": "Server",
-      "date": "Tue, 27 Aug 2024 06:31:14 GMT",
+      "date": "Wed, 28 Aug 2024 20:25:05 GMT",
       "content-type": "application/x-amz-json-1.0",
       "content-length": "704",
       "connection": "keep-alive",
-      "x-amzn-requestid": "MFH7VLL2SJAUJHGCDH1DSLHO6FVV4KQNSO5AEMVJF66Q9ASUAAJG",
-      "x-amz-crc32": "2249184838"
+      "x-amzn-requestid": "EHAR2O6B64DD1K6BMRNFQ125UBVV4KQNSO5AEMVJF66Q9ASUAAJG",
+      "x-amz-crc32": "199590108"
     },
     "RetryAttempts": 0
   }
