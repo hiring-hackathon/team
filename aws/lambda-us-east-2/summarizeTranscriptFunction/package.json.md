@@ -10,4 +10,3 @@ The project has two dependencies:
 
 The `scripts` section includes a placeholder for running tests, which currently outputs an error message indicating that no tests are specified. The file also includes metadata fields such as `keywords`, `author`, `license`, and `description`, which are currently empty but can be filled in to provide more context about the project.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

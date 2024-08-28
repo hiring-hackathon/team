@@ -17,9 +17,6 @@ xargs grep -l '# Table of Contents' | \
 xargs gsed -i 1,11d
 
 find . -type f -name '*.md' | \
-xargs grep -l "\[Back to (root)\](#root) | \[Back to top\](#table-of-contents)" | \
-xargs sed -i '' '
-$!N;$!N
-$s/\n\[Back to (root)\](#root) | \[Back to top\](#table-of-contents).*$//
-'
+xargs grep -l "\[Back to (root)\](#root)\|\[Back to top\](#table-of-contents)" | \
+xargs sed -i '' '/\[Back to (root)\](#root) | \[Back to top\](#table-of-contents)/d'
 

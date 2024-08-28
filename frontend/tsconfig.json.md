@@ -10,4 +10,3 @@ The `incremental` option enables faster subsequent builds by storing information
 
 The `include` array specifies the files and directories to be included in the compilation, covering TypeScript and JavaScript files relevant to the project. The `exclude` array ensures that `node_modules` are not included in the compilation, preventing unnecessary processing of external dependencies.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)
