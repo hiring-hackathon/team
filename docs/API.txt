@@ -1,0 +1,562 @@
+Get all transcripts will update later to include timestamp
+
+import React, { useEffect } from 'react';
+
+function App() {
+  useEffect(() => {
+    // Fetch data from the API Gateway endpoint
+    fetch('https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions')
+      .then(response => response.json())
+      .then(data => {
+        console.log('Fetched data:', data);
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
+  return (
+    <div className="App">
+      <h1>Check the console for fetched transcriptions</h1>
+    </div>
+  );
+}
+
+
+
+Get one transcript
+
+import React, { useEffect } from 'react';
+
+function App() {
+  const id = "1724479263906-6429"
+  useEffect(() => {
+    // Fetch data from the API Gateway endpoint
+    fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log('Fetched data:', data);
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
+  return (
+    <div className="App">
+      <h1>Check the console for fetched transcriptions</h1>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+Create Transcript
+
+import React, { useState } from 'react';
+
+function App() {
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
+
+  // Function to send POST request
+  const postTranscript = async () => {
+    const transcriptText = "I got it done"; // Replace with actual transcript text
+
+    try {
+      const res = await fetch('https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/transcript', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ transcriptText }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+
+      const data = await res.json();
+      setResponse(data);
+    } catch (err) {
+      console.error('Error posting data:', err);
+      setError(err.message);
+    }
+  };
+
+  // Call postTranscript on component mount or button click
+  React.useEffect(() => {
+    postTranscript(); // Automatically send POST request when component mounts
+  }, []);
+
+  return (
+    <div className="App">
+      <h1>Check the console for the POST request result</h1>
+      {response && (
+        <div>
+          <h2>Response:</h2>
+          <pre>{JSON.stringify(response, null, 2)}</pre>
+        </div>
+      )}
+      {error && (
+        <div>
+          <h2>Error:</h2>
+          <pre>{error}</pre>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+
+
+Update Transcript
+
+import React, { useState } from 'react';
+
+function App() {
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
+  const [transcriptText, setTranscriptText] = useState('');
+  const [id, setId] = useState('1724517066104-2099'); 
+
+  const updateTranscript = async () => {
+    try {
+      const res = await fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/transcript/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ transcriptText }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+
+      const data = await res.json();
+      setResponse(data);
+    } catch (err) {
+      console.error('Error updating data:', err);
+      setError(err.message);
+    }
+  };
+
+  return (
+    <div className="App">
+      <h1>Update Transcript</h1>
+      <input
+        type="text"
+        value={id}
+        onChange={(e) => setId(e.target.value)}
+        placeholder="Enter transcript ID"
+      />
+      <textarea
+        value={transcriptText}
+        onChange={(e) => setTranscriptText(e.target.value)}
+        placeholder="Enter new transcript text"
+      />
+      <button onClick={updateTranscript}>Update Transcript</button>
+      {response && (
+        <div>
+          <h2>Response:</h2>
+          <pre>{JSON.stringify(response, null, 2)}</pre>
+        </div>
+      )}
+      {error && (
+        <div>
+          <h2>Error:</h2>
+          <pre>{error}</pre>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+
+
+Delete Transcript
+
+import React, { useState } from 'react';
+
+function App() {
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
+  const [id, setId] = useState('1724516438668-184'); // Example ID to start with
+
+  // Function to handle deleting the transcript
+  const deleteTranscript = async () => {
+    try {
+      const res = await fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/transcript/${id}/delete`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status}`);
+      }
+
+      const data = await res.json();
+      setResponse(data);
+    } catch (err) {
+      console.error('Error deleting data:', err);
+      setError(err.message);
+    }
+  };
+
+  return (
+    <div className="App">
+      <h1>Delete Transcript</h1>
+      <input
+        type="text"
+        value={id}
+        onChange={(e) => setId(e.target.value)}
+        placeholder="Enter transcript ID"
+      />
+      <button onClick={deleteTranscript}>Delete Transcript</button>
+      {response && (
+        <div>
+          <h2>Response:</h2>
+          <pre>{JSON.stringify(response, null, 2)}</pre>
+        </div>
+      )}
+      {error && (
+        <div>
+          <h2>Error:</h2>
+          <pre>{error}</pre>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+
+
+This is the data format returned by the endpoint
+
+{
+    "statusCode": 200,
+    "body": "[{\"TranscriptText\":\"Updated transcript text for testing from gateway.\",\"TranscriptId\":\"1724516524432-6079\"},{\"TranscriptText\":\"update works now\",\"TranscriptId\":\"1724517066104-2099\"},{\"TranscriptText\":\"I will get this done\",\"TranscriptId\":\"1724517445303-717\"},{\"TranscriptText\":\"I will get this done\",\"TranscriptId\":\"1724517445320-6561\"},{\"TranscriptText\":\"I got it done\",\"TranscriptId\":\"1724517482670-2944\"},{\"TranscriptText\":\"I will get this done\",\"TranscriptId\":\"1724517445323-1820\"},{\"TranscriptText\":\"This is the transcription text please work.\",\"TranscriptId\":\"1724479263906-6429\"},{\"TranscriptText\":\"I got it done\",\"TranscriptId\":\"1724517482462-2600\"},{\"TranscriptText\":\"I will get this done\",\"TranscriptId\":\"1724517445287-9883\"},{\"TranscriptText\":\"This is the updated transcription text.\",\"TranscriptId\":\"transcript001\"}]"
+}
+
+Yea each have and id and text going to add the timestamp after finishing the comments
+
+
+
+Fetch all comments for a specific transcription works
+
+import React, { useEffect } from 'react';
+
+function App() {
+  const id = "1724517066104-2099";
+
+  useEffect(() => {
+    // Fetch data from the API Gateway endpoint
+    fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${id}/getAllComments`)
+      .then(response => response.json())
+      .then(data => {
+        console.log('Fetched data:', data);
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
+  return (
+    <div className="App">
+      <h1>Check the console for fetched comments</h1>
+    </div>
+  );
+}
+
+export default App;
+
+
+Format that create expects Test Event Name test Response { "statusCode": 200, "headers": { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "OPTIONS, POST, GET", "Access-Control-Allow-Headers": "Content-Type" }, "body": "{"item":{"TranscriptId":"1724517066104-2099","CommentId":"1724531370630-7708","CommentText":"This is a test comment.","Location":{"startIndex":2,"endIndex":20}}}" }
+
+Format that create expects  Test Event Name test  Response {   "statusCode": 200,   "headers": {     "Access-Control-Allow-Origin": "*",     "Access-Control-Allow-Methods": "OPTIONS, POST, GET",     "Access-Control-Allow-Headers": "Content-Type"   },   "body": "{"item":{"TranscriptId":"1724517066104-2099","CommentId":"1724531370630-7708","CommentText":"This is a test comment.","Location":{"startIndex":2,"endIndex":20}}}" }
+
+
+
+is the comments response not suppose to be a list instead
+
+a list ? This for create sorry send it a bit early needed to keep track of it aswell the one fetch all comments is a array with all the comments in an object this is what fetch all looks like
+
+[{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}] 0 : {CommentId: '1724523851257-320', TranscriptId: '1724517066104-2099', CommentText: 'This is a test comment for the transcript.', CreatedAt: '2024-08-24T18:24:11.243Z'} 1 : {CommentId: '1724523908036-1833', TranscriptId: '1724517066104-2099', CommentText: 'This is a test comment for the transcript.', CreatedAt: '2024-08-24T18:25:08.036Z'} 2 : {CommentId: '1724523913047-5811', TranscriptId: '1724517066104-2099', CommentText: 'This is a test comment for the transcript.', CreatedAt: '2024-08-24T18:25:13.044Z'} 3 : {CommentId: '1724523962231-2763', TranscriptId: '1724517066104-2099', CommentText: 'This is a test comment for the transcript.', CreatedAt: '2024-08-24T18:26:02.218Z'} 4 : {CommentId: '1724524125810-7443', TranscriptId: '1724517066104-2099', CommentText: 'This is a test comment for the transcript.', CreatedAt: '2024-08-24T18:28:45.810Z'} 5 : {Location: {…}, CommentId: '1724531191417-2575', TranscriptId: '1724517066104-2099', CommentText: 'This is a test comment.'} 6 : {Location: {…}, CommentId: '1724531268817-1725', TranscriptId: '1724517066104-2099', CommentText: 'This is a test comment.'} 7 : {Location: {…}, CommentId: '1724531275668-1641', TranscriptId: '1724517066104-2099', CommentText: 'This is a test comment.'} 8 : {Location: {…}, CommentId: '1724531370630-7708', TranscriptId: '1724517066104-2099', CommentText: 'This is a test comment.'} length : 9 [[Prototype]] : Array(0)
+
+This is what it looks like when it comes back do you mean a list for the location? {item: {…}} item : CommentId : "1724532468252-1193" CommentText : "why" Location : {startIndex: 0, endIndex: 10} TranscriptId : "1724517066104-2099" [[Prototype]] : Object [[Prototype]] : Object
+
+
+
+Create comment is done
+
+import React, { useState } from 'react';
+
+function App() {
+  const id = "1724517066104-2099"; // Replace with dynamic id if necessary
+
+  // State for form fields
+  const [commentText, setCommentText] = useState('');
+  const [location, setLocation] = useState({ startIndex: 0, endIndex: 10 }); // Default location, update as needed
+
+  // Handle input changes
+  const handleCommentTextChange = (event) => setCommentText(event.target.value);
+  const handleStartIndexChange = (event) => setLocation(prev => ({ ...prev, startIndex: parseInt(event.target.value, 10) }));
+  const handleEndIndexChange = (event) => setLocation(prev => ({ ...prev, endIndex: parseInt(event.target.value, 10) }));
+
+  // Handle form submission
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${id}/createComment`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        commentText,
+        location
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Comment created:', data);
+      })
+      .catch(error => console.error('Error creating comment:', error));
+  };
+
+  return (
+    <div className="App">
+      <h1>Create a Comment</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>
+            Comment Text:
+            <input
+              type="text"
+              value={commentText}
+              onChange={handleCommentTextChange}
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
+            Start Index:
+            <input
+              type="number"
+              value={location.startIndex}
+              onChange={handleStartIndexChange}
+              required
+            />
+          </label>
+        </div>
+  
+   <div>
+          <label>
+            End Index:
+            <input
+              type="number"
+              value={location.endIndex}
+              onChange={handleEndIndexChange}
+              required
+            />
+          </label>
+        </div>
+        <button type="submit">Submit Comment</button>
+      </form>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+added createdat to it item : CommentId : "1724532665877-6131" CommentText : "why are we here just suffer" CreatedAt : "2024-08-24T20:51:05.877Z" Location : {startIndex: 0, endIndex: 10} TranscriptId : "1724517066104-2099"
+
+
+
+Show route is done for comments
+
+import React, { useEffect } from 'react';
+
+function App() {
+  const id = "1724516524432-6079"; // Replace with dynamic id if necessary
+  const commentId = "1724532353458-1745"; // Replace with dynamic commentId if necessary
+
+  useEffect(() => {
+    // Fetch data from the API Gateway endpoint
+    fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${id}/getAllComments/${commentId}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log('Fetched comment data:', data); // Log the data to the console
+      })
+      .catch(error => console.error('Error fetching comment data:', error)); // Log errors to the console
+  }, [id, commentId]);
+
+  return (
+    <div className="App">
+      <h1>Check the console for comment data</h1>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+Update comments
+
+import React, { useState, useEffect } from 'react';
+
+function App() {
+  const id = "1724516524432-6079"; // Replace with dynamic id if necessary
+  const commentId = "1724532353458-1745"; // Replace with dynamic commentId if necessary
+
+  // State for updated fields
+  const [commentText, setCommentText] = useState('hello');
+  const [location, setLocation] = useState({ startIndex: 5, endIndex: 15 });
+
+  useEffect(() => {
+    // Update data at the API Gateway endpoint
+    fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${id}/getAllComments/${commentId}/edit`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        commentText,
+        location
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Update response data:', data); // Log the response to the console
+      })
+      .catch(error => console.error('Error updating comment:', error)); // Log errors to the console
+  }, [id, commentId, commentText, location]);
+
+  return (
+    <div className="App">
+      <h1>Check the console for update response</h1>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+Delete Comment
+
+import React, { useEffect } from 'react';
+
+function App() {
+  const id = "1724517066104-2099"; // Replace with dynamic id if necessary
+  const commentId = "1724532665877-6131"; // Replace with dynamic commentId if necessary
+
+  useEffect(() => {
+    // Perform delete operation at the API Gateway endpoint
+    fetch(`https://jo589y2zh7.execute-api.us-east-1.amazonaws.com/test/transcriptions/${id}/getAllComments/${commentId}/delete`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Delete response data:', data); // Log the response to the console
+      })
+      .catch(error => console.error('Error deleting comment:', error)); // Log errors to the console
+  }, [id, commentId]);
+
+  return (
+    <div className="App">
+      <h1>Check the console for delete response</h1>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+here's the transcript summarizer I built with Lamda. Please plug it into the front-end when you have the time
+
+ Transcript Summarization API
+
+Endpoint
+
+POST https://tjq0k92mt4.execute-api.us-east-2.amazonaws.com/summarize-transcript
+
+ Description
+
+This API endpoint accepts a transcript and returns a summary of the provided text.
+
+ Request
+
+Headers
+
+Content-Type: application/json
+
+Body
+
+The request body should be a JSON object with a single key-value pair:
+{
+  "text": "Your transcript goes here"
+}
+Example Request (JavaScript/Fetch API)
+fetch('https://tjq0k92mt4.execute-api.us-east-2.amazonaws.com/summarize-transcript', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    text: "Your transcript goes here"
+  }),
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch((error) => console.error('Error:', error));
+Response
+Success Response
+Status Code: 200 OK Content-Type: application/json
+{
+  "originalMessage": "Your original transcript",
+  "summary": "The summarized version of your transcript",
+  "completion": {
+    // Additional details about the completion (if included in your Lambda response)
+  }
+}
+
+Error Response
+
+Status Code: 500 Internal Server Error Content-Type: application/json
+
+{
+  "error": "Error message describing what went wrong"
+}
+
+Usage Notes
+
+The API uses OpenAI's GPT-3.5-turbo model for summarization. Results may vary due to the nature of AI-generated content. Ensure your requests adhere to OpenAI's usage policies. The maximum length of the transcript that can be processed is [specify limit if any].
+
+
+
+Small design suggestions: hover effect for transcript containers in the Transcripts page. Bold styling for names in the Transcript Detail page
+
+
+
+import { NextResponse } from "next/server";
+import { Pinecone } from "@pinecone-database/pinecone";
+import OpenAI from "openai";
+
+const systemPrompt = `
+You are an expert sales coach specializing in evaluating and improving sales conversations. Your primary task is to provide feedback and advice on sales transcripts given to you, focusing solely on the content provided. You do not have any additional information outside of these transcripts, and your advice should be based on best practices in sales communication.
+
+
