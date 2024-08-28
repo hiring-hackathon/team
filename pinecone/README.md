@@ -1,3 +1,5 @@
+`pinecone` to setup RAG, export from Pinecone DB.
+
 Using Python, I've created a script, `export-from-pinecone-hackathon.py`, to export data from our Pinecone vector database. This script:
 
 1. Connects to our Pinecone index named "hackathon".
