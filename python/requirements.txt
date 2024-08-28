@@ -1,3 +1,6 @@
+numpy==2.1.0
 openai==1.42.0
 pinecone==5.0.1
 python-dotenv==1.0.1
+tenacity==9.0.0
+tqdm==4.66.1
