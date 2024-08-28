@@ -8,9 +8,9 @@ https://hiring-hackathon-team.vercel.app/
 
 https://github.com/hiring-hackathon/team
 
-`aws` related to DynamoDB, Lambda, S3
+`aws` to export from DynamoDB, Lambda, S3.
 
-`data` related to transcripts and vector search
+`data` related to transcripts; import via React app and CRUD API into DynamoDB.
 
 `docs` for published documentation, such as video posted YouTube.
 
@@ -18,7 +18,7 @@ https://github.com/hiring-hackathon/team
 
 `mockups` and research of prior art as examples.
 
-`python` to setup RAG
+`pinecone` to setup RAG, export from Pinecone DB.
 
 `tools` to generate documentation via OpenAI API
 
