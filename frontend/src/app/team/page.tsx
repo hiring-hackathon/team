@@ -10,14 +10,6 @@ import { Linkedin } from 'lucide-react';
 // Define the team members' data
 const teamMembers = [
     {
-        name: 'David Muturi',
-        role: 'AI Engineer, Full-Stack Lead',
-        photo: '/images/David_Mutari.jpeg',
-        email: 'muturidavid854@gmail.com',
-        linkedin: 'https://www.linkedin.com/in/tushdev/',
-        location: 'Nairobi, Nairobi County, Kenya'
-    },
-    {
         name: 'Derek Gomez',
         role: 'AI Engineer Lead, Full-Stack',
         photo: '/images/Derek_Gomez.jpeg',
@@ -40,6 +32,14 @@ const teamMembers = [
         email: 'lloydchang@gmail.com',
         linkedin: 'https://www.linkedin.com/in/lloydchang/',
         location: 'San Francisco, California, United States'
+    },
+    {
+        name: 'Muturi David',
+        role: 'AI Engineer, Full-Stack Lead',
+        photo: '/images/Mutari_David.jpeg',
+        email: 'muturidavid854@gmail.com',
+        linkedin: 'https://www.linkedin.com/in/tushdev/',
+        location: 'Nairobi, Nairobi County, Kenya'
     },
     {
         name: 'Shaun Jhingoor',
