@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [index.mjs](#indexmjs)
-
-[Back to top](#table-of-contents)
-
 ## [index.mjs](index.mjs)
 
 ### Serverless function to delete a comment from a DynamoDB table

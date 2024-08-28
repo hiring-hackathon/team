@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [input.tsx](#inputtsx)
-
-[Back to top](#table-of-contents)
-
 ## [input.tsx](input.tsx)
 
 ### Simple and customizable input component for React applications

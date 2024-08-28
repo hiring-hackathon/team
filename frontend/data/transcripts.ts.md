@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [transcripts.ts](#transcriptsts)
-
-[Back to top](#table-of-contents)
-
 ## [transcripts.ts](transcripts.ts)
 
 ### A collection of customer service call transcripts with timestamps.

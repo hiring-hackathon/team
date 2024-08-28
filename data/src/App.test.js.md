@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (2 files)](#root)
-# (root)
-
-## List of files
-
-- [App.test.js](#apptestjs)
-- [App.js](#appjs)
-
-[Back to top](#table-of-contents)
 
 ## [App.test.js](App.test.js)
 

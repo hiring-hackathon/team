@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [robots.txt](#robotstxt)
-
-[Back to top](#table-of-contents)
-
 ## [robots.txt](robots.txt)
 
 ### A simple robots.txt file allowing all web crawlers to access the entire site

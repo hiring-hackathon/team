@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [index.js](#indexjs)
-
-[Back to top](#table-of-contents)
-
 ## [index.js](index.js)
 
 ### Lambda function for summarizing sales conversations using OpenAI's GPT model

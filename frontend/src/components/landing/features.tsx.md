@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [features.tsx](#featurestsx)
-
-[Back to top](#table-of-contents)
-
 ## [features.tsx](features.tsx)
 
 ### A React component showcasing key features of an application in a visually appealing layout.

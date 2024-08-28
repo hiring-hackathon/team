@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [Shaun_Jhingoor.jpeg](#shaunjhingoorjpeg)
-
-[Back to top](#table-of-contents)
-
 ## [Shaun_Jhingoor.jpeg](Shaun_Jhingoor.jpeg)
 
 ### Binary data representing an image file

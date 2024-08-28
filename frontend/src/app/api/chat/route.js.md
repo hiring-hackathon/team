@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [route.js](#routejs)
-
-[Back to top](#table-of-contents)
-
 ## [route.js](route.js)
 
 ### A sales coaching API endpoint using Pinecone and OpenAI for transcript analysis and feedback

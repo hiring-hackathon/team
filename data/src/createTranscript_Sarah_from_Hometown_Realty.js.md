@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [createTranscript_Sarah_from_Hometown_Realty.js](#createtranscriptsarahfromhometownrealtyjs)
-
-[Back to top](#table-of-contents)
-
 ## [createTranscript_Sarah_from_Hometown_Realty.js](createTranscript_Sarah_from_Hometown_Realty.js)
 
 ### React component for posting and displaying a sales call transcript

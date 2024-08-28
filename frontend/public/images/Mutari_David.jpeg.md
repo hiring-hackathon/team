@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [Mutari_David.jpeg](#mutaridavidjpeg)
-
-[Back to top](#table-of-contents)
-
 ## [Mutari_David.jpeg](Mutari_David.jpeg)
 
 ### Binary data representing an image file

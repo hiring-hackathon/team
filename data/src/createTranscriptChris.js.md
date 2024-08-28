@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [createTranscriptChris.js](#createtranscriptchrisjs)
-
-[Back to top](#table-of-contents)
-
 ## [createTranscriptChris.js](createTranscriptChris.js)
 
 ### React component for posting and displaying a transcript

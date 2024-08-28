@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [dynamodump.sh](#dynamodumpsh)
-
-[Back to top](#table-of-contents)
-
 ## [dynamodump.sh](dynamodump.sh)
 
 ### Script for backing up DynamoDB tables

@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [favicon.ico](#faviconico)
-
-[Back to top](#table-of-contents)
-
 ## [favicon.ico](favicon.ico)
 
 ### Brief 20-word summary

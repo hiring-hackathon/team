@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [setup_rag.py](#setupragpy)
-
-[Back to top](#table-of-contents)
-
 ## [setup_rag.py](setup_rag.py)
 
 ### Script for managing Pinecone index and embedding reviews using OpenAI

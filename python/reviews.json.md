@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [reviews.json](#reviewsjson)
-
-[Back to top](#table-of-contents)
-
 ## [reviews.json](reviews.json)
 
 ### JSON file containing professor reviews

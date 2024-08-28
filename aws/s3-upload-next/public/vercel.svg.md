@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [vercel.svg](#vercelsvg)
-
-[Back to top](#table-of-contents)
-
 ## [vercel.svg](vercel.svg)
 
 ### SVG file rendering the Vercel logo

@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [globals.css](#globalscss)
-
-[Back to top](#table-of-contents)
-
 ## [globals.css](globals.css)
 
 ### Global CSS configuration for a Tailwind CSS project

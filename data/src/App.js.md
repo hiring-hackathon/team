@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [App.js](#appjs)
-
-[Back to top](#table-of-contents)
-
 ## [App.js](App.js)
 
 ### A React component for posting a sales call transcript to an API and displaying the response.

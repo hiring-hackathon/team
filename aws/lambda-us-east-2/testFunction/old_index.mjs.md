@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [old_index.mjs](#oldindexmjs)
-
-[Back to top](#table-of-contents)
-
 ## [old_index.mjs](old_index.mjs)
 
 ### Simple AWS Lambda handler returning the event data

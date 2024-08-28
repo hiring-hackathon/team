@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [Lloyd_Chang.jpeg](#lloydchangjpeg)
-
-[Back to top](#table-of-contents)
-
 ## [Lloyd_Chang.jpeg](Lloyd_Chang.jpeg)
 
 ### Binary data representing an image file

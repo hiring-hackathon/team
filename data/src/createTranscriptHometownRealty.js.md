@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [createTranscriptHometownRealty.js](#createtranscripthometownrealtyjs)
-
-[Back to top](#table-of-contents)
-
 ## [createTranscriptHometownRealty.js](createTranscriptHometownRealty.js)
 
 ### A React component for posting and displaying a real estate sales transcript

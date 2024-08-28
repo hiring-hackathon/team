@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [page.tsx](#pagetsx)
-
-[Back to top](#table-of-contents)
-
 ## [page.tsx](page.tsx)
 
 ### A Next.js page component displaying transcript details with a footer.

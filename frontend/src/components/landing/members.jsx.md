@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [members.jsx](#membersjsx)
-
-[Back to top](#table-of-contents)
-
 ## [members.jsx](members.jsx)
 
 ### Interactive team member showcase with email copy functionality

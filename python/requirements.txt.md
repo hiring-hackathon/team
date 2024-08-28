@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [requirements.txt](#requirementstxt)
-
-[Back to top](#table-of-contents)
-
 ## [requirements.txt](requirements.txt)
 
 ### Dependency management for OpenAI, Pinecone, and environment variables

@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [footer.tsx](#footertsx)
-
-[Back to top](#table-of-contents)
-
 ## [footer.tsx](footer.tsx)
 
 ### Footer component for displaying social media links and current year

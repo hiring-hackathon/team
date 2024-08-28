@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [page.jsx](#pagejsx)
-
-[Back to top](#table-of-contents)
-
 ## [page.jsx](page.jsx)
 
 ### AI-powered chatbot interface with voice recognition

@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [page.tsx](#pagetsx)
-
-[Back to top](#table-of-contents)
-
 ## [page.tsx](page.tsx)
 
 ### A simple page displaying a list of transcripts with a navbar and footer.

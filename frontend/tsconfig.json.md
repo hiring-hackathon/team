@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [tsconfig.json](#tsconfigjson)
-
-[Back to top](#table-of-contents)
-
 ## [tsconfig.json](tsconfig.json)
 
 ### TypeScript configuration for a Next.js project with strict type-checking and modern JavaScript features.

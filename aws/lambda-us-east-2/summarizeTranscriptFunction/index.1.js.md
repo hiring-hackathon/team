@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [index.1.js](#index-1-js)
-
-[Back to top](#table-of-contents)
-
 ## [index.1.js](index.1.js)
 
 ### Lambda function for summarizing text using OpenAI's GPT-3.5-turbo model

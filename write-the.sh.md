@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [write-the.sh](#writethesh)
-
-[Back to top](#table-of-contents)
-
 ## [write-the.sh](write-the.sh)
 
 ### Automates documentation generation for all directories in the current directory.

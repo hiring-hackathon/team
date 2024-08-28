@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [hiring-hackathon-team.vercel.app-qr-code.png](#hiringhackathonteamvercelappqrcodepng)
-
-[Back to top](#table-of-contents)
-
 ## [hiring-hackathon-team.vercel.app-qr-code.png](hiring-hackathon-team.vercel.app-qr-code.png)
 
 ### Brief 20-word summary

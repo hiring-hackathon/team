@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [createTranscriptRillaVoice.js](#createtranscriptrillavoicejs)
-
-[Back to top](#table-of-contents)
-
 ## [createTranscriptRillaVoice.js](createTranscriptRillaVoice.js)
 
 ### React component for posting and displaying a transcript

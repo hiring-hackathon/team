@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [route.ts](#routets)
-
-[Back to top](#table-of-contents)
-
 ## [route.ts](route.ts)
 
 ### Smart summary generator for conversations

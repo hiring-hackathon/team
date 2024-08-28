@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [next.config.mjs](#nextconfigmjs)
-
-[Back to top](#table-of-contents)
-
 ## [next.config.mjs](next.config.mjs)
 
 ### Minimal Next.js configuration file

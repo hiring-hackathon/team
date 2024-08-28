@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [comments.tsx](#commentstsx)
-
-[Back to top](#table-of-contents)
-
 ## [comments.tsx](comments.tsx)
 
 ### Fetches and displays comments for a given transcript

@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [Faith_Nchang.jpeg](#faithnchangjpeg)
-
-[Back to top](#table-of-contents)
-
 ## [Faith_Nchang.jpeg](Faith_Nchang.jpeg)
 
 ### Binary data representing an image file

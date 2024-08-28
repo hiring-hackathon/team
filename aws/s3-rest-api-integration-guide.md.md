@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [s3-rest-api-integration-guide.md](#s-3-restapiintegrationguidemd)
-
-[Back to top](#table-of-contents)
-
 ## [s3-rest-api-integration-guide.md](s3-rest-api-integration-guide.md)
 
 ### A guide for integrating Amazon S3 with a REST API using AWS API Gateway.

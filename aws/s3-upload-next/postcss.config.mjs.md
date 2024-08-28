@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [postcss.config.mjs](#postcssconfigmjs)
-
-[Back to top](#table-of-contents)
-
 ## [postcss.config.mjs](postcss.config.mjs)
 
 ### Configuration for PostCSS with Tailwind CSS plugin

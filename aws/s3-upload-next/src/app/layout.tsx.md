@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [layout.tsx](#layouttsx)
-
-[Back to top](#table-of-contents)
-
 ## [layout.tsx](layout.tsx)
 
 ### A layout component for a Next.js application with global styles and metadata.

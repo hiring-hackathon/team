@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [next.svg](#nextsvg)
-
-[Back to top](#table-of-contents)
-
 ## [next.svg](next.svg)
 
 ### SVG graphic for navigation and branding

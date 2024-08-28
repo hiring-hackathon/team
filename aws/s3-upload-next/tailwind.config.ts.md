@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [tailwind.config.ts](#tailwindconfigts)
-
-[Back to top](#table-of-contents)
-
 ## [tailwind.config.ts](tailwind.config.ts)
 
 ### Tailwind CSS configuration for customizing content paths and theme extensions

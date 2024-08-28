@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [components.json](#componentsjson)
-
-[Back to top](#table-of-contents)
-
 ## [components.json](components.json)
 
 ### Configuration for UI components with Tailwind CSS and TypeScript

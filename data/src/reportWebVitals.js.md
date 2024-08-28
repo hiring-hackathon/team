@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [reportWebVitals.js](#reportwebvitalsjs)
-
-[Back to top](#table-of-contents)
-
 ## [reportWebVitals.js](reportWebVitals.js)
 
 ### Utility to measure and report web performance metrics

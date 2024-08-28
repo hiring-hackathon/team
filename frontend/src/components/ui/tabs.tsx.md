@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [tabs.tsx](#tabstsx)
-
-[Back to top](#table-of-contents)
-
 ## [tabs.tsx](tabs.tsx)
 
 ### A set of React components for creating tabbed interfaces using Radix UI primitives.

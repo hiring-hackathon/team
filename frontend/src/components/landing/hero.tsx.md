@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [hero.tsx](#herotsx)
-
-[Back to top](#table-of-contents)
-
 ## [hero.tsx](hero.tsx)
 
 ### A simple React component rendering a "Hero" div
