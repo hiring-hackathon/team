@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [manifest.json](#manifestjson)
-
-[Back to top](#table-of-contents)
-
 ## [manifest.json](manifest.json)
 
 ### Web app manifest for a React application

@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [package.zip](#packagezip)
-
-[Back to top](#table-of-contents)
-
 ## [package.zip](package.zip)
 
 ### Package configuration file for a Node.js project

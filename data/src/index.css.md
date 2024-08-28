@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [index.css](#indexcss)
-
-[Back to top](#table-of-contents)
-
 ## [index.css](index.css)
 
 ### CSS for basic styling and font settings

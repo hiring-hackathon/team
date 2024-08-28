@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [package.json](#packagejson)
-
-[Back to top](#table-of-contents)
-
 ## [package.json](package.json)
 
 ### React-based transcription application setup with testing and build scripts

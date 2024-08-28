@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (3 files)](#root)
-# (root)
-
-## List of files
-
-- [index.js](#indexjs)
-- [App.js](#appjs)
-- [reportWebVitals.js](#reportwebvitalsjs)
-
 [Back to top](#table-of-contents)
 
 ## [index.js](index.js)

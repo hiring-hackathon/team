@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [createTranscript_Rebecca_from_Golden_Sunrise_Retrievers.js](#createtranscriptrebeccafromgoldensunriseretrieversjs)
-
-[Back to top](#table-of-contents)
-
 ## [createTranscript_Rebecca_from_Golden_Sunrise_Retrievers.js](createTranscript_Rebecca_from_Golden_Sunrise_Retrievers.js)
 
 ### React component for posting and displaying a transcript

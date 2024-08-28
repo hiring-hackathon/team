@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [createTranscript_Sarah_from_Harmony_Haven_Piano_Gallery.js](#createtranscriptsarahfromharmonyhavenpianogalleryjs)
-
-[Back to top](#table-of-contents)
-
 ## [createTranscript_Sarah_from_Harmony_Haven_Piano_Gallery.js](createTranscript_Sarah_from_Harmony_Haven_Piano_Gallery.js)
 
 ### React component for posting a piano gallery transcript to an API

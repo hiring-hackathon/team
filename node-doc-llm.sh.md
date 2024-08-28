@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [node-doc-llm.sh](#nodedocllmsh)
-
-[Back to top](#table-of-contents)
-
 ## [node-doc-llm.sh](node-doc-llm.sh)
 
 ### Automates documentation generation for project files using a Node.js script

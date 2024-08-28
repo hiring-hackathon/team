@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [App.css](#appcss)
-
-[Back to top](#table-of-contents)
-
 ## [App.css](App.css)
 
 ### Styles for a React application with a centered layout and animated logo

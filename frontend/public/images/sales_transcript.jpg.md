@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [sales_transcript.jpg](#salestranscriptjpg)
-
-[Back to top](#table-of-contents)
-
 ## [sales_transcript.jpg](sales_transcript.jpg)
 
 ### Brief 20-word summary

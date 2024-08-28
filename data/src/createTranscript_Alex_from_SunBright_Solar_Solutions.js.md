@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [createTranscript_Alex_from_SunBright_Solar_Solutions.js](#createtranscriptalexfromsunbrightsolarsolutionsjs)
-
-[Back to top](#table-of-contents)
-
 ## [createTranscript_Alex_from_SunBright_Solar_Solutions.js](createTranscript_Alex_from_SunBright_Solar_Solutions.js)
 
 ### A React component that posts a transcript to an API and displays the response.

@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [card.tsx](#cardtsx)
-
-[Back to top](#table-of-contents)
-
 ## [card.tsx](card.tsx)
 
 ### Reusable React components for creating a card UI

@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [transcript-list.tsx](#transcriptlisttsx)
-
-[Back to top](#table-of-contents)
-
 ## [transcript-list.tsx](transcript-list.tsx)
 
 ### A React component that fetches and displays a list of transcripts from an API.

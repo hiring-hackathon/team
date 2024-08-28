@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [providers.tsx](#providerstsx)
-
-[Back to top](#table-of-contents)
-
 ## [providers.tsx](providers.tsx)
 
 ### Client-side PostHog analytics provider for Next.js application

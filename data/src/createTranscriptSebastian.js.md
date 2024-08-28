@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [createTranscriptSebastian.js](#createtranscriptsebastianjs)
-
-[Back to top](#table-of-contents)
-
 ## [createTranscriptSebastian.js](createTranscriptSebastian.js)
 
 ### React component for posting and displaying a transcript analysis

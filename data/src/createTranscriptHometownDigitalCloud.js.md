@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [createTranscriptHometownDigitalCloud.js](#createtranscripthometowndigitalcloudjs)
-
-[Back to top](#table-of-contents)
-
 ## [createTranscriptHometownDigitalCloud.js](createTranscriptHometownDigitalCloud.js)
 
 ### React component for posting sales transcripts to an API

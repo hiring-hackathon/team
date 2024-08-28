@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [page.tsx](#pagetsx)
-
-[Back to top](#table-of-contents)
-
 ## [page.tsx](page.tsx)
 
 ### A React component displaying team member profiles with contact options and a YouTube video embed.

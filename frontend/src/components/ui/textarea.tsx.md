@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [textarea.tsx](#textareatsx)
-
-[Back to top](#table-of-contents)
-
 ## [textarea.tsx](textarea.tsx)
 
 ### Customizable and accessible textarea component for React applications

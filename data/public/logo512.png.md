@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [logo512.png](#logo-512-png)
-
-[Back to top](#table-of-contents)
-
 ## [logo512.png](logo512.png)
 
 ### Binary data representing a PNG image file

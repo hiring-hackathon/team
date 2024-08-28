@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [label.tsx](#labeltsx)
-
-[Back to top](#table-of-contents)
-
 ## [label.tsx](label.tsx)
 
 ### A customizable and accessible label component for React applications

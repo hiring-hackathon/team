@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [createTranscript_Jason_from_SecureHome_Systems.js](#createtranscriptjasonfromsecurehomesystemsjs)
-
-[Back to top](#table-of-contents)
-
 ## [createTranscript_Jason_from_SecureHome_Systems.js](createTranscript_Jason_from_SecureHome_Systems.js)
 
 ### A React component for posting and displaying a sales call transcript.

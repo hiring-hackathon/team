@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [export-lambda-us-east-1.sh](#exportlambdauseast-1-sh)
-
-[Back to top](#table-of-contents)
-
 ## [export-lambda-us-east-1.sh](export-lambda-us-east-1.sh)
 
 ### Script to export AWS Lambda functions from the us-east-1 region

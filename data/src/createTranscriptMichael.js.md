@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [createTranscriptMichael.js](#createtranscriptmichaeljs)
-
-[Back to top](#table-of-contents)
-
 ## [createTranscriptMichael.js](createTranscriptMichael.js)
 
 ### React component for posting a transcript to an API and displaying the response

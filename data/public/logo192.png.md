@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [logo192.png](#logo-192-png)
-
-[Back to top](#table-of-contents)
-
 ## [logo192.png](logo192.png)
 
 ### Binary PNG image file

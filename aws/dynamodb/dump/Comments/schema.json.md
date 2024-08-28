@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [schema.json](#schemajson)
-
-[Back to top](#table-of-contents)
-
 ## [schema.json](schema.json)
 
 ### JSON schema defining a DynamoDB table for storing comments

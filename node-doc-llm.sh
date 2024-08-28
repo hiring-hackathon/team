@@ -11,3 +11,5 @@ cd node-doc-llm
 # npm i
 
 for i in $(find .. -not -path '*/.*' -type f); do node index.js $i $i.md; done
+
+find . -type f -name '*.md' | xargs grep -l '# Table of Contents' | xargs gsed -i 1,11d

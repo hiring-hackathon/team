@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [README.md](#readmemd)
-
-[Back to top](#table-of-contents)
-
 ## [README.md](README.md)
 
 ### A Next.js project setup guide with development, learning resources, and deployment instructions.

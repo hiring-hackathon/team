@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [createTranscript_Dave_from_SafeGuard_Pest_Solutions.js](#createtranscriptdavefromsafeguardpestsolutionsjs)
-
-[Back to top](#table-of-contents)
-
 ## [createTranscript_Dave_from_SafeGuard_Pest_Solutions.js](createTranscript_Dave_from_SafeGuard_Pest_Solutions.js)
 
 ### React component for posting a transcript to an API and displaying the response

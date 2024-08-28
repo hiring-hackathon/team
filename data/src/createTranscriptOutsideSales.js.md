@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [createTranscriptOutsideSales.js](#createtranscriptoutsidesalesjs)
-
-[Back to top](#table-of-contents)
-
 ## [createTranscriptOutsideSales.js](createTranscriptOutsideSales.js)
 
 ### React component for posting and analyzing a sales transcript

@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (2 files)](#root)
-# (root)
-
-## List of files
-
-- [layout.tsx](#layouttsx)
-- [providers.tsx](#providerstsx)
-
-[Back to top](#table-of-contents)
 
 ## [layout.tsx](layout.tsx)
 

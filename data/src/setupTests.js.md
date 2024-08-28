@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [setupTests.js](#setuptestsjs)
-
-[Back to top](#table-of-contents)
-
 ## [setupTests.js](setupTests.js)
 
 ### Brief 20-word summary

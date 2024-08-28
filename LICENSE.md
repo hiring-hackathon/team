@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [LICENSE](#license)
-
-[Back to top](#table-of-contents)
-
 ## [LICENSE](LICENSE)
 
 ### Summary

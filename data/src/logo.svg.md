@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [logo.svg](#logosvg)
-
-[Back to top](#table-of-contents)
-
 ## [logo.svg](logo.svg)
 
 ### SVG file for a React logo

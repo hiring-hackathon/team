@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [dynamodb-exported-transcriptions-results.csv](#dynamodbexportedtranscriptionsresultscsv)
-
-[Back to top](#table-of-contents)
-
 ## [dynamodb-exported-transcriptions-results.csv](dynamodb-exported-transcriptions-results.csv)
 
 ### CSV file containing transcriptions of sales and service conversations

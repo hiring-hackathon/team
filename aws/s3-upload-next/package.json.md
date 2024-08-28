@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [package.json](#packagejson)
-
-[Back to top](#table-of-contents)
-
 ## [package.json](package.json)
 
 ### Package configuration for a Next.js project with AWS S3 integration

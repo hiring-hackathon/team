@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [dialog.tsx](#dialogtsx)
-
-[Back to top](#table-of-contents)
-
 ## [dialog.tsx](dialog.tsx)
 
 ### A set of components for creating customizable dialog modals using Radix UI and React.

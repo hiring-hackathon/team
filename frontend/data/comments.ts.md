@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [comments.ts](#commentsts)
-
-[Back to top](#table-of-contents)
-
 ## [comments.ts](comments.ts)
 
 ### Array of comment objects for call transcripts

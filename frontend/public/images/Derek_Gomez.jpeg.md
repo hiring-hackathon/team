@@ -1,14 +1,3 @@
-# Table of Contents
-
-- [(root) (1 files)](#root)
-# (root)
-
-## List of files
-
-- [Derek_Gomez.jpeg](#derekgomezjpeg)
-
-[Back to top](#table-of-contents)
-
 ## [Derek_Gomez.jpeg](Derek_Gomez.jpeg)
 
 ### Binary data representing an image file
