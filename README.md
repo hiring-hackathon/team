@@ -18,7 +18,7 @@ https://github.com/hiring-hackathon/team
 
 `mockups` and research of prior art as examples.
 
-`python` to setup RAG, export from Pinecone DB.
+`pinecone` to setup RAG, export from Pinecone DB.
 
 `tools` to generate documentation via OpenAI API
 
