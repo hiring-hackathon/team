@@ -8,4 +8,3 @@ The navigation bar includes links to different sections of the application, such
 
 The navigation bar is styled to be fully responsive, adjusting its layout based on the screen size. On larger screens, the navigation links are displayed horizontally, while on smaller screens, they are hidden behind a toggleable menu. This ensures a seamless user experience across different devices.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

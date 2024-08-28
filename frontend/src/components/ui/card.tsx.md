@@ -8,4 +8,3 @@ The `Card` component serves as the main container with a rounded border, backgro
 
 Each component uses a utility function `cn` to concatenate class names, allowing for flexible styling through additional `className` props. This modular approach enables developers to easily compose and customize card layouts in their applications.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

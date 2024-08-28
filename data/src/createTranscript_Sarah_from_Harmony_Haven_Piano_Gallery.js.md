@@ -8,4 +8,3 @@ Upon mounting, the component triggers an asynchronous function `postTranscript` 
 
 This setup provides a user-friendly interface for posting and viewing the transcript and its associated API response, making it suitable for applications requiring speech analytics or similar functionalities.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

@@ -8,4 +8,3 @@ The table's status is marked as "ACTIVE", indicating it is ready for use. The `P
 
 The `ResponseMetadata` section provides information about the request that retrieved this schema, including the request ID, HTTP status code, headers, and the number of retry attempts. This metadata is useful for debugging and tracking the request's lifecycle.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

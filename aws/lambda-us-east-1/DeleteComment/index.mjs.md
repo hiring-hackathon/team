@@ -8,4 +8,3 @@ When the function is invoked, it extracts the `transcriptId` and `commentId` fro
 
 If the comment is not found, the function returns a 404 status code with an error message. In case of any other errors during the process, a 500 status code is returned along with the error details. This ensures that the client is informed about the success or failure of the delete operation in a structured manner.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

@@ -8,4 +8,3 @@ Upon mounting, the component triggers the `postTranscript` function, which sends
 
 The UI consists of a title, the transcript text displayed in paragraphs, a button to post the transcript, and sections to show loading status, errors, and the API response. The component ensures a user-friendly experience by disabling the button during loading and providing clear error messages.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

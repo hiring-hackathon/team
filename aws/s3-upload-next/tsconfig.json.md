@@ -14,4 +14,3 @@ A plugin for Next.js is included to integrate with the framework's specific feat
 
 The `include` array specifies the files and directories to be included in the compilation, covering TypeScript files, Next.js environment definitions, and type definitions. The `exclude` array ensures that `node_modules` are not included in the compilation process. The `typeRoots` option specifies directories containing type definitions, ensuring that both custom and third-party types are recognized by the compiler.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

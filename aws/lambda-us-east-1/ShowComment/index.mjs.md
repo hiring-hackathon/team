@@ -8,4 +8,3 @@ When invoked, the function extracts `transcriptId` and `commentId` from the even
 
 The function attempts to retrieve the item from DynamoDB. If successful and the item exists, it returns the item with a 200 status code and appropriate CORS headers. If the item is not found, it returns a 404 status code. In case of any errors during the process, the function logs the error and returns a 500 status code with an error message. This setup ensures that the function handles various scenarios gracefully while providing necessary CORS support for cross-origin requests.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

@@ -8,4 +8,3 @@ The `metadata` object sets the default title and description for the application
 
 The `RootLayout` component is a functional component that wraps the entire application. It accepts a `children` prop, which represents the nested components within the layout. The component returns an HTML structure with the language set to English and applies the `Inter` font class to the body element. This ensures that all child components inherit the global styles and font settings, providing a cohesive look and feel throughout the application.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

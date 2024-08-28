@@ -12,4 +12,3 @@ The dependencies include essential libraries for building and testing React appl
 
 The `scripts` section provides commands to start the development server, build the application for production, run tests, and eject the configuration if needed. The ESLint configuration extends standard React and Jest rules to ensure code quality and consistency. The `browserslist` configuration specifies the target browsers for both production and development environments, ensuring compatibility and optimal performance across different browsers.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

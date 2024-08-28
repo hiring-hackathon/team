@@ -8,4 +8,3 @@ The component uses the `React.forwardRef` function to forward refs to the underl
 
 Overall, this `Textarea` component provides a flexible and accessible text input area that can be easily integrated and customized within React applications.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)
