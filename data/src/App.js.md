@@ -8,4 +8,3 @@ Upon mounting, the component automatically posts the transcript to the specified
 
 The UI includes a title, the formatted transcript, a button to post the transcript, and conditional rendering for loading, error, and response states. The button is disabled while the API call is in progress to prevent multiple submissions. The component ensures a user-friendly experience by providing clear feedback on the status of the API call and any errors that occur.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

@@ -18,4 +18,8 @@ xargs gsed -i 1,11d
 
 find . -type f -name '*.md' | \
 xargs grep -l "\[Back to (root)\](#root) | \[Back to top\](#table-of-contents)" | \
-xargs gsed -i '$d;$d;$d'
+xargs sed -i '' '
+$!N;$!N
+$s/\n\[Back to (root)\](#root) | \[Back to top\](#table-of-contents).*$//
+'
+

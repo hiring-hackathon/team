@@ -8,4 +8,3 @@ The `Transcript` interface defines the structure of each transcript object, whic
 
 The component renders a list of `Card` components, each representing a transcript. Each card includes a link to a detailed view of the transcript, displaying a truncated version of the transcript text and its ID. The `Link` component from `next/link` is used to enable client-side navigation to the detailed transcript pages. The `Card` component is used to style each transcript entry, providing a consistent and visually appealing layout.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

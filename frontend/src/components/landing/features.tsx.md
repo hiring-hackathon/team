@@ -12,4 +12,3 @@ Each feature is presented with a title and a brief description. The features hig
 
 The layout is responsive, using flexbox to arrange the feature descriptions in a flexible, gap-filled manner, ensuring a user-friendly and visually appealing presentation.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

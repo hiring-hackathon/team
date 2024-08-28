@@ -8,4 +8,3 @@ Upon mounting, the `useEffect` hook triggers the `postTranscript` function, whic
 
 The component renders a user interface that includes the transcript text, a button to manually trigger the `postTranscript` function, and conditional elements to display loading indicators, error messages, and the API response. The button is disabled while the request is in progress to prevent multiple submissions. The UI is styled with inline CSS to ensure a clean and user-friendly presentation.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)
