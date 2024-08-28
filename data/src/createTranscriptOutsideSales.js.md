@@ -16,4 +16,3 @@ The component renders a user interface that includes:
 
 The styling is inline and ensures the component is visually organized and user-friendly.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

@@ -10,4 +10,3 @@ The `body` element's color and background are styled using these custom properti
 
 This setup provides a flexible and responsive design foundation, leveraging Tailwind's utility-first approach and CSS custom properties for theme management.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

@@ -10,4 +10,3 @@ If the text to be summarized is not provided, the function throws an error. Othe
 
 Upon receiving a response from OpenAI, the function extracts the summary from the API's response and logs it. Finally, it returns a successful HTTP response containing the summary. If any errors occur during the process, the function catches them, logs the error, and returns a 500 HTTP response with an error message. This setup ensures that the function can handle various types of invocation events and provides a robust mechanism for summarizing text using advanced AI capabilities.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

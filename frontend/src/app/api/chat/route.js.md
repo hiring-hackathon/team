@@ -10,4 +10,3 @@ The system prompt, which outlines the role of an expert sales coach, is combined
 
 This endpoint is designed to help salespeople improve their communication skills by providing detailed, actionable feedback based on best practices in sales communication. The feedback is generated in real-time and is tailored to the specific content of the sales transcripts provided.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

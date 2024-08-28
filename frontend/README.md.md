@@ -10,4 +10,3 @@ For further learning, the README.md provides links to the Next.js documentation 
 
 Finally, the README.md outlines the simplest way to deploy the Next.js application using the Vercel Platform, with a link to the Next.js deployment documentation for detailed deployment instructions.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

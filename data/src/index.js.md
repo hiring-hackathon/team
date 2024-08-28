@@ -8,7 +8,6 @@ This code serves as the entry point for a React application. It imports necessar
 
 Additionally, the `reportWebVitals` function is called to start measuring and reporting key web performance metrics. This function can be customized to log results or send them to an analytics endpoint, providing insights into the application's performance. This setup ensures that the application is both robust and performance-aware from the start.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)
 
 ## [App.js](App.js)
 
@@ -22,7 +21,6 @@ The `useEffect` hook triggers the `postTranscript` function when the component m
 
 The component is styled using inline styles to ensure a clean and user-friendly interface. The button is disabled during the loading state to prevent multiple submissions. Error messages and responses are displayed in styled containers to enhance user experience.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)
 
 ## [reportWebVitals.js](reportWebVitals.js)
 

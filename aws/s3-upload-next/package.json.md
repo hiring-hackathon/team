@@ -10,4 +10,3 @@ In the devDependencies section, type definitions for TypeScript are provided for
 
 Overall, this `package.json` file sets up a robust development environment for a Next.js application that integrates with AWS S3 for file uploads, ensuring a smooth development workflow and high code quality.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)

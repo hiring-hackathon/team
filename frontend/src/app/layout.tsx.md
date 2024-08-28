@@ -13,7 +13,6 @@ The `RootLayout` component itself is a functional component that takes `children
 
 The `body` element applies the Inter font class to ensure consistent styling and renders the `children` components passed to `RootLayout`. This structure ensures that all pages and components within the application benefit from the same layout, font styling, and analytics tracking.
 
-[Back to (root)](#root) | [Back to top](#table-of-contents)
 
 ## [providers.tsx](providers.tsx)
 
