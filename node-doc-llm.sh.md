@@ -7,4 +7,3 @@ This script is designed to automate the generation of documentation for various 
 Once the setup is complete, the script iterates over all files in the parent directory, excluding hidden files and directories. For each file found, it invokes a Node.js script (`index.js`) to generate corresponding markdown documentation files. The generated documentation files are saved with the same name as the original files but with an added `.md` extension. This process ensures that every file in the project has an associated markdown documentation file, facilitating easier project understanding and maintenance.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

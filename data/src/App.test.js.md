@@ -14,4 +14,3 @@ This test file, `App.test.js`, is designed to verify that the `App` component re
 This `App.js` file defines a React component that handles the posting of a predefined transcript to an API endpoint and displays the response. The component uses React hooks such as `useState` and `useEffect` to manage state and side effects. Upon mounting, the component automatically posts the transcript to the specified API endpoint using the `postTranscript` function, which handles the API call and updates the state based on the response. The UI includes a button to manually trigger the posting of the transcript, and it conditionally renders loading indicators, error messages, and the API response. The transcript is displayed in a styled container, and the component ensures a user-friendly experience with clear feedback during the posting process.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

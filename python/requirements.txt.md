@@ -13,4 +13,3 @@ The `requirements.txt` file specifies the dependencies required for the project 
 By listing these dependencies in `requirements.txt`, the project ensures that all necessary packages are installed with their specified versions, providing a consistent development environment and reducing potential compatibility issues. This setup is particularly useful for onboarding new team members, as they can quickly install all required dependencies using a single command.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

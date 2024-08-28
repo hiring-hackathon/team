@@ -7,4 +7,3 @@ This script automates the process of exporting AWS Lambda functions from the us-
 For each Lambda function, the script retrieves detailed information, including the download URL for the function's code. It then downloads the code as a ZIP file, extracts its contents into a dedicated directory, and removes the ZIP file afterward. The script includes error handling to manage issues such as failed AWS CLI commands or download errors, ensuring robust execution. This tool is useful for backing up or migrating Lambda functions efficiently.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

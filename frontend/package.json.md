@@ -31,4 +31,3 @@ The `devDependencies` section includes tools and libraries needed for developmen
 This configuration ensures that the project has all necessary tools and libraries for development, building, and running a Next.js application with a rich set of features and integrations.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

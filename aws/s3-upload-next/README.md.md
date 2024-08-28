@@ -9,4 +9,3 @@ The file also highlights that the project uses `next/font` for optimizing and lo
 Additionally, it encourages users to explore the Next.js GitHub repository for further learning and contribution opportunities. Finally, it suggests deploying the application using the Vercel Platform, providing a link to the Next.js deployment documentation for more detailed instructions.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

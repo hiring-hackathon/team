@@ -7,4 +7,3 @@ This document provides a comprehensive step-by-step guide for integrating Amazon
 The document also covers how to expose API methods to access S3 buckets and objects, including configuring HTTP headers and mapping templates for requests. Finally, it explains how to deploy the API and test it using tools like Postman or curl. This guide is designed to help developers quickly set up a basic integration between Amazon S3 and a REST API, with considerations for further enhancements in a production environment.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

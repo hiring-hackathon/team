@@ -13,4 +13,3 @@ The `@layer components` directive is used to define reusable component styles. F
 Overall, this `globals.css` file establishes a cohesive and maintainable styling foundation for the project, leveraging Tailwind CSS's powerful utility classes and custom properties.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-
