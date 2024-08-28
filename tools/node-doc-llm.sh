@@ -10,7 +10,9 @@ cd node-doc-llm
 
 # npm i
 
-for i in $(find .. -not -path '*/.*' -type f); do node index.js $i $i.md; done
+for i in $(find ../.. -not -path '*/.*' -type f); do node index.js $i $i.md; done
+
+cd ../..
 
 find . -type f -name '*.md' | \
 xargs grep -l '# Table of Contents' | \

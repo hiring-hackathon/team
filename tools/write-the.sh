@@ -6,4 +6,6 @@
 
 # pip install write-the
 
+cd ..
+
 for i in $(find . -not -path '*/.*' -type d); do write-the docs --save $i; done
