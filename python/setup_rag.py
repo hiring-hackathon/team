@@ -30,6 +30,20 @@ vector_dimension = int(os.getenv("VECTOR_DIMENSION", "1536"))
 batch_size = int(os.getenv("BATCH_SIZE", "100"))
 
 def delete_index_if_exists(pc, index_name):
+    """
+    Checks if the given index exists and deletes it if it does.
+
+    Args:
+      pc (Pinecone): The Pinecone client.
+      index_name (str): The name of the index to check and delete.
+
+    Raises:
+      UnauthorizedException: If the client is unauthorized.
+      Exception: If there is an error checking or deleting the index.
+
+    Examples:
+      >>> delete_index_if_exists(pc, 'rag')
+    """
     try:
         indexes = pc.list_indexes()
         if index_name in indexes:
@@ -50,6 +64,21 @@ def delete_index_if_exists(pc, index_name):
         logging.error(f"Error checking or deleting index: {e}")
 
 def create_index(pc, index_name, dimension):
+    """
+    Creates a new Pinecone index with the given name and dimension.
+
+    Args:
+      pc (Pinecone): The Pinecone client.
+      index_name (str): The name of the index to create.
+      dimension (int): The dimension of the index.
+
+    Raises:
+      UnauthorizedException: If the client is unauthorized.
+      Exception: If there is an error creating the index.
+
+    Examples:
+      >>> create_index(pc, 'rag', 1536)
+    """
     try:
         existing_indexes = pc.list_indexes()
         if index_name in existing_indexes:
@@ -80,9 +109,39 @@ def create_index(pc, index_name, dimension):
 
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=4, max=10))
 def create_embedding_with_retry(client, text):
+    """
+    Creates an embedding for the given text using the OpenAI client, with retry logic.
+
+    Args:
+      client (OpenAI): The OpenAI client.
+      text (str): The text to create an embedding for.
+
+    Returns:
+      Embedding: The embedding for the given text.
+
+    Raises:
+      Exception: If there is an error creating the embedding.
+
+    Examples:
+      >>> create_embedding_with_retry(client, 'This is a review.')
+    """
     return client.embeddings.create(input=text, model="text-embedding-3-small")
 
 def batch_upsert(index, vectors, batch_size=100):
+    """
+    Upserts the given vectors into the given index in batches.
+
+    Args:
+      index (Index): The Pinecone index.
+      vectors (list): The list of vectors to upsert.
+      batch_size (int): The size of each batch.
+
+    Raises:
+      Exception: If there is an error upserting the vectors.
+
+    Examples:
+      >>> batch_upsert(index, [vector1, vector2, vector3], 100)
+    """
     for i in range(0, len(vectors), batch_size):
         batch = vectors[i:i+batch_size]
         try:
@@ -92,6 +151,19 @@ def batch_upsert(index, vectors, batch_size=100):
             logging.error(f"Error upserting batch {i//batch_size + 1}: {e}")
 
 def cleanup(pc, index_name):
+    """
+    Deletes the given index.
+
+    Args:
+      pc (Pinecone): The Pinecone client.
+      index_name (str): The name of the index to delete.
+
+    Raises:
+      Exception: If there is an error deleting the index.
+
+    Examples:
+      >>> cleanup(pc, 'rag')
+    """
     try:
         pc.delete_index(index_name)
         logging.info(f"Cleaned up: Deleted index '{index_name}'")
