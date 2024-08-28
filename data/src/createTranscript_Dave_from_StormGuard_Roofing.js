@@ -5,7 +5,13 @@ function App() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const transcriptText = `Tom: Good afternoon, everyone. I'm Tom from SafetyFirst Equipment. Thank you all for attending this presentation at the Construction Safety Expo. Today, I'll be demonstrating our latest line of personal protective equipment designed specifically for high-rise construction projects. Can I get a volunteer to help me show how easy it is to put on and adjust our new safety harness?\n\n(A volunteer steps forward)\n\nTom: Great, thank you sir. Now, as you can see, this harness has several unique features...`;
+  const transcriptText = `Roofing Sales After a Storm
+
+Dave, a sales rep for StormGuard Roofing, is canvassing a neighborhood that was recently hit by a hailstorm. He approaches a house with visible roof damage and knocks on the door. The homeowner, Elena, answers.
+Dave: "Good afternoon! I'm Dave from StormGuard Roofing. We're in the area helping homeowners assess and repair storm damage. I couldn't help but notice some potential issues with your roof. Have you had a chance to have it inspected since the recent storm?"
+Elena: "No, I haven't. I've been meaning to, but I've been so busy."
+Dave: "I completely understand. Would you like me to take a quick look and give you a free assessment? It'll only take about 15 minutes, and there's no obligation."
+(If Elena agrees, Dave would proceed to inspect the roof, explain his findings, and potentially offer to help with insurance claims or schedule a full repair.)`;
 
   const postTranscript = async () => {
     setLoading(true);

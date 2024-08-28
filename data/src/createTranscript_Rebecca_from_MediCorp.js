@@ -5,7 +5,13 @@ function App() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const transcriptText = `Tom: Good afternoon, everyone. I'm Tom from SafetyFirst Equipment. Thank you all for attending this presentation at the Construction Safety Expo. Today, I'll be demonstrating our latest line of personal protective equipment designed specifically for high-rise construction projects. Can I get a volunteer to help me show how easy it is to put on and adjust our new safety harness?\n\n(A volunteer steps forward)\n\nTom: Great, thank you sir. Now, as you can see, this harness has several unique features...`;
+  const transcriptText = `Pharmaceutical Sales to Doctors' Offices
+
+Rebecca, a pharmaceutical sales rep for MediCorp, has an appointment at a local medical practice. She's there to discuss a new medication with Dr. Thompson.
+Rebecca: "Good morning, Dr. Thompson. Thank you for taking the time to meet with me today. I know how busy your practice can be."
+Dr. Thompson: "Good morning, Rebecca. What do you have for us today?"
+Rebecca: "I'm excited to tell you about a new treatment option for type 2 diabetes that MediCorp has just released. Before I get into the details, could you tell me a bit about the challenges you're currently facing in managing your diabetic patients?"
+(Rebecca would then tailor her presentation to address the specific concerns raised by Dr. Thompson, potentially leaving samples and scheduling a follow-up visit.)`;
 
   const postTranscript = async () => {
     setLoading(true);

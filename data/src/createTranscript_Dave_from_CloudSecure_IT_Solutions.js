@@ -5,7 +5,7 @@ function App() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const transcriptText = `Tom: Good afternoon, everyone. I'm Tom from SafetyFirst Equipment. Thank you all for attending this presentation at the Construction Safety Expo. Today, I'll be demonstrating our latest line of personal protective equipment designed specifically for high-rise construction projects. Can I get a volunteer to help me show how easy it is to put on and adjust our new safety harness?\n\n(A volunteer steps forward)\n\nTom: Great, thank you sir. Now, as you can see, this harness has several unique features...`;
+  const transcriptText = `David: Good afternoon, this is David from CloudSecure IT Solutions. I'm here for my appointment with your IT director, Ms. Garcia.\n\nReceptionist: Hello David, please take a seat. I'll let Ms. Garcia know you're here.\n\n(With Ms. Garcia)\n\nDavid: Ms. Garcia, thank you for meeting with me. I understand your company has been experiencing some cybersecurity concerns lately.\n\nMs. Garcia: Yes, we've had a few close calls with phishing attempts. We need to strengthen our defenses.\n\nDavid: I see. Let me walk you through how our comprehensive security suite can address those issues and provide real-time threat detection...`;
 
   const postTranscript = async () => {
     setLoading(true);
