@@ -16,4 +16,3 @@ This file defines a collection of React components that facilitate the creation 
 These components are designed to be flexible and easily styled, making it straightforward to integrate dialog modals into various parts of a React application. The use of `React.forwardRef` and `className` props allows for further customization and styling.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

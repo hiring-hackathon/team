@@ -9,4 +9,3 @@ Upon mounting, the `useEffect` hook triggers the `postTranscript` function, whic
 The component renders the transcript text, a button to manually trigger the posting of the transcript, and conditional messages based on the loading, error, and response states. The button is disabled while the transcript is being posted, and appropriate messages or error details are displayed based on the state of the request.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

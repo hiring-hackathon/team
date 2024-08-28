@@ -9,4 +9,3 @@ The transcript of a conversation between a salesperson named Sarah from Hometown
 The `useEffect` hook ensures that the `postTranscript` function is called once when the component mounts. The component's UI includes a button to manually trigger the `postTranscript` function, a section to display the transcript, and conditional rendering to show loading status, errors, and the API response. The styling is inline and aims to provide a clean and user-friendly interface.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

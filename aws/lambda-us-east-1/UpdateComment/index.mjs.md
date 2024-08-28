@@ -7,4 +7,3 @@ This code defines an AWS Lambda function that updates a comment in a DynamoDB ta
 Upon receiving a request, the function constructs an update operation to modify the specified comment's text and location in the `Comments` table. After performing the update, it retrieves the updated comment to ensure all attributes, including any newly added ones, are returned in the response. The function handles errors gracefully, logging them and returning a 500 status code with an appropriate error message if any issues occur during the update or retrieval process. The response includes CORS headers to allow cross-origin requests.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

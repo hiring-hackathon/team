@@ -7,4 +7,3 @@ The `index.css` file provides foundational styling for a web application. It set
 For code elements, the `font-family` is set to a stack of monospaced fonts, which are typically used for displaying code snippets. This ensures that code is displayed in a clear and readable manner, maintaining the alignment and spacing that is crucial for code readability. The chosen fonts are widely supported and provide a consistent look across various environments.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

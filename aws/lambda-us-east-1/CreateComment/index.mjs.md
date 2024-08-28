@@ -11,4 +11,3 @@ This item is then inserted into the `Comments` table in DynamoDB using the `PutC
 The function also includes CORS headers to allow cross-origin requests, making it suitable for use in web applications.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

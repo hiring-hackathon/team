@@ -13,4 +13,3 @@ Border radii are customized with CSS variables, providing consistent styling acr
 Finally, the configuration includes the `tailwindcss-animate` plugin, which adds additional animation utilities to the project. This setup ensures a highly customizable and maintainable design system tailored to the project's requirements.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

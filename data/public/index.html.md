@@ -7,4 +7,3 @@ This `index.html` file serves as the main HTML template for a React application 
 The HTML file contains a `div` with the id `root`, which is the mounting point for the React application. A `noscript` tag is included to prompt users to enable JavaScript if it is disabled. The comments within the file provide guidance on how to use the template, including instructions for adding web fonts, meta tags, or analytics, and details on how the build process will handle the bundled scripts. The file is designed to work seamlessly with client-side routing and non-root public URLs.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

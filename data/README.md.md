@@ -9,4 +9,3 @@ The document emphasizes that `npm run eject` is a one-way operation, cautioning 
 Additionally, the README encourages users to explore the Create React App documentation and React documentation to deepen their understanding of the tools and frameworks used in the project.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

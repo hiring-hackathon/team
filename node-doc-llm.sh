@@ -12,4 +12,10 @@ cd node-doc-llm
 
 for i in $(find .. -not -path '*/.*' -type f); do node index.js $i $i.md; done
 
-find . -type f -name '*.md' | xargs grep -l '# Table of Contents' | xargs gsed -i 1,11d
+find . -type f -name '*.md' | \
+xargs grep -l '# Table of Contents' | \
+xargs gsed -i 1,11d
+
+find . -type f -name '*.md' | \
+xargs grep -l "\[Back to (root)\](#root) | \[Back to top\](#table-of-contents)" | \
+xargs gsed -i '$d;$d;$d'

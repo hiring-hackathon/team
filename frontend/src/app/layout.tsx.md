@@ -22,4 +22,3 @@ The `body` element applies the Inter font class to ensure consistent styling and
 This file, `providers.tsx`, is designed to integrate PostHog analytics into a Next.js application on the client side. It initializes the PostHog client using environment variables for the API key and host, ensuring that analytics data is sent to the correct PostHog instance. The `CSPostHogProvider` component wraps its children with the `PostHogProvider` from the `posthog-js/react` library, enabling any nested components to access and utilize PostHog's analytics features. This setup is essential for tracking user interactions and behaviors within the application, providing valuable insights for improving user experience and application performance.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

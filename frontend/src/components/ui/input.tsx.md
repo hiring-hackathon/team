@@ -9,4 +9,3 @@ The `Input` component applies a set of default CSS classes to style the input fi
 The component also handles various states such as focus, disabled, and placeholder text, enhancing the user experience. By exporting the `Input` component, it can be imported and used in other parts of the application, promoting code reuse and maintainability.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

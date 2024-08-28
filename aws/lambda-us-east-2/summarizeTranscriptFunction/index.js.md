@@ -11,4 +11,3 @@ If the `text` field is missing, the function throws an error. Otherwise, it send
 The function logs the response from OpenAI and extracts the summary. It then returns a successful HTTP response with the summary included in the body. If any errors occur during processing, the function catches them and returns a 500 HTTP response with an error message.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

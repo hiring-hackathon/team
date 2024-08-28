@@ -14,4 +14,3 @@ The script includes several key functions:
 In the main execution block, the script deletes any existing index, creates a new index, and processes review data from a `reviews.json` file. It generates embeddings for each review and upserts them into the Pinecone index. The script also includes error handling and logging to provide detailed information about the execution process. Optionally, the script can clean up the index after execution by uncommenting the cleanup call.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-

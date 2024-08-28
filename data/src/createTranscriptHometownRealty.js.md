@@ -11,4 +11,3 @@ The `useEffect` hook is used to automatically post the transcript when the compo
 Overall, this component demonstrates how to handle API requests, manage state, and render conditional content in a React application. It is designed to be a part of a larger application that deals with speech analytics for outside sales.
 
 [Back to (root)](#root) | [Back to top](#table-of-contents)
-
