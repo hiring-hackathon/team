@@ -34,3 +34,12 @@ There are many components in this repository, such as:
 8. Sample React starter app to load transcriptions using CRUD REST API
 9. AI chatbot uses OpenAI's `text-embedding-ada-002` with embeddings and vector databses via Pinecone
 10. OpenRouter.AI with Meta's `meta-llama/llama-3.1-8b-instruct:free` for Generate Summary feature
+
+Co-Authors:
+Co-authored-by: Derek Gomez <demagome@ucsc.edu>
+Co-authored-by: Derek Gomez <dmatt.gomez@gmail.com>
+Co-authored-by: Faith Nchang <fnchang@montgomerycollege.edu>
+Co-authored-by: Faith Nchang <nchangfru24@gmail.com>
+Co-authored-by: Lloyd Chang <lloydchang@gmail.com>
+Co-authored-by: Muturi David <muturidavid854@gmail.com>
+Co-authored-by: Shaun Jhingoor <Jhingoor1945@gmail.com>
