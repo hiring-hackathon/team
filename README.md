@@ -1,45 +1,43 @@
-**Instructions:** Each file has a corresponding .md file generated with node-doc-llm and write-the via OpenAI. If you don't understand a file, try reading its corresponding .md file. Thanks!
+# Rilla++ Voice AI Sales++
 
-Rilla++ Voice AI Sales++
+## Demo
 
-https://www.youtube.com/watch?v=OIlAv2BzpxQ
+- [YouTube Video](https://www.youtube.com/watch?v=OIlAv2BzpxQ)
+- [Live Demo](https://hiring-hackathon-team.vercel.app/)
+- [GitHub Repository](https://github.com/hiring-hackathon/team)
 
-https://hiring-hackathon-team.vercel.app/
+## Project Structure
 
-https://github.com/hiring-hackathon/team
+- `aws`: Export from DynamoDB, Lambda, S3
+- `data`: Transcripts-related data; import via React app and CRUD API into DynamoDB
+- `docs`: Published documentation, such as YouTube video
+- `frontend`: Deployed to Vercel
+- `mockups`: Research and prior art examples
+- `pinecone`: RAG setup, export from Pinecone DB
+- `tools`: Documentation generation via OpenAI API
 
-`aws` to export from DynamoDB, Lambda, S3.
+## Components
 
-`data` related to transcripts; import via React app and CRUD API into DynamoDB.
+1. Version 1 of frontend UI and core
+2. Version 2 frontend UI and core2 for transcriptions in TypeScript (TS) with some backend (Next.js)
+3. Frontend RAG chatbot in JavaScript (JS) with some backend (Next.js)
+4. AWS Lambda for CRUD REST API in JavaScript for Transcriptions and Comments
+5. AWS Lambda for AI LLM REST API in JavaScript using OpenAI's `gpt-3.5-turbo` or `gpt-4`
+6. AWS S3 REST API in TypeScript (TS) with some backend (Next.js)
+7. Transcriptions and DynamoDB (DB #1)
+8. Transcriptions and Pinecone DB (DB #2)
+9. Sample React starter app to load transcriptions using CRUD REST API
+10. AI chatbot using OpenAI's `text-embedding-ada-002` with embeddings and vector databases via Pinecone
+11. OpenRouter.AI with Meta's `meta-llama/llama-3.1-8b-instruct:free` for Generate Summary feature
 
-`docs` for published documentation, such as video posted YouTube.
+## Co-Authors
 
-`frontend` deployed to Vercel.
+- Derek Gomez <dmatt.gomez@gmail.com> and <demagome@ucsc.edu>
+- Faith Nchang <nchangfru24@gmail.com> and <fnchang@montgomerycollege.edu>
+- Lloyd Chang <lloydchang@gmail.com>
+- Muturi David <muturidavid854@gmail.com>
+- Shaun Jhingoor <Jhingoor1945@gmail.com>
 
-`mockups` and research of prior art as examples.
+## Note
 
-`pinecone` to setup RAG, export from Pinecone DB.
-
-`tools` to generate documentation via OpenAI API.
-
-There are many components in this repository, such as:
-1. Version 1 of frontend ui and core
-2. Version 2 frontend ui and core2 for transcriptions in TypeScript (TS) and some backend because it's Next.js
-2. Frontend RAG chatbot in JavaScript (JS) and some backend because it's Next.js
-3. AWS Lambda for CRUD REST API in Javascript for Transcriptions and Comments
-4. AWS Lambda for AI LLM REST API in JavaScript using OpenAI's `gpt-3.5-turbo` or `gpt-4`
-5. AWS S3 REST API TypeScript (TS) and some backend because it's Next.js
-6. Transcriptions and DynamoDB (DB #1)
-7. Transcriptions and Pinecone DB (DB #2)
-8. Sample React starter app to load transcriptions using CRUD REST API
-9. AI chatbot uses OpenAI's `text-embedding-ada-002` with embeddings and vector databses via Pinecone
-10. OpenRouter.AI with Meta's `meta-llama/llama-3.1-8b-instruct:free` for Generate Summary feature
-
-Co-Authors:
-Co-authored-by: Derek Gomez <demagome@ucsc.edu>
-Co-authored-by: Derek Gomez <dmatt.gomez@gmail.com>
-Co-authored-by: Faith Nchang <fnchang@montgomerycollege.edu>
-Co-authored-by: Faith Nchang <nchangfru24@gmail.com>
-Co-authored-by: Lloyd Chang <lloydchang@gmail.com>
-Co-authored-by: Muturi David <muturidavid854@gmail.com>
-Co-authored-by: Shaun Jhingoor <Jhingoor1945@gmail.com>
+Each file has a corresponding `.md` file generated with `node-doc-llm` and `write-the` via OpenAI. If you don't understand a file, try reading its corresponding `.md` file.
