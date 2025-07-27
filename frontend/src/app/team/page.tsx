@@ -86,7 +86,6 @@ const MeetTheTeam: React.FC = () => {
                                         />
                                         <h2 className="text-lg font-semibold mb-2 text-yellow-200">{member.name}</h2>
                                         <p className="text-yellow-300 text-sm mb-2">{member.role}</p>
-                                        <p className="text-yellow-100 text-xs mb-2">{member.email}</p>
                                         <p className="text-yellow-100 text-xs mb-4">{member.location}</p>
                                         <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 mb-4 inline-flex items-center">
                                             <Linkedin size={48} className="mr-2" />
