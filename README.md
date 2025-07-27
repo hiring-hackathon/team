@@ -30,14 +30,6 @@
 10. AI chatbot using OpenAI's `text-embedding-ada-002` with embeddings and vector databases via Pinecone
 11. OpenRouter.AI with Meta's `meta-llama/llama-3.1-8b-instruct:free` for Generate Summary feature
 
-## Co-Authors
-
-- Derek Gomez <dmatt.gomez@gmail.com> and <demagome@ucsc.edu>
-- Faith Nchang <nchangfru24@gmail.com> and <fnchang@montgomerycollege.edu>
-- Lloyd Chang <lloydchang@gmail.com>
-- Muturi David <muturidavid854@gmail.com>
-- Shaun Jhingoor <Jhingoor1945@gmail.com>
-
 ## Note
 
 Each file has a corresponding `.md` file generated with `node-doc-llm` and `write-the` via OpenAI. If you don't understand a file, try reading its corresponding `.md` file.
