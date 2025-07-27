@@ -13,7 +13,6 @@ const teamMembers = [
         name: 'Derek Gomez',
         role: 'AI Engineer Lead, Full-Stack',
         photo: '/images/Derek_Gomez.jpeg',
-        email: 'dmatt.gomez@gmail.com',
         linkedin: 'https://www.linkedin.com/in/derekgomez/',
         location: 'San Jose, California, United States'
     },
@@ -21,7 +20,6 @@ const teamMembers = [
         name: 'Faith Nchang',
         role: 'AI Engineer, Frontend Lead, UI/UX Designer',
         photo: '/images/Faith_Nchang.jpeg',
-        email: 'nchangfru24@gmail.com',
         linkedin: 'https://www.linkedin.com/in/faith-nchang-11112b2a9/',
         location: 'Washington DC-Baltimore Area, United States'
     },
@@ -29,7 +27,6 @@ const teamMembers = [
         name: 'Lloyd Chang',
         role: 'AI Engineer, Full-Stack, Infrastructure Lead',
         photo: '/images/Lloyd_Chang.jpeg',
-        email: 'lloydchang@gmail.com',
         linkedin: 'https://www.linkedin.com/in/lloydchang/',
         location: 'San Francisco, California, United States'
     },
@@ -37,7 +34,6 @@ const teamMembers = [
         name: 'Muturi David',
         role: 'AI Engineer, Full-Stack Lead',
         photo: '/images/Mutari_David.jpeg',
-        email: 'muturidavid854@gmail.com',
         linkedin: 'https://www.linkedin.com/in/tushdev/',
         location: 'Nairobi, Nairobi County, Kenya'
     },
@@ -45,7 +41,6 @@ const teamMembers = [
         name: 'Shaun Jhingoor',
         role: 'AI Engineer, Backend Lead',
         photo: '/images/Shaun_Jhingoor.jpeg',
-        email: 'jhingoor1945@gmail.com',
         linkedin: 'https://www.linkedin.com/in/shaun-jhingoor-10a50328a/',
         location: 'New York, New York, United States'
     }
@@ -65,16 +60,6 @@ const MeetTheTeam: React.FC = () => {
             return () => clearTimeout(timer);
         }
     }, [toast.show]);
-
-    // Function to handle contact click and copy email to clipboard
-    const handleContactClick = (email: string) => {
-        navigator.clipboard.writeText(email).then(() => {
-            setToast({ show: true, message: `Email address copied: ${email}` });
-        }).catch(err => {
-            console.error('Failed to copy email: ', err);
-            setToast({ show: true, message: 'Failed to copy email address' });
-        });
-    };
 
     return (
         <div className="flex flex-col min-h-screen">
@@ -108,12 +93,6 @@ const MeetTheTeam: React.FC = () => {
                                             <span className="text-sm font-medium">Connect on LinkedIn</span>
                                         </a>
                                     </div>
-                                    <Button
-                                        className="bg-yellow-500 text-gray-900 hover:bg-yellow-600 text-sm py-2 px-4 w-full"
-                                        onClick={() => handleContactClick(member.email)}
-                                    >
-                                        Copy Email
-                                    </Button>
                                 </div>
                             ))}
                         </div>
