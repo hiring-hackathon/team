@@ -14,35 +14,30 @@ const teamMembers = [
         role: 'AI Engineer Lead, Full-Stack',
         photo: '/images/Derek_Gomez.jpeg',
         linkedin: 'https://www.linkedin.com/in/derekgomez/',
-        location: 'San Jose, California, United States'
     },
     {
         name: 'Faith Nchang',
         role: 'AI Engineer, Frontend Lead, UI/UX Designer',
         photo: '/images/Faith_Nchang.jpeg',
         linkedin: 'https://www.linkedin.com/in/faith-nchang-11112b2a9/',
-        location: 'Washington DC-Baltimore Area, United States'
     },
     {
         name: 'Lloyd Chang',
         role: 'AI Engineer, Full-Stack, Infrastructure Lead',
         photo: '/images/Lloyd_Chang.jpeg',
         linkedin: 'https://www.linkedin.com/in/lloydchang/',
-        location: 'San Francisco, California, United States'
     },
     {
         name: 'Muturi David',
         role: 'AI Engineer, Full-Stack Lead',
         photo: '/images/Mutari_David.jpeg',
         linkedin: 'https://www.linkedin.com/in/tushdev/',
-        location: 'Nairobi, Nairobi County, Kenya'
     },
     {
         name: 'Shaun Jhingoor',
         role: 'AI Engineer, Backend Lead',
         photo: '/images/Shaun_Jhingoor.jpeg',
         linkedin: 'https://www.linkedin.com/in/shaun-jhingoor-10a50328a/',
-        location: 'New York, New York, United States'
     }
 ];
 
@@ -86,7 +81,6 @@ const MeetTheTeam: React.FC = () => {
                                         />
                                         <h2 className="text-lg font-semibold mb-2 text-yellow-200">{member.name}</h2>
                                         <p className="text-yellow-300 text-sm mb-2">{member.role}</p>
-                                        <p className="text-yellow-100 text-xs mb-4">{member.location}</p>
                                         <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 mb-4 inline-flex items-center">
                                             <Linkedin size={48} className="mr-2" />
                                             <span className="text-sm font-medium">Connect on LinkedIn</span>
